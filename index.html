@@ -4,22 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olibesc | Ciberseguridad Gestionada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1 { color: #005a9c; }
-        .cta { background-color: #005a9c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;}
+        /* --- VARIABLES DE TUS COLORES --- */
+        :root {
+            --primary-color: #2e2a5c; /* El Violeta Oscuro de tu logo */
+            --accent-color: #00ff88;  /* El Verde Neón de tu logo */
+            --text-dark: #1f2937;
+            --text-light: #f3f4f6;
+            --bg-light: #ffffff;
+            --bg-off-white: #f9fafb;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--bg-light); }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo img { height: 50px; width: auto; } /* Ajusta el tamaño de tu logo aquí */
+        .nav-links a { margin-left: 2rem; color: var(--text-dark); font-weight: 600; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--primary-color); }
+        .btn-contact {
+            background-color: var(--primary-color); color: white !important;
+            padding: 0.6rem 1.5rem; border-radius: 5px;
+        }
+        .btn-contact:hover { background-color: #1a1835; transform: translateY(-2px); }
+
+        /* --- HERO (LA ENTRADA) --- */
+        .hero {
+            background-color: var(--primary-color); /* Fondo Violeta */
+            color: white; padding: 6rem 5% 4rem; text-align: center;
+            background-image: linear-gradient(135deg, #2e2a5c 0%, #1a1835 100%);
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
+        .hero span { color: var(--accent-color); } /* Tu verde neón */
+        .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9; }
+        .cta-button {
+            display: inline-block; background-color: var(--accent-color); color: var(--primary-color);
+            font-weight: 800; padding: 1rem 2.5rem; border-radius: 8px; font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+        }
+        .cta-button:hover { background-color: #fff; transform: scale(1.05); }
+
+        /* --- SERVICIOS (GRID) --- */
+        .services { padding: 5rem 5%; background-color: var(--bg-off-white); }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .section-title p { color: #6b7280; }
+        
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
+        .card {
+            background: white; padding: 2.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card h3 { margin-bottom: 1rem; color: var(--primary-color); font-size: 1.4rem; }
+        .card p { font-size: 0.95rem; color: #4b5563; }
+        .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #111; color: #9ca3af; padding: 3rem 5%; text-align: center; font-size: 0.9rem; }
+        footer a { color: var(--accent-color); }
+
+        /* --- MÓVIL --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-direction: column; padding: 1rem; }
+            .nav-links { margin-top: 1rem; }
+            .nav-links a { margin: 0 10px; }
+        }
     </style>
 </head>
 <body>
-    <h1>Protección Activa para PYMEs</h1>
-    <p>Ayudamos a empresas locales a blindar su correo electrónico y sus equipos contra el fraude y el ransomware.</p>
-    <p><strong>Servicios Especializados:</strong></p>
-    <ul>
-        <li>Auditoría y Securización de Correo (DMARC/DKIM).</li>
-        <li>Monitorización de Amenazas 24/7 (Elastic Security).</li>
-        <li>Respuesta ante Incidentes.</li>
-    </ul>
-    <p>¿Has recibido un informe de vulnerabilidad nuestro? Estamos listos para ayudarte a solucionarlo.</p>
-    <a href="mailto:info@olibesc.com" class="cta">Contactar con Soporte</a>
+
+    <nav>
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo Olibesc Ciberseguridad"> 
+        </div>
+        <div class="nav-links">
+            <a href="#servicios">Servicios</a>
+            <a href="mailto:info@olibesc.com" class="btn-contact">Contactar</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Protección Enterprise <br>para <span>Pequeñas Empresas</span></h1>
+        <p>Monitorización de amenazas 24/7, correo seguro y respuesta ante incidentes. La seguridad de una multinacional, adaptada a tu negocio.</p>
+        <a href="mailto:info@olibesc.com" class="cta-button">Solicitar Auditoría Gratuita</a>
+    </header>
+
+    <section id="servicios" class="services">
+        <div class="section-title">
+            <h2>Nuestros Servicios</h2>
+            <p>Tranquilidad digital gestionada por especialistas.</p>
+        </div>
+        <div class="services-grid">
+            <div class="card">
+                <span class="icon">📧</span>
+                <h3>Correo Blindado</h3>
+                <p>Implementación de DMARC, SPF y DKIM para evitar la suplantación de identidad y el fraude del CEO. Aseguramos que tus facturas lleguen a su destino.</p>
+            </div>
+            <div class="card">
+                <span class="icon">🛡️</span>
+                <h3>Defensa Activa (EDR)</h3>
+                <p>No usamos antivirus tradicionales. Desplegamos Elastic Security para detectar y bloquear ransomware y comportamientos maliciosos en tiempo real.</p>
+            </div>
+            <div class="card">
+                <span class="icon">👁️</span>
+                <h3>Monitorización 24/7</h3>
+                <p>Centro de operaciones de seguridad (SOC) gestionado. Vigilamos tus sistemas mientras tú trabajas, detectando anomalías antes de que sean un problema.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Olibesc Ciberseguridad. Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:info@olibesc.com">info@olibesc.com</a></p>
+    </footer>
+
 </body>
 </html>
