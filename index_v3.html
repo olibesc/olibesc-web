@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olibesc | Ciberseguridad Gestionada y Auditoría</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES DE TUS COLORES --- */
+        :root {
+            --primary-color: #2e2a5c; /* Violeta Oscuro */
+            --accent-color: #00ff88;  /* Verde Neón */
+            --text-dark: #1f2937;
+            --text-light: #f3f4f6;
+            --bg-light: #ffffff;
+            --bg-off-white: #f9fafb;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--bg-light); }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo img { height: 50px; width: auto; }
+        .nav-links a { margin-left: 2rem; color: var(--text-dark); font-weight: 600; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--primary-color); }
+        .btn-contact {
+            background-color: var(--primary-color); color: white !important;
+            padding: 0.6rem 1.5rem; border-radius: 5px;
+        }
+        .btn-contact:hover { background-color: #1a1835; transform: translateY(-2px); }
+
+        /* --- HERO (LA ENTRADA) --- */
+        .hero {
+            background-color: var(--primary-color);
+            color: white; padding: 6rem 5% 4rem; text-align: center;
+            background-image: linear-gradient(135deg, #2e2a5c 0%, #1a1835 100%);
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
+        .hero span { color: var(--accent-color); }
+        .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; opacity: 0.9; }
+        .cta-button {
+            display: inline-block; background-color: var(--accent-color); color: var(--primary-color);
+            font-weight: 800; padding: 1rem 2.5rem; border-radius: 8px; font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+        }
+        .cta-button:hover { background-color: #fff; transform: scale(1.05); }
+
+        /* --- SECCIONES COMUNES --- */
+        .section-padding { padding: 5rem 5%; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .section-title p { color: #6b7280; max-width: 600px; margin: 0 auto; }
+
+        /* --- SERVICIOS (GRID) --- */
+        .services { background-color: var(--bg-off-white); }
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
+        .card {
+            background: white; padding: 2.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card h3 { margin-bottom: 1rem; color: var(--primary-color); font-size: 1.4rem; }
+        .card p { font-size: 0.95rem; color: #4b5563; }
+        .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+        /* --- TARIFAS (PRICING) --- */
+        .pricing-section { background-color: #ffffff; }
+        .pricing-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; align-items: flex-start;
+        }
+        .pricing-card {
+            background: white; padding: 2.5rem; border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;
+            width: 320px; text-align: left; position: relative; transition: 0.3s;
+        }
+        .pricing-card:hover { transform: translateY(-5px); }
+        
+        /* Tarjeta Destacada */
+        .pricing-card.featured {
+            border: 2px solid var(--accent-color);
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .pricing-card.featured:hover { transform: scale(1.05) translateY(-5px); }
+
+        .badge {
+            background-color: var(--primary-color); color: var(--accent-color);
+            padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;
+            text-transform: uppercase; display: inline-block; margin-bottom: 1rem;
+        }
+
+        .pricing-card h3 { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .price { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); margin: 1.5rem 0; }
+        .price span { font-size: 1rem; font-weight: 400; color: #6b7280; }
+        .price-desc { color: #6b7280; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        
+        .features-list li { margin-bottom: 0.8rem; font-size: 0.95rem; color: #4b5563; display: flex; align-items: center; }
+        .features-list li::before { content: "✓"; color: var(--accent-color); font-weight: bold; margin-right: 10px; }
+        
+        .btn-pricing {
+            display: block; width: 100%; text-align: center; padding: 0.8rem; margin-top: 2rem;
+            border-radius: 6px; font-weight: 600; transition: 0.3s;
+        }
+        .btn-outline { border: 2px solid #e5e7eb; color: var(--text-dark); }
+        .btn-outline:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .btn-solid { background-color: var(--primary-color); color: white; }
+        .btn-solid:hover { background-color: #1a1835; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #111; color: #9ca3af; padding: 3rem 5%; text-align: center; font-size: 0.9rem; }
+        footer a { color: var(--accent-color); }
+
+        /* --- MÓVIL --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-direction: column; padding: 1rem; }
+            .nav-links { margin-top: 1rem; }
+            .nav-links a { margin: 0 10px; }
+            .pricing-card.featured { transform: scale(1); margin: 1rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo Olibesc Ciberseguridad"> 
+        </div>
+        <div class="nav-links">
+            <a href="#servicios">Servicios</a>
+            <a href="#tarifas">Auditoría y SOC</a>
+            <a href="mailto:info@olibesc.com" class="btn-contact">Contactar</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Ciberseguridad Proactiva <br>para <span>Empresas</span></h1>
+        <p>Protegemos tu infraestructura aplicando filosofías Zero Trust, tecnología Open Source (Wazuh) y un respeto absoluto por la privacidad de tus datos. Invierte en seguridad real, no en licencias opacas.</p>
+        <a href="#tarifas" class="cta-button">Solicitar Auditoría Inicial</a>
+    </header>
+
+    <section id="servicios" class="services section-padding">
+        <div class="section-title">
+            <h2>Nuestros Pilares</h2>
+            <p>Estrategias defensivas basadas en transparencia técnica y control total de la información.</p>
+        </div>
+        <div class="services-grid">
+            <div class="card">
+                <span class="icon">🔍</span>
+                <h3>Auditorías Preventivas</h3>
+                <p>Realizamos análisis de "Caja Negra" para descubrir vulnerabilidades en tu perímetro DNS antes de que sean explotadas. Especialistas en evitar ataques de suplantación (Spoofing) y fraude del CEO.</p>
+            </div>
+            <div class="card">
+                <span class="icon">👁️</span>
+                <h3>SOC Corporativo (Wazuh)</h3>
+                <p>Desplegamos un Centro de Operaciones de Seguridad basado en tecnología líder Open Source (Wazuh). Monitorizamos tus servidores 24/7 detectando intrusiones sin ceder tus datos a terceros.</p>
+            </div>
+            <div class="card">
+                <span class="icon">🛡️</span>
+                <h3>Prevención Zero Trust</h3>
+                <p>Blindamos tu negocio asumiendo que la red ya está comprometida. Implementamos túneles seguros (Cloudflare), hardening de servidores, gestión de contraseñas y políticas de backup inmutables (3-2-1).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tarifas" class="pricing-section section-padding">
+        <div class="section-title">
+            <h2>Protección Adaptada</h2>
+            <p>Intervenciones quirúrgicas para solucionar problemas críticos y monitorización continua para mantener la seguridad.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <h3>Auditoría DNS Externa</h3>
+                <div class="price">0€</div>
+                <p class="price-desc">Descubre si tu dominio es vulnerable.</p>
+                <ul class="features-list">
+                    <li>Análisis preventivo de Caja Negra</li>
+                    <li>Verificación de Spoofing</li>
+                    <li>Informe Ejecutivo de Vulnerabilidades</li>
+                    <li>Sin interrupción del servicio</li>
+                </ul>
+                <a href="mailto:info@olibesc.com?subject=Solicitud Auditoría Externa Gratuita" class="btn-pricing btn-outline">Solicitar Auditoría</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <span class="badge">Resolución Rápida</span>
+                <h3>Ingeniería de Identidad</h3>
+                <div class="price">295€ <span>/ intervención</span></div>
+                <p class="price-desc">Cierre definitivo de brechas de correo.</p>
+                <ul class="features-list">
+                    <li>Hardening de registros DMARC, SPF, DKIM</li>
+                    <li>Alineación con Microsoft 365 / Google</li>
+                    <li>Evita el bloqueo de tus facturas</li>
+                    <li>Monitorización forense (30 días)</li>
+                </ul>
+                <a href="mailto:info@olibesc.com?subject=Interesado en Ingeniería de Identidad" class="btn-pricing btn-solid">Blindar mi Dominio</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>SOC & Hardening</h3>
+                <div class="price">A medida</div>
+                <p class="price-desc">Tu departamento de ciberseguridad.</p>
+                <ul class="features-list">
+                    <li>Despliegue de Agentes Wazuh (Open Source)</li>
+                    <li>Auditoría CIS Benchmark continua</li>
+                    <li>Implementación Zero Trust (Túneles)</li>
+                    <li>Respuesta a incidentes 24/7</li>
+                    <li>Auditoría de políticas de Backup</li>
+                </ul>
+                <a href="mailto:info@olibesc.com?subject=Presupuesto SOC y Hardening" class="btn-pricing btn-outline">Consultar Proyecto</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Olibesc Ciberseguridad. Privacidad por diseño.</p>
+        <p>Contacto confidencial: <a href="mailto:info@olibesc.com">info@olibesc.com</a></p>
+    </footer>
+
+</body>
+</html>
