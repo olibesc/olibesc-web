@@ -735,9 +735,9 @@
 <script>
   /* ══ FORMULARIO AUDITORÍA → n8n ══
      Endpoint: cambia /form-test/ por /webhook/ cuando pases a producción
-     El webhook de n8n espera un POST con JSON: { nombre, empresa, dominio, email }
+     n8n Form Trigger requiere multipart/form-data (NO application/json)
   */
-  const N8N_ENDPOINT = 'https://n8n.olibesc.com/form/e0cb280c-5289-4c66-9972-7bc3010e045b';
+  const N8N_ENDPOINT = 'https://n8n.olibesc.com/form-test/e0cb280c-5289-4c66-9972-7bc3010e045b';
 
   const auditForm    = document.getElementById('auditForm');
   const auditBtn     = document.getElementById('auditBtn');
@@ -786,10 +786,17 @@
     auditBtn.classList.add('loading');
 
     try {
+      // n8n Form Trigger requiere multipart/form-data
+      // No añadir Content-Type manualmente: el navegador pone el boundary correcto
+      const fd = new FormData();
+      fd.append('nombre',  nombre);
+      fd.append('empresa', empresa);
+      fd.append('dominio', dominio);
+      fd.append('email',   email);
+
       const res = await fetch(N8N_ENDPOINT, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ nombre, empresa, dominio, email })
+        method: 'POST',
+        body:   fd
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
