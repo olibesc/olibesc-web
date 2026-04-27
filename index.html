@@ -706,11 +706,11 @@
 </footer>
 
 <script>
-  /* ══ FORMULARIO AUDITORÍA → n8n ══
-     Endpoint: cambia /form-test/ por /webhook/ cuando pases a producción
-     n8n Form Trigger requiere multipart/form-data (NO application/json)
+  /* ══ FORMULARIO AUDITORÍA → n8n Webhook ══
+     Usa /webhook/ (no /form/ ni /form-test/)
+     Envía JSON — el Webhook trigger de n8n lo lee en $input.first().json.body
   */
-  const N8N_ENDPOINT = 'https://n8n.olibesc.com/form/bb06812f-689a-4f0c-879d-ed135aaacc8a';
+  const N8N_ENDPOINT = 'https://n8n.olibesc.com/webhook/bb06812f-689a-4f0c-879d-ed135aaacc8a';
 
   const auditForm    = document.getElementById('auditForm');
   const auditBtn     = document.getElementById('auditBtn');
@@ -718,12 +718,10 @@
   const formErrorMsg = document.getElementById('formErrorMsg');
 
   function cleanDomain(raw) {
-    // Elimina http/https y rutas: "https://miempresa.com/web" → "miempresa.com"
     return raw.trim().replace(/^https?:\/\//i,'').replace(/\/.*$/,'').toLowerCase();
   }
 
   function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
   function validateDomain(v) { return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v); }
 
   function markError(inputId) {
@@ -738,55 +736,43 @@
     e.preventDefault();
     clearErrors();
 
-    const nombre = document.getElementById('f-nombre').value.trim();
+    const nombre  = document.getElementById('f-nombre').value.trim();
     const empresa = document.getElementById('f-empresa').value.trim();
     const dominio = cleanDomain(document.getElementById('f-dominio').value);
-    const email = document.getElementById('f-email').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
 
-    // Validación básica
     let ok = true;
-    if (!nombre)                { markError('f-nombre');  ok = false; }
-    if (!empresa)               { markError('f-empresa'); ok = false; }
+    if (!nombre)                 { markError('f-nombre');  ok = false; }
+    if (!empresa)                { markError('f-empresa'); ok = false; }
     if (!validateDomain(dominio)){ markError('f-dominio'); ok = false; }
-    if (!validateEmail(email))  { markError('f-email');   ok = false; }
+    if (!validateEmail(email))   { markError('f-email');   ok = false; }
     if (!ok) return;
 
-    // Actualiza el dominio limpio en el campo (UX)
     document.getElementById('f-dominio').value = dominio;
-
-    // Estado de carga
     auditBtn.disabled = true;
     auditBtn.classList.add('loading');
 
     try {
-      // n8n Form Trigger requiere multipart/form-data
-      // No añadir Content-Type manualmente: el navegador pone el boundary correcto
-      const fd = new FormData();
-      fd.append('nombre', nombre);
-      fd.append('empresa', empresa);
-      fd.append('dominio', dominio);
-      fd.append('email', email);
-
+      // JSON puro — el Webhook trigger de n8n lo recibe en body
       const res = await fetch(N8N_ENDPOINT, {
-        method: 'POST',
-        body:   fd
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ nombre, empresa, dominio, email })
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      // Éxito
-      auditForm.style.display = 'none';
-      formSuccess.style.display = 'block';
+      auditForm.style.display    = 'none';
+      formSuccess.style.display  = 'block';
 
     } catch (err) {
       console.error('n8n error:', err);
       formErrorMsg.style.display = 'block';
-      auditBtn.disabled = false;
+      auditBtn.disabled          = false;
       auditBtn.classList.remove('loading');
     }
   });
 
-  // Limpiar error visual al escribir
   auditForm.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', () => input.classList.remove('f-error'));
   });
