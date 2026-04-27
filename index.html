@@ -765,10 +765,10 @@
     e.preventDefault();
     clearErrors();
 
-    const nombre  = document.getElementById('f-nombre').value.trim();
+    const nombre = document.getElementById('f-nombre').value.trim();
     const empresa = document.getElementById('f-empresa').value.trim();
     const dominio = cleanDomain(document.getElementById('f-dominio').value);
-    const email   = document.getElementById('f-email').value.trim();
+    const email = document.getElementById('f-email').value.trim();
 
     // Validación básica
     let ok = true;
@@ -789,10 +789,10 @@
       // n8n Form Trigger requiere multipart/form-data
       // No añadir Content-Type manualmente: el navegador pone el boundary correcto
       const fd = new FormData();
-      fd.append('nombre',  nombre);
+      fd.append('nombre', nombre);
       fd.append('empresa', empresa);
       fd.append('dominio', dominio);
-      fd.append('email',   email);
+      fd.append('email', email);
 
       const res = await fetch(N8N_ENDPOINT, {
         method: 'POST',
