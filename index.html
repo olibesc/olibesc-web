@@ -706,10 +706,7 @@
 </footer>
 
 <script>
-  /* ══ FORMULARIO AUDITORÍA → n8n Webhook ══
-     Usa /webhook/ (no /form/ ni /form-test/)
-     Envía JSON — el Webhook trigger de n8n lo lee en $input.first().json.body
-  */
+  /* ══ FORMULARIO AUDITORÍA → n8n Webhook ══ */
   const N8N_ENDPOINT = 'https://n8n.olibesc.com/webhook/bb06812f-689a-4f0c-879d-ed135aaacc8a';
 
   const auditForm    = document.getElementById('auditForm');
@@ -720,16 +717,20 @@
   function cleanDomain(raw) {
     return raw.trim().replace(/^https?:\/\//i,'').replace(/\/.*$/,'').toLowerCase();
   }
-
-  function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validateEmail(v)  { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
   function validateDomain(v) { return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v); }
 
   function markError(inputId) {
     document.getElementById(inputId).classList.add('f-error');
   }
+  function showError(msg) {
+    formErrorMsg.textContent = msg;
+    formErrorMsg.style.display = 'block';
+  }
   function clearErrors() {
     auditForm.querySelectorAll('input').forEach(i => i.classList.remove('f-error'));
     formErrorMsg.style.display = 'none';
+    formErrorMsg.textContent   = '';
   }
 
   auditForm.addEventListener('submit', async (e) => {
@@ -741,6 +742,7 @@
     const dominio = cleanDomain(document.getElementById('f-dominio').value);
     const email   = document.getElementById('f-email').value.trim();
 
+    // Validación en el navegador (primera barrera, rápida)
     let ok = true;
     if (!nombre)                 { markError('f-nombre');  ok = false; }
     if (!empresa)                { markError('f-empresa'); ok = false; }
@@ -753,28 +755,44 @@
     auditBtn.classList.add('loading');
 
     try {
-      // JSON puro — el Webhook trigger de n8n lo recibe en body
       const res = await fetch(N8N_ENDPOINT, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ nombre, empresa, dominio, email })
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (res.ok) {
+        // Éxito — n8n aceptó y procesará el informe
+        auditForm.style.display   = 'none';
+        formSuccess.style.display = 'block';
 
-      auditForm.style.display    = 'none';
-      formSuccess.style.display  = 'block';
+      } else {
+        // n8n devolvió 400 con un mensaje de error de validación
+        let mensaje = 'Datos incorrectos. Revisa el formulario e inténtalo de nuevo.';
+        try {
+          const data = await res.json();
+          if (data.mensaje) mensaje = data.mensaje;
+        } catch (_) { /* si no es JSON, usamos el mensaje genérico */ }
+
+        showError(mensaje);
+        auditBtn.disabled = false;
+        auditBtn.classList.remove('loading');
+      }
 
     } catch (err) {
-      console.error('n8n error:', err);
-      formErrorMsg.style.display = 'block';
-      auditBtn.disabled          = false;
+      // Error de red (n8n caído, CORS, sin conexión...)
+      console.error('Error de red:', err);
+      showError('No hemos podido conectar con el servidor. Inténtalo de nuevo en unos segundos.');
+      auditBtn.disabled = false;
       auditBtn.classList.remove('loading');
     }
   });
 
   auditForm.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', () => input.classList.remove('f-error'));
+    input.addEventListener('input', () => {
+      input.classList.remove('f-error');
+      clearErrors();
+    });
   });
 </script>
 
