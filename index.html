@@ -1,911 +1,323 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olibesc · Ciberseguridad para PYMEs — Auditoría gratuita de tu dominio</title>
-<meta name="description" content="Comprueba gratis en 60 segundos si tu empresa puede ser suplantada por email. Auditoría DMARC/SPF/DKIM automática, SOC para PYMEs y cumplimiento NIS2. Sin jerga, sin contratos eternos.">
-<link rel="canonical" href="https://olibesc.com/">
-<link rel="icon" type="image/png" href="/logo.png">
-<meta name="theme-color" content="#0a0a0f">
-
-<!-- Open Graph: vista previa al compartir en Instagram DM / WhatsApp / LinkedIn -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://olibesc.com/">
-<meta property="og:title" content="¿Pueden suplantar el email de tu empresa? Compruébalo gratis">
-<meta property="og:description" content="Auditoría automática de tu dominio en 60 segundos. Te enviamos un informe real de tus vulnerabilidades. Sin coste, sin compromiso.">
-<meta property="og:image" content="https://olibesc.com/logo.png">
-<meta property="og:locale" content="es_ES">
-<meta name="twitter:card" content="summary">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Olibesc",
-  "description": "Ciberseguridad gestionada para PYMEs y autónomos: protección de identidad de email (DMARC/SPF/DKIM), SOC 24/7 y cumplimiento NIS2.",
-  "url": "https://olibesc.com",
-  "logo": "https://olibesc.com/logo.png",
-  "email": "info@olibesc.com",
-  "areaServed": "ES",
-  "priceRange": "€€"
-}
-</script>
-
-<!-- TODO Lito: activar Cloudflare Web Analytics (gratis, sin cookies, sin banner).
-     Dashboard Cloudflare → Analytics & Logs → Web Analytics → añadir sitio olibesc.com
-     y pegar aquí el snippet con tu token:
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "TU_TOKEN"}'></script>
--->
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olibesc · Comprueba si tu correo está protegido</title>
+<meta name="description" content="Comprueba gratis si alguien puede enviar correos en nombre de tu empresa. Sin instalar nada y explicado en cristiano.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0a0a0f;
-    --dark: #111118;
-    --card: #16161f;
-    --border: rgba(255,255,255,0.07);
-    --red: #e63946;
-    --red-glow: rgba(230,57,70,0.15);
-    --amber: #f4a261;
-    --green: #2a9d8f;
-    --white: #f0f0f5;
-    --muted: rgba(240,240,245,0.45);
-    --accent-line: rgba(230,57,70,0.4);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.6;
-  }
-
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 5vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; color: var(--white); }
-  .logo span { color: var(--red); }
-
-  .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 400; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-
-  .btn-nav { background: var(--red); color: #fff !important; padding: 0.55rem 1.4rem; border-radius: 6px; font-weight: 500 !important; transition: background 0.2s, transform 0.15s !important; }
-  .btn-nav:hover { background: #c1121f !important; transform: translateY(-1px); }
-
-  /* En móvil se ocultan los enlaces pero el CTA sigue visible */
-  @media (max-width: 600px) {
-    .nav-links { gap: 0; }
-    .nav-links a:not(.btn-nav) { display: none; }
-  }
-
-  /* ══ HERO con formulario (CTA primero) ══ */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 7.5rem 5vw 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  #hero::after {
-    content: '';
-    position: absolute;
-    top: -10%; left: -5%;
-    width: 55vw; height: 70vh;
-    background: radial-gradient(ellipse at center, rgba(230,57,70,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  }
-
-  .hero-label {
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; color: var(--red);
-    text-transform: uppercase; margin-bottom: 1.6rem; display: flex; align-items: center; gap: 0.6rem;
-  }
-  .hero-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--red); }
-
-  h1 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: clamp(2.1rem, 4.2vw, 3.6rem);
-    line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.6rem;
-  }
-  h1 .accent { color: var(--red); }
-  h1 .underline-word { position: relative; display: inline-block; }
-  h1 .underline-word::after {
-    content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
-    height: 3px; background: var(--red); border-radius: 2px;
-  }
-
-  .hero-sub { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--muted); max-width: 520px; margin-bottom: 1.8rem; font-weight: 300; }
-
-  .hero-points { display: flex; flex-direction: column; gap: 0.7rem; }
-  .hero-point { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.92rem; color: rgba(240,240,245,0.7); }
-  .hero-point .check-icon { margin-top: 0.2rem; }
-
-  /* Tarjeta del formulario de auditoría */
-  .audit-card {
-    background: var(--card);
-    border: 1px solid rgba(230,57,70,0.25);
-    border-radius: 16px;
-    padding: 2.2rem;
-    position: relative;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.45), 0 0 60px rgba(230,57,70,0.06);
-  }
-  .audit-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--red), var(--amber), transparent);
-    border-radius: 16px 16px 0 0;
-  }
-
-  .audit-card-head { margin-bottom: 1.4rem; }
-  .audit-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.25);
-    border-radius: 100px; padding: 0.35rem 0.85rem;
-    font-size: 0.72rem; font-weight: 500; color: var(--red); margin-bottom: 1rem;
-  }
-  .pulse-dot { width: 7px; height: 7px; background: var(--red); border-radius: 50%; animation: pulse 1.8s infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-
-  .audit-card-head h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.45rem; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5rem; }
-  .audit-card-head p { font-size: 0.88rem; color: var(--muted); }
-
-  .audit-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.9rem; }
-  .audit-chip {
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
-    border: 1px solid var(--border); border-radius: 5px;
-    padding: 0.2rem 0.6rem; color: rgba(240,240,245,0.55);
-    background: rgba(255,255,255,0.03);
-  }
-
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem;
-    border-top: 1px solid var(--border); flex-wrap: wrap;
-    position: relative; z-index: 1;
-  }
-  .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--white); line-height: 1; margin-bottom: 0.3rem; }
-  .stat-num .unit { color: var(--red); }
-  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; }
-
-  .alert-band {
-    background: linear-gradient(135deg, rgba(230,57,70,0.12), rgba(230,57,70,0.04));
-    border-top: 1px solid var(--accent-line); border-bottom: 1px solid var(--accent-line);
-    padding: 2.4rem 5vw; display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap;
-  }
-  .alert-icon { font-size: 2rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .alert-text h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 0.4rem; color: var(--white); }
-  .alert-text p { color: var(--muted); font-size: 0.95rem; max-width: 720px; }
-  .alert-text strong { color: var(--amber); font-weight: 500; }
-
-  section { padding: 5.5rem 5vw; }
-
-  .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; color: var(--red); text-transform: uppercase; margin-bottom: 0.8rem; }
-
-  h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.9rem); letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 1.2rem; }
-
-  .section-intro { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin-bottom: 3.5rem; }
-
-  #problema { background: var(--dark); }
-
-  .fear-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5px; background: var(--border); border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden; margin-bottom: 3rem;
-  }
-
-  .fear-card { background: var(--card); padding: 2.2rem; transition: background 0.2s; }
-  .fear-card:hover { background: #1c1c27; }
-  .fear-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
-  .fear-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem; color: var(--white); }
-  .fear-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
-  .fear-card .fine { margin-top: 1rem; font-size: 0.8rem; color: var(--red); font-weight: 500; letter-spacing: 0.04em; }
-
-  .services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  @media (max-width: 768px) { .services-layout { grid-template-columns: 1fr; } }
-
-  .service-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 2.4rem;
-    position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s;
-  }
-  .service-card:hover { border-color: rgba(230,57,70,0.3); transform: translateY(-3px); }
-  .service-card.featured { grid-column: span 2; background: linear-gradient(135deg, #16161f, #1a1225); border-color: rgba(230,57,70,0.25); }
-  @media (max-width: 768px) { .service-card.featured { grid-column: span 1; } }
-
-  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
-  .service-card:hover::before { background: linear-gradient(90deg, var(--red), transparent); }
-  .service-card.featured::before { background: linear-gradient(90deg, var(--red), var(--amber), transparent); }
-
-  .service-tag { display: inline-block; background: var(--red-glow); border: 1px solid rgba(230,57,70,0.3); color: var(--red); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 4px; margin-bottom: 1.2rem; }
-  .service-tag.green { background: rgba(42,157,143,0.12); border-color: rgba(42,157,143,0.3); color: var(--green); }
-
-  .service-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.35rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-  .service-card .subtitle { font-size: 0.82rem; color: var(--red); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem; }
-  .service-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
-
-  .service-features { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .service-feature { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: rgba(240,240,245,0.7); }
-  .service-feature::before { content: '→'; color: var(--red); flex-shrink: 0; margin-top: 0.05em; }
-
-  .service-compliance { margin-top: 1.5rem; padding: 1rem 1.2rem; background: rgba(230,57,70,0.06); border: 1px solid rgba(230,57,70,0.12); border-radius: 8px; font-size: 0.82rem; color: var(--muted); }
-  .service-compliance strong { color: var(--amber); font-weight: 500; }
-
-  #metodologia { background: var(--dark); }
-
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
-
-  .step { padding: 2.5rem 2rem; position: relative; border-right: 1px solid var(--border); }
-  .step:last-child { border-right: none; }
-  @media (max-width: 768px) { .step { border-right: none; border-bottom: 1px solid var(--border); } }
-
-  .step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.5rem; line-height: 1; color: rgba(230,57,70,0.12); margin-bottom: 1rem; display: block; }
-  .step h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--white); }
-  .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
-
-  #nis2 { background: linear-gradient(180deg, var(--black) 0%, rgba(230,57,70,0.03) 50%, var(--black) 100%); }
-
-  .nis2-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  @media (max-width: 768px) { .nis2-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
-
-  .nis2-visual { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; position: relative; overflow: hidden; }
-  .nis2-visual::after { content: ''; position: absolute; bottom: -20%; right: -10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(230,57,70,0.08), transparent 70%); pointer-events: none; }
-
-  .nis2-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.25); border-radius: 100px; padding: 0.4rem 0.9rem; font-size: 0.75rem; font-weight: 500; color: var(--red); margin-bottom: 1.5rem; }
-
-  .nis2-visual h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem; }
-  .nis2-visual .nis2-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; }
-
-  .fine-table { width: 100%; border-collapse: collapse; }
-  .fine-table tr { border-bottom: 1px solid var(--border); }
-  .fine-table tr:last-child { border-bottom: none; }
-  .fine-table td { padding: 0.9rem 0; font-size: 0.85rem; }
-  .fine-table td:first-child { color: var(--muted); }
-  .fine-table td:last-child { text-align: right; font-family: 'Syne', sans-serif; font-weight: 700; color: var(--red); }
-
-  .nis2-text p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.8; }
-  .nis2-text strong { color: var(--white); font-weight: 500; }
-
-  .nis2-checklist { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
-  .nis2-check { display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; color: rgba(240,240,245,0.75); }
-  .check-icon { width: 22px; height: 22px; background: rgba(42,157,143,0.15); border: 1px solid rgba(42,157,143,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); font-size: 0.7rem; flex-shrink: 0; }
-
-  #identidad { background: var(--dark); }
-
-  .identity-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
-  @media (max-width: 900px) { .identity-layout { grid-template-columns: 1fr; } }
-
-  .identity-text p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.8; }
-  .identity-text strong { color: var(--white); font-weight: 500; }
-
-  .identity-diagram { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
-  .id-diagram-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.8rem; }
-
-  .attack-step { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
-  .attack-step:last-child { border-bottom: none; }
-
-  .attack-step-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .icon-red { background: rgba(230,57,70,0.12); border: 1px solid rgba(230,57,70,0.2); }
-  .icon-amber { background: rgba(244,162,97,0.12); border: 1px solid rgba(244,162,97,0.2); }
-  .icon-green { background: rgba(42,157,143,0.12); border: 1px solid rgba(42,157,143,0.2); }
-
-  .attack-step-content h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; color: var(--white); }
-  .attack-step-content p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-  .blocked { margin-top: 0.3rem; font-size: 0.75rem; color: var(--green); font-weight: 500; display: flex; align-items: center; gap: 0.3rem; }
-  .blocked::before { content: '✓'; }
-
-  /* ══ CTA final: vuelve al formulario del hero ══ */
-  #cta-final {
-    background: linear-gradient(135deg, var(--dark), #18101a);
-    border-top: 1px solid var(--border); text-align: center; padding: 6rem 5vw; position: relative; overflow: hidden;
-  }
-  #cta-final::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(230,57,70,0.07) 0%, transparent 70%); pointer-events: none; }
-  #cta-final h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; position: relative; }
-  #cta-final p { color: var(--muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2.5rem; position: relative; }
-
-  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
-
-  .btn-big { background: var(--red); color: #fff; padding: 1.1rem 2.8rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-  .btn-big:hover { background: #c1121f; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(230,57,70,0.35); }
-
-  .btn-outline { background: transparent; color: var(--white); padding: 1.1rem 2.4rem; border-radius: 8px; text-decoration: none; font-weight: 400; font-size: 1.05rem; border: 1px solid rgba(255,255,255,0.15); transition: border-color 0.2s, background 0.2s; }
-  .btn-outline:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); }
-
-  footer { background: #07070c; border-top: 1px solid var(--border); padding: 3rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--white); }
-  .footer-logo span { color: var(--red); }
-  .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
-  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy { font-size: 0.8rem; color: rgba(240,240,245,0.2); }
-
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ══ FORMULARIO AUDITORÍA ══ */
-  .audit-form { display: flex; flex-direction: column; gap: 0.9rem; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-
-  .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
-
-  .form-field label {
-    font-size: 0.74rem; font-weight: 500;
-    color: rgba(240,240,245,0.45);
-    letter-spacing: 0.07em; text-transform: uppercase;
-  }
-
-  .form-field input {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 7px;
-    padding: 0.75rem 1rem;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem; font-weight: 300;
-    transition: border-color 0.2s, background 0.2s;
-    outline: none; width: 100%;
-  }
-  .form-field input::placeholder { color: rgba(240,240,245,0.2); }
-  .form-field input:focus { border-color: rgba(230,57,70,0.5); background: rgba(255,255,255,0.06); }
-  .form-field input.f-error { border-color: rgba(230,57,70,0.65); }
-
-  .form-hint { font-size: 0.72rem; color: rgba(240,240,245,0.3); margin-top: 0.15rem; }
-
-  .form-submit {
-    background: var(--red); color: #fff; border: none; border-radius: 7px;
-    padding: 0.88rem 2rem;
-    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
-    cursor: pointer; transition: background 0.2s, transform 0.15s;
-    width: 100%; margin-top: 0.35rem;
-    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-  }
-  .form-submit:hover:not(:disabled) { background: #c1121f; transform: translateY(-1px); }
-  .form-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-
-  .f-spinner {
-    width: 15px; height: 15px;
-    border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
-    border-radius: 50%; animation: fspin 0.7s linear infinite; display: none;
-  }
-  .form-submit.loading .f-spinner { display: block; }
-  .form-submit.loading .f-label { display: none; }
-  @keyframes fspin { to { transform: rotate(360deg); } }
-
-  .form-legal {
-    font-size: 0.7rem; color: rgba(240,240,245,0.28);
-    text-align: center; line-height: 1.55; margin-top: 0.2rem;
-  }
-  .form-legal a { color: rgba(240,240,245,0.42); text-decoration: underline; }
-
-  .form-success {
-    display: none; text-align: center;
-    padding: 2.4rem 1.5rem;
-    background: rgba(42,157,143,0.07);
-    border: 1px solid rgba(42,157,143,0.22); border-radius: 10px;
-  }
-  .form-success .s-icon { font-size: 2.4rem; margin-bottom: 0.9rem; }
-  .form-success h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.25rem; margin-bottom: 0.55rem; }
-  .form-success p  { color: rgba(240,240,245,0.5); font-size: 0.875rem; line-height: 1.7; }
-
-  .form-error-msg {
-    display: none;
-    background: rgba(230,57,70,0.07); border: 1px solid rgba(230,57,70,0.22);
-    border-radius: 7px; padding: 0.75rem 1rem;
-    font-size: 0.82rem; color: #f07060; text-align: center; margin-top: 0.5rem;
-  }
-
-  @media (max-width: 600px) {
-    .form-row { grid-template-columns: 1fr; }
-    .audit-card { padding: 1.6rem; }
-    #hero { padding-top: 6.5rem; }
-  }
+:root{--bg:#ffffff;--alt:#f7fafc;--surface:#ffffff;--text:#0d1b2a;--muted:#5a6b7c;--line:#e2e8ee;--panel:#0d1b2a;--panel-text:#ffffff;--panel-muted:rgba(255,255,255,.72);--red:#e63946;--green:#2a9d8f;--amber:#f4a261;--shadow:0 1px 2px rgba(13,27,42,.04),0 16px 40px rgba(13,27,42,.09)}
+html[data-theme="dark"]{--bg:#0a0a0f;--alt:#111118;--surface:#16161f;--text:#f0f0f5;--muted:rgba(240,240,245,.55);--line:rgba(255,255,255,.09);--panel:#16161f;--panel-text:#f0f0f5;--panel-muted:rgba(240,240,245,.6);--shadow:0 24px 80px rgba(0,0,0,.45)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .2s ease,color .2s ease}
+h1,h2,h3{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-.02em}
+a{color:var(--red)}a:hover{color:#c1121f}
+.wrap{max-width:1000px;margin:0 auto;padding:0 5vw}
+header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{max-width:1100px;margin:0 auto;padding:1rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+.logo span{color:var(--red)}
+.navlinks{display:flex;align-items:center;gap:1.4rem}
+.navlinks a{font-size:.92rem;color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--text)}
+#theme{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;padding:0}
+#hero{border-bottom:1px solid var(--line)}
+.hero-in{max-width:860px;margin:0 auto;padding:5.5rem 5vw 4rem;text-align:center}
+h1{font-size:clamp(2.4rem,5.2vw,3.9rem);line-height:1.08;letter-spacing:-.03em;margin:0 0 1.3rem;text-wrap:balance}
+.lead{font-size:1.22rem;color:var(--muted);max-width:600px;margin:0 auto 2.6rem;text-wrap:pretty}
+.lead strong{color:var(--text);font-weight:500}
+.card-cta{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.6rem;box-shadow:var(--shadow);max-width:620px;margin:0 auto;text-align:left}
+.field{display:flex;gap:.75rem;flex-wrap:wrap}
+.inputwrap{flex:1 1 260px;display:flex;align-items:center;gap:.15rem;border:1px solid var(--line);border-radius:10px;padding:0 1rem;background:var(--bg)}
+.at{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--red)}
+#domain{flex:1;min-width:0;font-family:'DM Sans',sans-serif;font-size:1.05rem;color:var(--text);background:transparent;border:none;outline:none;padding:.95rem .55rem}
+#go{flex:0 0 auto;font-family:'DM Sans',sans-serif;font-size:1.02rem;font-weight:500;color:#fff;background:var(--red);border:none;border-radius:10px;padding:.95rem 1.6rem;cursor:pointer;transition:background .2s ease}
+#go:hover{background:#c1121f}
+.hint{font-size:.87rem;color:var(--muted);margin:.9rem .2rem 0;line-height:1.55}
+.hint em{font-style:normal;color:var(--text)}
+#error{font-size:.9rem;color:var(--red);margin:.8rem .2rem 0}
+#loading{max-width:520px;margin:0 auto;text-align:left;animation:olin .35s ease both}
+.load-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.025em;line-height:1.15;margin:0 0 1.6rem;text-align:center}
+.bar{position:relative;height:5px;border-radius:100px;background:var(--line);overflow:hidden;margin-bottom:1.8rem}
+.bar span{position:absolute;top:0;bottom:0;background:var(--red);border-radius:100px;animation:olbar 1.15s ease-in-out infinite}
+.steps{display:grid;gap:.85rem}
+.steps div{display:flex;gap:.7rem;align-items:center;font-size:1rem;color:var(--text);animation:olstep .4s ease both}
+.steps div:nth-child(2){animation-delay:.9s}.steps div:nth-child(3){animation-delay:1.8s}.steps div:nth-child(4){animation-delay:2.7s}
+.steps b{color:var(--red);font-weight:500}
+#results{background:var(--alt);border-bottom:1px solid var(--line)}
+.res-in{padding:4rem 0;animation:olin .45s ease both}
+.res-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem}
+.res-head h2{font-size:clamp(1.7rem,3vw,2.2rem);margin:0}
+#again{font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;white-space:nowrap}
+.res-lead{font-size:1.05rem;color:var(--muted);max-width:640px;margin:0 0 2.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.rescard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.7rem;display:grid;gap:.75rem;align-content:start}
+.rescard header{position:static;background:none;border:none;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.rescard h3{font-size:1.25rem;margin:0}
+.pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;border:1px solid currentColor;white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.plain{font-size:.95rem;color:var(--muted);margin:0;font-style:italic}
+.verdict{font-size:1rem;color:var(--text);margin:0}
+.summary{margin-top:2.5rem;background:var(--panel);color:var(--panel-text);border-radius:16px;padding:2.2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.summary h3{font-size:1.4rem;margin:0 0 .5rem}
+.summary p{font-size:1rem;color:var(--panel-muted);margin:0}
+.btn-red{background:var(--red);color:#fff;font-size:1rem;font-weight:500;text-decoration:none;padding:.9rem 1.6rem;border-radius:10px;white-space:nowrap;display:inline-block}
+.btn-red:hover{background:#c1121f;color:#fff}
+section.pad{padding:4.5rem 0}
+h2.big{font-size:clamp(1.8rem,3vw,2.3rem);line-height:1.15;margin:0 0 1rem;max-width:620px}
+.sub{font-size:1.08rem;color:var(--muted);max-width:640px;margin:0 0 3rem}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem}
+.num{font-family:'Syne',sans-serif;font-weight:700;font-size:2.4rem;line-height:1;color:var(--red);margin-bottom:.9rem}
+.three h3{font-size:1.15rem;margin:0 0 .5rem}
+.three p{font-size:.97rem;color:var(--muted);margin:0}
+#ayuda{background:var(--alt);border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.cards3 div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.cards3 h3{font-size:1.15rem;margin:0 0 .5rem}
+.cards3 p{font-size:.96rem;color:var(--muted);margin:0 0 1rem}
+.cards3 b{font-size:.88rem;color:var(--text);font-weight:500}
+#cierre{background:var(--panel);color:var(--panel-text)}
+.cierre-in{max-width:760px;margin:0 auto;padding:5rem 5vw;text-align:center}
+.cierre-in h2{font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.025em;line-height:1.14;margin:0 0 1rem}
+.cierre-in p{font-size:1.08rem;color:var(--panel-muted);margin:0 0 2rem}
+.btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-out{border:1px solid var(--line);color:var(--panel-text);font-size:1.02rem;text-decoration:none;padding:.95rem 1.6rem;border-radius:10px}
+.btn-out:hover{color:var(--panel-text);background:rgba(255,255,255,.06)}
+footer{background:var(--bg);border-top:1px solid var(--line)}
+.foot{max-width:1000px;margin:0 auto;padding:2.5rem 5vw;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.foot a{text-decoration:none;color:var(--muted)}
+.foot a:hover{color:var(--text)}
+.footlinks{display:flex;gap:1.3rem;flex-wrap:wrap}
+[hidden]{display:none !important}
+@keyframes olbar{0%{left:-40%;width:40%}50%{width:55%}100%{left:100%;width:35%}}
+@keyframes olstep{from{opacity:.25}to{opacity:1}}
+@keyframes olin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="logo">Oli<span>besc</span></div>
-  <div class="nav-links">
-    <a href="#problema">El Problema</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#nis2">NIS2</a>
-    <a href="#identidad">Identidad</a>
-    <a href="#auditoria" class="btn-nav">Auditoría Gratuita</a>
-  </div>
-</nav>
+<header>
+<div class="nav">
+<a class="logo" href="#hero">Oli<span>besc</span></a>
+<div class="navlinks">
+<a href="#que-es">Qué revisamos</a>
+<a href="#ayuda">Cómo te ayudamos</a>
+<button id="theme" type="button" title="Cambiar tema" aria-label="Cambiar tema"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+</div>
+</div>
+</header>
 
 <section id="hero">
-  <div class="hero-grid">
-    <div class="hero-text">
-      <div class="hero-label">Ciberseguridad para PYMEs · España</div>
-      <h1>
-        Tu empresa no necesita un informático.
-        Necesita no <span class="underline-word accent">quebrar</span> por un ciberataque.
-      </h1>
-      <p class="hero-sub">
-        Comprueba ahora mismo si alguien puede enviar emails haciéndose pasar por tu empresa. Gratis, en 60 segundos, sin instalar nada.
-      </p>
-      <div class="hero-points">
-        <div class="hero-point"><div class="check-icon">✓</div>Informe real de vulnerabilidades en tu email</div>
-        <div class="hero-point"><div class="check-icon">✓</div>Sin jerga técnica: te decimos qué riesgo tienes y cómo cerrarlo</div>
-        <div class="hero-point"><div class="check-icon">✓</div>Sin compromiso, sin contratos eternos, sin llamadas no deseadas</div>
-      </div>
-    </div>
-
-    <div class="audit-card" id="auditoria">
-      <div class="audit-card-head">
-        <div class="audit-badge"><div class="pulse-dot"></div>Análisis automático en tiempo real</div>
-        <h2>¿Pueden suplantar tu email?</h2>
-        <p>Introduce tu dominio y te enviamos un informe con lo que un atacante ve de tu empresa hoy.</p>
-        <div class="audit-chips">
-          <span class="audit-chip">SPF</span>
-          <span class="audit-chip">DKIM</span>
-          <span class="audit-chip">DMARC</span>
-          <span class="audit-chip">Suplantación de dominio</span>
-        </div>
-      </div>
-
-      <form class="audit-form" id="auditForm" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="f-nombre">Tu nombre</label>
-            <input type="text" id="f-nombre" name="nombre" placeholder="Ana García" autocomplete="given-name">
-          </div>
-          <div class="form-field">
-            <label for="f-empresa">Empresa</label>
-            <input type="text" id="f-empresa" name="empresa" placeholder="Mi empresa S.L." autocomplete="organization">
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="f-dominio">Dominio de tu empresa</label>
-          <input type="text" id="f-dominio" name="dominio" placeholder="miempresa.com" autocomplete="off" inputmode="url">
-          <span class="form-hint">Es la parte de tu email después de la @. Lo analizamos al instante.</span>
-        </div>
-        <div class="form-field">
-          <label for="f-email">Tu email</label>
-          <input type="email" id="f-email" name="email" placeholder="ana@miempresa.com" autocomplete="email">
-          <span class="form-hint">Te enviamos el informe aquí. Sin spam, sin llamadas no deseadas.</span>
-        </div>
-
-        <button type="submit" class="form-submit" id="auditBtn">
-          <span class="f-label">Analizar mi dominio ahora →</span>
-          <div class="f-spinner"></div>
-        </button>
-
-        <p class="form-legal">
-          Al enviar aceptas nuestra <a href="/privacidad.html">política de privacidad</a>.
-          Tus datos solo se usan para enviarte el informe y contactarte si lo solicitas.
-        </p>
-
-        <div class="form-error-msg" id="formErrorMsg">
-          Ha ocurrido un error al enviar. Por favor inténtalo de nuevo o escríbenos a <a href="mailto:info@olibesc.com" style="color:#f07060;">info@olibesc.com</a>
-        </div>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <div class="s-icon">✅</div>
-        <h3>¡Análisis en marcha!</h3>
-        <p>
-          Estamos escaneando tu dominio ahora mismo.<br>
-          Recibirás el informe en <strong style="color:var(--white);">tu email en los próximos minutos</strong>.<br><br>
-          Si no lo ves, revisa la carpeta de spam.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">73<span class="unit">%</span></div>
-      <div class="stat-label">de ciberataques en España<br>van dirigidos a PYMEs</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10M<span class="unit">€</span></div>
-      <div class="stat-label">multa máxima NIS2<br>por incumplimiento</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">21<span class="unit">h</span></div>
-      <div class="stat-label">tiempo medio para detectar<br>una brecha sin SOC</div>
-    </div>
-  </div>
-</section>
-
-<div class="alert-band reveal">
-  <div class="alert-icon">⚠️</div>
-  <div class="alert-text">
-    <h2>La directiva NIS2 ya es obligatoria en España desde octubre de 2024</h2>
-    <p>Si tu empresa sufre un ciberataque y no puedes demostrar medidas de seguridad activas, la sanción mínima es <strong>100.000 €</strong>. La máxima puede superar el <strong>2% de tu facturación anual</strong>. La pregunta no es si te van a atacar. Es si estarás preparado cuando ocurra.</p>
-  </div>
+<div class="hero-in">
+<div id="form-block">
+<h1>Cualquiera puede escribir un correo con el nombre de tu empresa.</h1>
+<p class="lead">Comprueba en 20 segundos si tu correo está protegido. Gratis y sin instalar nada: solo escribe lo que va después de la <strong>@</strong>.</p>
+<div class="card-cta">
+<div class="field">
+<div class="inputwrap"><span class="at">@</span><input id="domain" type="text" placeholder="ejemplo.com" autocomplete="off" spellcheck="false"></div>
+<button id="go" type="button">Comprobar gratis</button>
 </div>
-
-<section id="problema">
-  <div class="section-label">El problema real</div>
-  <h2>Lo que mantiene despierto<br>al empresario moderno</h2>
-  <p class="section-intro">No son virus de película. Son ladrones digitales profesionales que trabajan mientras tú duermes. Y van directamente a ti.</p>
-
-  <div class="fear-grid reveal">
-    <div class="fear-card">
-      <span class="fear-icon">📧</span>
-      <h3>Alguien suplanta tu empresa por email</h3>
-      <p>Un email falso con tu nombre pide a tu cliente que cambie el número de cuenta. Sin que tú lo sepas, has "enviado" esa factura. El dinero va a otro sitio.</p>
-      <div class="fine">Sin DMARC → Eres invisible a este ataque</div>
-    </div>
-    <div class="fear-card">
-      <span class="fear-icon">🔑</span>
-      <h3>Te roban las contraseñas de tu equipo</h3>
-      <p>Un empleado abre un archivo adjunto. En 20 minutos, el atacante tiene acceso a tu Drive, tu banca online y tu correo. Los antivirus tradicionales no lo detectan.</p>
-      <div class="fine">Sin SOC 24/7 → El ataque dura días sin que lo veas</div>
-    </div>
-    <div class="fear-card">
-      <span class="fear-icon">🔒</span>
-      <h3>Te cifran todos los archivos y piden rescate</h3>
-      <p>El ransomware bloquea tu empresa de un día para otro. Facturas, contratos, bases de datos de clientes: inasequibles. Pagas o cierras durante semanas.</p>
-      <div class="fine">Sin backups gestionados → Recuperación imposible</div>
-    </div>
-    <div class="fear-card">
-      <span class="fear-icon">📋</span>
-      <h3>Una inspección de la AEPD te sanciona</h3>
-      <p>Un cliente denuncia que sus datos personales fueron expuestos. Si no tienes documentación de seguridad en regla, la multa llega aunque hayas hecho todo lo posible.</p>
-      <div class="fine">Sin cumplimiento RGPD/NIS2 → Sanción garantizada</div>
-    </div>
-  </div>
+<p class="hint">¿No sabes cuál es? Mira tu propio correo: si es <em>ana@construccioneslopez.es</em>, escribe <em>construccioneslopez.es</em>.</p>
+<p id="error" hidden></p>
+</div>
+</div>
+<div id="loading" hidden>
+<div class="load-title">Analizando <span id="pending"></span>…</div>
+<div class="bar"><span></span></div>
+<div class="steps">
+<div><b>→</b>Buscando quién puede enviar en tu nombre</div>
+<div><b>→</b>Comprobando la firma de tus correos</div>
+<div><b>→</b>Viendo qué pasa con los correos falsos</div>
+<div><b>→</b>Preparando la explicación en cristiano</div>
+</div>
+</div>
+</div>
 </section>
 
-<section id="servicios">
-  <div class="section-label">Nuestros servicios</div>
-  <h2>Tres escudos. Un solo proveedor.</h2>
-  <p class="section-intro">No vendemos tecnología. Vendemos tranquilidad de empresario. Cada servicio está diseñado para eliminar un riesgo específico de tu negocio.</p>
-
-  <div class="services-layout reveal">
-    <div class="service-card featured">
-      <div class="service-tag">⭐ Servicio estrella</div>
-      <h3>Ingeniería de Identidad Perimetral</h3>
-      <div class="subtitle">DMARC · SPF · DKIM · BIMI</div>
-      <p>
-        Los hackers modernos no hackean ordenadores. <strong style="color:var(--white)">Roban identidades.</strong> Suplantan tu dominio de correo para engañar a tus clientes, proveedores y bancos. La Ingeniería de Identidad Perimetral sella ese vector de ataque y además certifica tu marca ante los servidores de Gmail, Outlook y Hotmail.
-      </p>
-      <div class="service-features">
-        <div class="service-feature">Configuración de DMARC, SPF y DKIM en menos de 72h</div>
-        <div class="service-feature">Tu dominio preparado para BIMI: el estándar que muestra tu logo verificado en el buzón del cliente</div>
-        <div class="service-feature">Informes mensuales: ves quién intenta enviar emails con tu nombre</div>
-        <div class="service-feature">Cumplimiento con exigencias de Google y Microsoft para empresas desde 2024</div>
-      </div>
-      <div class="service-compliance">
-        <strong>Cumplimiento normativo:</strong> Cubre las medidas técnicas requeridas por el RGPD (Art. 32) y la NIS2 en materia de autenticación e integridad de comunicaciones.
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-tag">🛡️ Protección continua</div>
-      <h3>SOC para PYMEs</h3>
-      <div class="subtitle">Vigilancia 24/7 · Elastic SIEM</div>
-      <p>Un Centro de Operaciones de Seguridad a precio de PYME. Monitorizamos tu red en tiempo real con tecnología Elastic: la misma que usan los bancos, adaptada a tu escala.</p>
-      <div class="service-features">
-        <div class="service-feature">Detección de anomalías en tiempo real, 24h al día</div>
-        <div class="service-feature">Alertas inmediatas al móvil antes de que el daño ocurra</div>
-        <div class="service-feature">Informe mensual para cumplir con NIS2 y auditorías</div>
-      </div>
-      <div class="service-compliance">
-        <strong>Cumplimiento NIS2:</strong> Gestión de incidentes y registros de actividad exigidos por la directiva.
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-tag green">💾 Continuidad</div>
-      <h3>Backup Inteligente</h3>
-      <div class="subtitle">Recuperación garantizada en horas</div>
-      <p>Cuando el ransomware llega, la única pregunta es: ¿cuánto tiempo llevas sin backup? Automatizamos y verificamos tu copia de seguridad para que la respuesta sea siempre "ayer".</p>
-      <div class="service-features">
-        <div class="service-feature">Copias automáticas verificadas diariamente</div>
-        <div class="service-feature">Recuperación en horas, no en semanas</div>
-        <div class="service-feature">Almacenamiento cifrado en cloud europeo</div>
-      </div>
-      <div class="service-compliance">
-        <strong>Cumplimiento NIS2:</strong> Planes de continuidad de negocio requeridos para empresas afectadas.
-      </div>
-    </div>
-  </div>
+<section id="results" hidden>
+<div class="wrap res-in">
+<div class="res-head">
+<h2>Esto es lo que hemos encontrado en <span id="checked"></span></h2>
+<button id="again" type="button">Comprobar otro dominio</button>
+</div>
+<p class="res-lead">Cuatro comprobaciones. En verde, lo que ya te protege. En rojo, la puerta que hoy está abierta.</p>
+<div class="grid" id="cards"></div>
+<div class="summary">
+<div style="max-width:520px">
+<h3 id="summary-title"></h3>
+<p>Te lo explicamos por teléfono en 15 minutos, sin tecnicismos, y te decimos qué costaría arreglarlo. Sin compromiso.</p>
+</div>
+<a class="btn-red" href="mailto:info@olibesc.com">Que me lo expliquen →</a>
+</div>
+</div>
 </section>
 
-<section id="metodologia">
-  <div class="section-label">Cómo trabajamos</div>
-  <h2>Del diagnóstico a la protección<br>en cuatro pasos</h2>
-
-  <div class="steps reveal">
-    <div class="step">
-      <span class="step-num">01</span>
-      <h3>Diagnóstico Gratuito</h3>
-      <p>Auditamos tu email, tu dominio y tus accesos en 48h. Sin coste. Sin compromiso. Te decimos exactamente qué riesgos tienes hoy.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">02</span>
-      <h3>Plan a tu medida</h3>
-      <p>No vendemos paquetes iguales para todos. Diseñamos tu escudo según tu sector, tu facturación y tu nivel de riesgo real.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">03</span>
-      <h3>Implementación rápida</h3>
-      <p>Activamos los servicios sin interrumpir tu negocio. La mayoría de empresas están protegidas en menos de una semana.</p>
-    </div>
-    <div class="step">
-      <span class="step-num">04</span>
-      <h3>Vigilancia continua</h3>
-      <p>Tú te olvidas de la ciberseguridad. Nosotros nunca. Informe mensual incluido para respaldo documental ante cualquier auditoría.</p>
-    </div>
-  </div>
+<section id="que-es" style="border-bottom:1px solid var(--line)">
+<div class="wrap pad">
+<h2 class="big">Tu dominio es el apellido de tu empresa en internet</h2>
+<p class="sub">Es lo que va después de la @ en tu correo. Si nadie lo vigila, otra persona puede usarlo para pedirle a tu cliente que pague en otra cuenta. Nosotros cerramos esa puerta.</p>
+<div class="three">
+<div><div class="num">1</div><h3>Miramos tu dominio</h3><p>Sin tocar nada y sin pedirte contraseñas. La información es pública: la misma que ve Gmail cuando recibe un correo tuyo.</p></div>
+<div><div class="num">2</div><h3>Te lo contamos en cristiano</h3><p>Qué está bien, qué está mal y qué puede pasarte si se queda así. Una frase por cada cosa, sin siglas sueltas.</p></div>
+<div><div class="num">3</div><h3>Lo arreglamos nosotros</h3><p>Si quieres. En tres días, hablando con quien te lleva la web o el correo. Tú no tienes que aprender nada.</p></div>
+</div>
+</div>
 </section>
 
-<section id="nis2">
-  <div class="nis2-layout reveal">
-    <div class="nis2-text">
-      <div class="section-label">Normativa europea</div>
-      <h2>La NIS2 no es burocracia.<br>Es tu próxima multa.</h2>
-      <p>
-        La Directiva NIS2 entró en vigor en España en octubre de 2024. <strong>Afecta a cualquier empresa que preste servicios digitales, tenga datos de clientes o forme parte de una cadena de suministro.</strong> Es decir: probablemente la tuya.
-      </p>
-      <p>
-        La trampa es esta: si te atacan y no puedes demostrar que tenías medidas técnicas activas, la sanción llega aunque no hayas hecho nada malo. La negligencia en ciberseguridad ya tiene precio legal en España.
-      </p>
-      <p>
-        Olibesc genera automáticamente la documentación que necesitas: registros de incidentes, políticas de acceso, informes de monitorización. <strong>Tu ciberseguridad como evidencia, no como gasto.</strong>
-      </p>
-      <div class="nis2-checklist">
-        <div class="nis2-check"><div class="check-icon">✓</div>Gestión de riesgos documentada y actualizada</div>
-        <div class="nis2-check"><div class="check-icon">✓</div>Notificación de incidentes en menos de 24h (NIS2 Art. 23)</div>
-        <div class="nis2-check"><div class="check-icon">✓</div>Registros de actividad para auditorías de la AEPD</div>
-        <div class="nis2-check"><div class="check-icon">✓</div>Continuidad de negocio y planes de recuperación</div>
-      </div>
-    </div>
-
-    <div class="nis2-visual">
-      <div class="nis2-badge"><div class="pulse-dot"></div>Vigente en España desde Oct 2024</div>
-      <h3>Sanciones NIS2</h3>
-      <p class="nis2-desc">Rango de multas por incumplimiento</p>
-      <table class="fine-table">
-        <tr><td>Entidades esenciales (energía, banca, salud)</td><td>Hasta 10M€</td></tr>
-        <tr><td>Entidades importantes (digital, industria, PYMEs afectadas)</td><td>Hasta 7M€</td></tr>
-        <tr><td>Multa mínima por incidente sin medidas activas</td><td>100.000€</td></tr>
-        <tr><td>Responsabilidad personal del director</td><td>Inhabilitación</td></tr>
-      </table>
-    </div>
-  </div>
+<section id="ayuda">
+<div class="wrap pad">
+<div class="eyebrow">Cómo te ayudamos</div>
+<h2 class="big" style="margin-bottom:2.5rem">Nos ocupamos nosotros y te olvidas</h2>
+<div class="cards3">
+<div><h3>Cerramos la puerta del correo</h3><p>Dejamos tu dominio configurado para que los correos falsos no lleguen a nadie. Tú sigues escribiendo igual que siempre.</p><b>Precio cerrado sin sorpresas</b></div>
+<div><h3>Vigilamos cada mes</h3><p>Te avisamos si alguien intenta usar tu nombre y te mandamos un resumen de una hoja que puedes enseñar a tus clientes.</p><b>Incluido</b></div>
+<div><h3>Hablas siempre con la misma persona</h3><p>Ángel, en Pinseque (Zaragoza). Por teléfono o por correo, en horario normal. Nada de centralitas.</p><b>Sin contratos eternos</b></div>
+</div>
+</div>
 </section>
 
-<section id="identidad">
-  <div class="identity-layout reveal">
-    <div class="identity-text">
-      <div class="section-label">La amenaza invisible</div>
-      <h2>Los hackers ya no hackean ordenadores.<br>Roban identidades.</h2>
-      <p>
-        CrowdStrike, el mayor proveedor de ciberseguridad del mundo, lo dice sin rodeos: el 80% de los ataques modernos no usan virus. <strong>Usan tu identidad digital para engañar a otros.</strong>
-      </p>
-      <p>
-        Cuando alguien envía un email con tu dominio (@tuempresa.com) haciéndose pasar por ti, el receptor no ve nada raro. Ve tu nombre, tu logo, tu dominio. Y transfiere el dinero, da sus datos o abre el archivo malicioso.
-      </p>
-      <p>
-        La Ingeniería de Identidad Perimetral de Olibesc <strong>sella tu identidad digital</strong> de forma que ningún servidor de correo del mundo pueda ser engañado con tu nombre. Es el equivalente a poner un sello notarial en cada email que envías.
-      </p>
-    </div>
-    <div class="identity-diagram">
-      <div class="id-diagram-title">Anatomía de un ataque de identidad → Cómo lo bloqueamos</div>
-      <div class="attack-flow">
-        <div class="attack-step">
-          <div class="attack-step-icon icon-red">🎯</div>
-          <div class="attack-step-content">
-            <h4>1. El atacante elige tu empresa</h4>
-            <p>Registra un dominio parecido al tuyo o directamente suplanta el tuyo si no tienes protección.</p>
-          </div>
-        </div>
-        <div class="attack-step">
-          <div class="attack-step-icon icon-red">📧</div>
-          <div class="attack-step-content">
-            <h4>2. Envía emails "de tu parte"</h4>
-            <p>El email muestra tu nombre y tu dominio. Tu cliente no ve diferencia. Sin DMARC, llega a la bandeja de entrada.</p>
-          </div>
-        </div>
-        <div class="attack-step">
-          <div class="attack-step-icon icon-amber">💸</div>
-          <div class="attack-step-content">
-            <h4>3. El cliente cae en la trampa</h4>
-            <p>Cambia el número de cuenta, transfiere dinero o entrega datos confidenciales creyendo que eres tú.</p>
-          </div>
-        </div>
-        <div class="attack-step">
-          <div class="attack-step-icon icon-green">🛡️</div>
-          <div class="attack-step-content">
-            <h4>Con Olibesc: el ataque muere aquí</h4>
-            <p>DMARC rechaza el email antes de que llegue. SPF y DKIM certifican que solo tú puedes enviar emails con tu dominio.</p>
-            <div class="blocked">Email bloqueado automáticamente · 0 impacto en tu negocio</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="cta-final">
-  <h2>¿Cuánto vale tu empresa<br>para un ciberdelincuente?</h2>
-  <p>Más de lo que crees. Descúbrelo gratis: analizamos tu dominio en segundos y te enviamos un informe real de tus vulnerabilidades.</p>
-  <div class="cta-buttons">
-    <a href="#auditoria" class="btn-big">Analizar mi dominio gratis →</a>
-    <a href="mailto:info@olibesc.com" class="btn-outline">Hablar con una persona</a>
-  </div>
+<section id="cierre">
+<div class="cierre-in">
+<h2>Empieza por saber cómo estás hoy</h2>
+<p>La comprobación es gratis y tarda menos que preparar un café.</p>
+<div class="btns">
+<a class="btn-red" href="#hero" id="cta-top">Comprobar mi dominio →</a>
+<a class="btn-out" href="mailto:info@olibesc.com">Hablar con una persona</a>
+</div>
+</div>
 </section>
 
 <footer>
-  <div class="footer-logo">Oli<span>besc</span></div>
-  <div class="footer-links">
-    <a href="/privacidad.html">Política de privacidad</a>
-    <a href="/aviso-legal.html">Aviso legal</a>
-    <a href="/cookies.html">Cookies</a>
-    <a href="mailto:info@olibesc.com">info@olibesc.com</a>
-  </div>
-  <div class="footer-copy">© 2026 Olibesc · Ciberseguridad para PYMEs</div>
+<div class="foot">
+<div class="logo">Oli<span>besc</span></div>
+<div class="footlinks"><a href="mailto:info@olibesc.com">info@olibesc.com</a><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div>
+<div>© 2026 Olibesc · Pinseque, Zaragoza</div>
+</div>
 </footer>
 
 <script>
-  /* ══ FORMULARIO AUDITORÍA → n8n Webhook ══ */
-  const N8N_ENDPOINT = 'https://n8n.olibesc.com/webhook/bb06812f-689a-4f0c-879d-ed135aaacc8a';
+/* ---- Configura aquí el webhook de n8n ---- */
+var WEBHOOK_URL = ""; // p.ej. "https://n8n.olibesc.com/webhook/domain-check"
 
-  const auditForm    = document.getElementById('auditForm');
-  const auditBtn     = document.getElementById('auditBtn');
-  const formSuccess  = document.getElementById('formSuccess');
-  const formErrorMsg = document.getElementById('formErrorMsg');
+var CHECKS = [
+  { key:'spf', name:'SPF', plain:'La lista de quién tiene permiso para enviar correo en tu nombre.',
+    ok:'Solo los servidores que tú has autorizado pueden enviar correo con tu dominio.',
+    bad:'Cualquier ordenador del mundo puede enviar correos que parezcan tuyos. Nadie comprueba de dónde salen.',
+    warn:'Tienes lista, pero está incompleta o mal escrita: algunos correos legítimos pueden acabar en spam.' },
+  { key:'dkim', name:'DKIM', plain:'El sello de lacre del sobre: demuestra que el correo no se ha tocado por el camino.',
+    ok:'Tus correos salen firmados. Si alguien los modifica, el destinatario lo detecta.',
+    bad:'Tus correos viajan sin firmar. Se pueden falsificar o alterar sin dejar rastro.',
+    warn:'Hay firma, pero no en todos los sistemas que envían correo por ti.' },
+  { key:'dmarc', name:'DMARC', plain:'El portero: decide qué hace Gmail u Outlook cuando llega un correo falso con tu nombre.',
+    ok:'Los correos que se hacen pasar por tu empresa se rechazan antes de llegar a nadie.',
+    bad:'No hay portero. Aunque tengas lista y sello, el correo falso entra igual en la bandeja de tu cliente.',
+    warn:'El portero está mirando pero no bloquea: se registra el fraude, no se impide.' },
+  { key:'bimi', name:'BIMI', plain:'Tu logotipo junto al remitente, para que se vea a simple vista que el correo es tuyo.',
+    ok:'Tu logo aparece en la bandeja de entrada de tus clientes.',
+    bad:'Tu logo no aparece. No es grave, pero un correo con marca cuesta mucho más de imitar.',
+    warn:'Está a medias: falta el certificado o el logo en el formato correcto.' },
+  { key:'mta', name:'Cifrado en tránsito', plain:'El furgón blindado: que nadie pueda leer el correo mientras viaja.',
+    ok:'Tus correos viajan cifrados entre servidores.',
+    bad:'El correo puede viajar sin cifrar en algunos tramos y ser leído por el camino.',
+    warn:'El cifrado existe pero no es obligatorio: se acepta la conexión aunque falle.' }
+];
+var STYLES = { ok:{label:'Protegido',color:'#2a9d8f'}, warn:{label:'A medias',color:'#f4a261'}, fail:{label:'Desprotegido',color:'#e63946'} };
+var DEMO = { spf:'ok', dkim:'warn', dmarc:'fail', bimi:'fail' };
 
-  function cleanDomain(raw) {
-    return raw.trim().replace(/^https?:\/\//i,'').replace(/\/.*$/,'').toLowerCase();
-  }
-  function validateEmail(v)  { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function validateDomain(v) { return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v); }
+var $ = function(id){ return document.getElementById(id); };
 
-  function markError(inputId) {
-    document.getElementById(inputId).classList.add('f-error');
-  }
-  function showError(msg) {
-    formErrorMsg.textContent = msg;
-    formErrorMsg.style.display = 'block';
-  }
-  function clearErrors() {
-    auditForm.querySelectorAll('input').forEach(i => i.classList.remove('f-error'));
-    formErrorMsg.style.display = 'none';
-    formErrorMsg.textContent   = '';
-  }
+/* Tema */
+var saved = null;
+try { saved = localStorage.getItem('olibesc-theme'); } catch(e){}
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+$('theme').addEventListener('click', function(){
+  var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('olibesc-theme', next); } catch(e){}
+});
 
-  auditForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearErrors();
-
-    const nombre  = document.getElementById('f-nombre').value.trim();
-    const empresa = document.getElementById('f-empresa').value.trim();
-    const dominio = cleanDomain(document.getElementById('f-dominio').value);
-    const email   = document.getElementById('f-email').value.trim();
-
-    // Validación en el navegador (primera barrera, rápida)
-    let ok = true;
-    if (!nombre)                 { markError('f-nombre');  ok = false; }
-    if (!empresa)                { markError('f-empresa'); ok = false; }
-    if (!validateDomain(dominio)){ markError('f-dominio'); ok = false; }
-    if (!validateEmail(email))   { markError('f-email');   ok = false; }
-    if (!ok) return;
-
-    document.getElementById('f-dominio').value = dominio;
-    auditBtn.disabled = true;
-    auditBtn.classList.add('loading');
-
-    try {
-      const res = await fetch(N8N_ENDPOINT, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ nombre, empresa, dominio, email })
-      });
-
-      if (res.ok) {
-        // Éxito — n8n aceptó y procesará el informe
-        auditForm.style.display   = 'none';
-        formSuccess.style.display = 'block';
-
-      } else {
-        // n8n devolvió 400 con un mensaje de error de validación
-        let mensaje = 'Datos incorrectos. Revisa el formulario e inténtalo de nuevo.';
-        try {
-          const data = await res.json();
-          if (data.mensaje) mensaje = data.mensaje;
-        } catch (_) { /* si no es JSON, usamos el mensaje genérico */ }
-
-        showError(mensaje);
-        auditBtn.disabled = false;
-        auditBtn.classList.remove('loading');
-      }
-
-    } catch (err) {
-      // Error de red (n8n caído, CORS, sin conexión...)
-      console.error('Error de red:', err);
-      showError('No hemos podido conectar con el servidor. Inténtalo de nuevo en unos segundos.');
-      auditBtn.disabled = false;
-      auditBtn.classList.remove('loading');
-    }
+function clean(v){
+  return String(v||'').trim().toLowerCase()
+    .replace(/^https?:\/\//,'').replace(/^www\./,'')
+    .split('@').pop().split('/')[0].replace(/\.$/,'');
+}
+function norm(raw){
+  var v = typeof raw === 'string' ? raw : (raw && (raw.status || raw.state || raw.result)) || '';
+  var s = String(v).toLowerCase();
+  if (raw === true || ['ok','pass','valid','good','reject','protected','quarantine'].indexOf(s) > -1) return 'ok';
+  if (['warn','warning','partial','none','monitor','p=none','soft'].indexOf(s) > -1) return 'warn';
+  return 'fail';
+}
+function render(data, domain){
+  var cards = $('cards'); cards.innerHTML = ''; var bad = 0;
+  CHECKS.forEach(function(c){
+    if (data[c.key] === undefined) return;
+    var st = norm(data[c.key]); if (st !== 'ok') bad++;
+    var meta = STYLES[st];
+    var detail = data[c.key] && data[c.key].detail;
+    var el = document.createElement('div');
+    el.className = 'rescard';
+    el.innerHTML = '<header><h3></h3><span class="pill" style="color:' + meta.color + '"><i></i>' + meta.label + '</span></header>'
+      + '<p class="plain"></p><p class="verdict"></p>';
+    el.querySelector('h3').textContent = c.name;
+    el.querySelector('.plain').textContent = c.plain;
+    el.querySelector('.verdict').textContent = detail || (st === 'ok' ? c.ok : st === 'warn' ? c.warn : c.bad);
+    cards.appendChild(el);
   });
+  $('checked').textContent = domain;
+  $('summary-title').textContent = bad === 0 ? 'Tu correo está bien protegido. Mantengámoslo así.'
+    : bad === 1 ? 'Hay una puerta abierta en tu correo.'
+    : 'Hay ' + bad + ' puertas abiertas en tu correo.';
+}
+function check(){
+  var domain = clean($('domain').value);
+  var err = $('error');
+  if (domain.indexOf('.') === -1){
+    err.textContent = 'Escribe el dominio completo, con su punto. Por ejemplo: miempresa.com';
+    err.hidden = false; return;
+  }
+  err.hidden = true;
+  $('pending').textContent = domain;
+  $('form-block').hidden = true;
+  $('loading').hidden = false;
+  $('results').hidden = true;
 
-  auditForm.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', () => {
-      input.classList.remove('f-error');
-      clearErrors();
-    });
+  var minWait = new Promise(function(r){ setTimeout(r, 3200); });
+  var req = WEBHOOK_URL
+    ? fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ domain: domain }) })
+        .then(function(r){ return r.json(); })
+        .catch(function(){ return null; })
+    : Promise.resolve(null);
+
+  Promise.all([req, minWait]).then(function(out){
+    var data = out[0];
+    if (Array.isArray(data)) data = data[0];
+    if (data && data.result) data = data.result;
+    if (!data || typeof data !== 'object') data = DEMO;
+    render(data, domain);
+    $('loading').hidden = true;
+    $('hero').hidden = true;
+    $('results').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-</script>
-
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        const children = entry.target.querySelectorAll('.fear-card, .service-card, .step');
-        children.forEach((child, i) => {
-          child.style.opacity = '0';
-          child.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            child.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            child.style.opacity = '1';
-            child.style.transform = 'translateY(0)';
-          }, i * 80 + 100);
-        });
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a:not(.btn-nav)');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 200) current = section.getAttribute('id');
-    });
-    navLinks.forEach(link => {
-      link.style.color = '';
-      if (link.getAttribute('href') === `#${current}`) link.style.color = 'var(--white)';
-    });
-  });
+}
+$('go').addEventListener('click', check);
+$('domain').addEventListener('keydown', function(e){ if (e.key === 'Enter') check(); });
+$('again').addEventListener('click', function(){
+  $('results').hidden = true;
+  $('hero').hidden = false;
+  $('form-block').hidden = false;
+  $('domain').value = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  $('domain').focus();
+});
+$('cta-top').addEventListener('click', function(){
+  if ($('hero').hidden){ $('results').hidden = true; $('hero').hidden = false; $('form-block').hidden = false; }
+});
 </script>
 </body>
 </html>
