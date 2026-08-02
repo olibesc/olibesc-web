@@ -144,7 +144,7 @@ footer{background:var(--bg);border-top:1px solid var(--line)}
 <h2>Esto es lo que hemos encontrado en <span id="checked"></span></h2>
 <button id="again" type="button">Comprobar otro dominio</button>
 </div>
-<p class="res-lead">Cinco comprobaciones. En verde, lo que ya te protege. En rojo, la puerta que hoy está abierta.</p>
+<p class="res-lead">Tres comprobaciones. En verde, lo que ya te protege. En rojo, la puerta que hoy está abierta.</p>
 <div class="grid" id="cards"></div>
 <div class="summary">
 <div style="max-width:520px">
@@ -216,18 +216,10 @@ var CHECKS = [
   { key:'dmarc', name:'DMARC', plain:'El portero: decide qué hace Gmail u Outlook cuando llega un correo falso con tu nombre.',
     ok:'Los correos que se hacen pasar por tu empresa se rechazan antes de llegar a nadie.',
     bad:'No hay portero. Aunque tengas lista y sello, el correo falso entra igual en la bandeja de tu cliente.',
-    warn:'El portero está mirando pero no bloquea: se registra el fraude, no se impide.' },
-  { key:'bimi', name:'BIMI', plain:'Tu logotipo junto al remitente, para que se vea a simple vista que el correo es tuyo.',
-    ok:'Tu logo aparece en la bandeja de entrada de tus clientes.',
-    bad:'Tu logo no aparece. No es grave, pero un correo con marca cuesta mucho más de imitar.',
-    warn:'Está a medias: falta el certificado o el logo en el formato correcto.' },
-  { key:'mta', name:'Cifrado en tránsito', plain:'El furgón blindado: que nadie pueda leer el correo mientras viaja.',
-    ok:'Tus correos viajan cifrados entre servidores.',
-    bad:'El correo puede viajar sin cifrar en algunos tramos y ser leído por el camino.',
-    warn:'El cifrado existe pero no es obligatorio: se acepta la conexión aunque falle.' }
+    warn:'El portero está mirando pero no bloquea: se registra el fraude, no se impide.' }
 ];
 var STYLES = { ok:{label:'Protegido',color:'#2a9d8f'}, warn:{label:'A medias',color:'#f4a261'}, fail:{label:'Desprotegido',color:'#e63946'} };
-var DEMO = { spf:'ok', dkim:'warn', dmarc:'fail', bimi:'fail' };
+var DEMO = { spf:'ok', dkim:'warn', dmarc:'fail' };
 
 var $ = function(id){ return document.getElementById(id); };
 
