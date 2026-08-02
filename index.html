@@ -1,432 +1,350 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checklist despliegue DMARC/DKIM · OLIBESC</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olibesc · Comprueba si tu correo está protegido</title>
+<meta name="description" content="Comprueba gratis si alguien puede enviar correos en nombre de tu empresa. Sin instalar nada y explicado en cristiano.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0a0a0f;
-    --surface:#12121a;
-    --surface-2:#181822;
-    --border:#26263a;
-    --text:#e9e9f0;
-    --muted:#8b8b9e;
-    --accent:#e63946;
-    --accent-dim:#e6394626;
-    --display:'Syne',system-ui,sans-serif;
-    --body:'DM Sans',system-ui,sans-serif;
-    --mono:'JetBrains Mono',ui-monospace,'Courier New',monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55}
-
-  /* ---- barra de progreso global ---- */
-  .progress-track{position:sticky;top:0;z-index:50;height:4px;background:var(--surface-2)}
-  .progress-fill{height:100%;width:0%;background:var(--accent);transition:width .35s ease}
-
-  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 96px}
-
-  /* ---- cabecera ---- */
-  header{margin-bottom:8px}
-  .brand{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.28em;color:var(--accent);text-transform:uppercase}
-  h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,40px);line-height:1.12;margin:10px 0 6px}
-  .subtitle{color:var(--muted);max-width:62ch}
-  .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 6px}
-  .btn{font-family:var(--body);font-weight:500;font-size:13.5px;color:var(--text);background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:9px 16px;cursor:pointer;transition:border-color .15s,background .15s}
-  .btn:hover{border-color:var(--accent)}
-  .btn:disabled{opacity:.55;cursor:default}
-  .btn:focus-visible,input:focus-visible,textarea:focus-visible,.check input:focus-visible + .box{outline:2px solid var(--accent);outline-offset:2px}
-  .btn-primary{background:var(--accent);border-color:var(--accent);color:#0a0a0f;font-weight:700}
-  .btn-primary:hover{background:#f04b58}
-  .global-count{align-self:center;margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--muted)}
-  .send-status{font-family:var(--mono);font-size:13px;color:var(--muted);margin:2px 0 10px}
-  .send-status.ok{color:#5dd39e}
-  .send-status.err{color:var(--accent)}
-  .persist-note{font-size:12.5px;color:var(--muted);margin-bottom:28px}
-  .persist-note strong{color:var(--text);font-weight:500}
-
-  /* ---- metadatos del expediente ---- */
-  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:44px}
-  .meta label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .meta input{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--body);font-size:14px;padding:8px 10px}
-
-  /* ---- fases: raíl vertical ---- */
-  .phase{position:relative;padding-left:56px;margin-bottom:52px}
-  .phase::before{content:'';position:absolute;left:17px;top:44px;bottom:-52px;width:2px;background:var(--border)}
-  .phase:last-of-type::before{display:none}
-  .phase-num{position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:15px;color:var(--muted);transition:border-color .2s,color .2s}
-  .phase.done .phase-num{border-color:var(--accent);color:var(--accent)}
-  .phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin-bottom:4px}
-  h2{font-family:var(--display);font-weight:700;font-size:20px}
-  .phase-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
-  .phase-when{font-size:13px;color:var(--muted);margin-bottom:10px}
-  .chip{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-dim);border:1px solid #e6394640;border-radius:6px;padding:3px 10px;margin-bottom:16px;word-break:break-all}
-
-  /* ---- ítems ---- */
-  ul{list-style:none}
-  .item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s}
-  .item:hover{border-color:#34344c}
-  .item.checked{border-color:#2c1a22}
-  .item.checked .item-label{color:var(--muted)}
-  .item-row{display:flex;gap:12px;align-items:flex-start}
-  .check{position:relative;flex:none;margin-top:2px;cursor:pointer}
-  .check input{position:absolute;inset:0;opacity:0;cursor:pointer}
-  .check .box{display:block;width:21px;height:21px;border-radius:6px;border:1.5px solid #3c3c52;background:var(--surface-2);transition:background .15s,border-color .15s}
-  .check input:checked + .box{background:var(--accent);border-color:var(--accent)}
-  .check input:checked + .box::after{content:'';position:absolute;left:7px;top:3.5px;width:5px;height:10px;border:solid #0a0a0f;border-width:0 2.5px 2.5px 0;transform:rotate(43deg)}
-  .item-label{font-weight:500;cursor:pointer}
-  .item-hint{font-size:13px;color:var(--muted);margin-top:3px}
-  .item-hint code{font-family:var(--mono);font-size:12px;color:#c9c9d8;background:var(--surface-2);border-radius:4px;padding:1px 5px;word-break:break-all}
-  .obs{width:100%;margin-top:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--body);font-size:13.5px;line-height:1.5;padding:8px 11px;resize:none;overflow:hidden;min-height:36px;field-sizing:content}
-  .obs::placeholder{color:#5c5c70}
-
-  footer{margin-top:56px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border);padding-top:18px}
-  footer .brand{font-size:12px}
-
-  @media (max-width:560px){
-    .phase{padding-left:0}
-    .phase::before,.phase-num{display:none}
-    .global-count{width:100%;margin-left:0}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *{transition:none!important}
-    html{scroll-behavior:auto}
-  }
-
-  /* ---- impresión: informe (también la usa Gotenberg para el PDF) ---- */
-  @media print{
-    :root{--bg:#fff;--surface:#fff;--surface-2:#fff;--border:#bbb;--text:#111;--muted:#555;--accent-dim:#fff}
-    body{font-size:12px}
-    .progress-track,.toolbar,.persist-note,.send-status{display:none}
-    .wrap{padding:0;max-width:none}
-    .chip{color:#b3202c;border-color:#b3202c}
-    .phase{page-break-inside:avoid;padding-left:0;margin-bottom:28px}
-    .phase::before{display:none}
-    .phase-num{position:static;display:inline-flex;width:26px;height:26px;font-size:12px;margin-bottom:6px;border-color:#111;color:#111}
-    .item{border:1px solid #ccc;padding:8px 10px;margin-bottom:6px;page-break-inside:avoid}
-    .check .box{border-color:#111}
-    .check input:checked + .box{background:#111;border-color:#111}
-    .check input:checked + .box::after{border-color:#fff}
-    .obs{border:1px dashed #999;min-height:auto}
-    .obs:placeholder-shown{display:none}
-    .meta input{border:none;border-bottom:1px solid #999;border-radius:0;padding-left:0}
-    a{color:#111}
-  }
+:root{--bg:#ffffff;--alt:#f7fafc;--surface:#ffffff;--text:#0d1b2a;--muted:#5a6b7c;--line:#e2e8ee;--panel:#0d1b2a;--panel-text:#ffffff;--panel-muted:rgba(255,255,255,.72);--red:#e63946;--green:#2a9d8f;--amber:#f4a261;--shadow:0 1px 2px rgba(13,27,42,.04),0 16px 40px rgba(13,27,42,.09)}
+html[data-theme="dark"]{--bg:#0a0a0f;--alt:#111118;--surface:#16161f;--text:#f0f0f5;--muted:rgba(240,240,245,.55);--line:rgba(255,255,255,.09);--panel:#16161f;--panel-text:#f0f0f5;--panel-muted:rgba(240,240,245,.6);--shadow:0 24px 80px rgba(0,0,0,.45)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .2s ease,color .2s ease}
+h1,h2,h3{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-.02em}
+a{color:var(--red)}a:hover{color:#c1121f}
+.wrap{max-width:1000px;margin:0 auto;padding:0 5vw}
+header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{max-width:1100px;margin:0 auto;padding:1rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+.logo span{color:var(--red)}
+.navlinks{display:flex;align-items:center;gap:1.4rem}
+.navlinks a{font-size:.92rem;color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--text)}
+#theme{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;padding:0}
+#hero{border-bottom:1px solid var(--line)}
+.hero-in{max-width:860px;margin:0 auto;padding:5.5rem 5vw 4rem;text-align:center}
+h1{font-size:clamp(2.4rem,5.2vw,3.9rem);line-height:1.08;letter-spacing:-.03em;margin:0 0 1.3rem;text-wrap:balance}
+.lead{font-size:1.22rem;color:var(--muted);max-width:600px;margin:0 auto 2.6rem;text-wrap:pretty}
+.lead strong{color:var(--text);font-weight:500}
+.card-cta{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.6rem;box-shadow:var(--shadow);max-width:620px;margin:0 auto;text-align:left}
+.field{display:flex;gap:.75rem;flex-wrap:wrap}
+.inputwrap{flex:1 1 260px;display:flex;align-items:center;gap:.15rem;border:1px solid var(--line);border-radius:10px;padding:0 1rem;background:var(--bg)}
+.at{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--red)}
+#domain{flex:1;min-width:0;font-family:'DM Sans',sans-serif;font-size:1.05rem;color:var(--text);background:transparent;border:none;outline:none;padding:.95rem .55rem}
+#go{flex:0 0 auto;font-family:'DM Sans',sans-serif;font-size:1.02rem;font-weight:500;color:#fff;background:var(--red);border:none;border-radius:10px;padding:.95rem 1.6rem;cursor:pointer;transition:background .2s ease}
+#go:hover{background:#c1121f}
+.hint{font-size:.87rem;color:var(--muted);margin:.9rem .2rem 0;line-height:1.55}
+.hint em{font-style:normal;color:var(--text)}
+#error{font-size:.9rem;color:var(--red);margin:.8rem .2rem 0}
+#loading{max-width:520px;margin:0 auto;text-align:left;animation:olin .35s ease both}
+.load-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.025em;line-height:1.15;margin:0 0 1.6rem;text-align:center}
+.bar{position:relative;height:5px;border-radius:100px;background:var(--line);overflow:hidden;margin-bottom:1.8rem}
+.bar span{position:absolute;top:0;bottom:0;background:var(--red);border-radius:100px;animation:olbar 1.15s ease-in-out infinite}
+.steps{display:grid;gap:.85rem}
+.steps div{display:flex;gap:.7rem;align-items:center;font-size:1rem;color:var(--text);animation:olstep .4s ease both}
+.steps div:nth-child(2){animation-delay:.9s}.steps div:nth-child(3){animation-delay:1.8s}.steps div:nth-child(4){animation-delay:2.7s}
+.steps b{color:var(--red);font-weight:500}
+#results{background:var(--alt);border-bottom:1px solid var(--line)}
+.res-in{padding:4rem 0;animation:olin .45s ease both}
+.res-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem}
+.res-head h2{font-size:clamp(1.7rem,3vw,2.2rem);margin:0}
+#again{font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;white-space:nowrap}
+.res-lead{font-size:1.05rem;color:var(--muted);max-width:640px;margin:0 0 2.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.rescard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.7rem;display:grid;gap:.75rem;align-content:start}
+.rescard header{position:static;background:none;border:none;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.rescard h3{font-size:1.25rem;margin:0}
+.pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;border:1px solid currentColor;white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.plain{font-size:.95rem;color:var(--muted);margin:0;font-style:italic}
+.verdict{font-size:1rem;color:var(--text);margin:0}
+.summary{margin-top:2.5rem;background:var(--panel);color:var(--panel-text);border-radius:16px;padding:2.2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.summary h3{font-size:1.4rem;margin:0 0 .5rem}
+.summary p{font-size:1rem;color:var(--panel-muted);margin:0}
+.btn-red{background:var(--red);color:#fff;font-size:1rem;font-weight:500;text-decoration:none;padding:.9rem 1.6rem;border-radius:10px;white-space:nowrap;display:inline-block}
+.btn-red:hover{background:#c1121f;color:#fff}
+section.pad{padding:4.5rem 0}
+h2.big{font-size:clamp(1.8rem,3vw,2.3rem);line-height:1.15;margin:0 0 1rem;max-width:620px}
+.sub{font-size:1.08rem;color:var(--muted);max-width:640px;margin:0 0 3rem}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem}
+.num{font-family:'Syne',sans-serif;font-weight:700;font-size:2.4rem;line-height:1;color:var(--red);margin-bottom:.9rem}
+.three h3{font-size:1.15rem;margin:0 0 .5rem}
+.three p{font-size:.97rem;color:var(--muted);margin:0}
+#ayuda{background:var(--alt);border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.cards3 div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.cards3 h3{font-size:1.15rem;margin:0 0 .5rem}
+.cards3 p{font-size:.96rem;color:var(--muted);margin:0 0 1rem}
+.cards3 b{font-size:.88rem;color:var(--text);font-weight:500}
+#cierre{background:var(--panel);color:var(--panel-text)}
+.cierre-in{max-width:760px;margin:0 auto;padding:5rem 5vw;text-align:center}
+.cierre-in h2{font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.025em;line-height:1.14;margin:0 0 1rem}
+.cierre-in p{font-size:1.08rem;color:var(--panel-muted);margin:0 0 2rem}
+.btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-out{border:1px solid var(--line);color:var(--panel-text);font-size:1.02rem;text-decoration:none;padding:.95rem 1.6rem;border-radius:10px}
+.btn-out:hover{color:var(--panel-text);background:rgba(255,255,255,.06)}
+footer{background:var(--bg);border-top:1px solid var(--line)}
+.foot{max-width:1000px;margin:0 auto;padding:2.5rem 5vw;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.foot a{text-decoration:none;color:var(--muted)}
+.foot a:hover{color:var(--text)}
+.footlinks{display:flex;gap:1.3rem;flex-wrap:wrap}
+[hidden]{display:none !important}
+@keyframes olbar{0%{left:-40%;width:40%}50%{width:55%}100%{left:100%;width:35%}}
+@keyframes olstep{from{opacity:.25}to{opacity:1}}
+@keyframes olin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
-
-<div class="wrap">
-
 <header>
-  <div class="brand">OLIBESC · Seguridad de correo</div>
-  <h1>Checklist de despliegue DMARC / DKIM</h1>
-  <p class="subtitle">Procedimiento por fases para activar autenticación de correo en un cliente sin romper flujos legítimos: intake, preparación, monitorización, rampa progresiva y cierre.</p>
-  <div class="toolbar">
-    <button class="btn btn-primary" id="btnSend" type="button">Enviar informe</button>
-    <button class="btn" id="btnExport" type="button">Exportar JSON</button>
-    <button class="btn" id="btnImport" type="button">Importar JSON</button>
-    <input type="file" id="fileImport" accept="application/json" hidden>
-    <button class="btn" id="btnPrint" type="button">Imprimir informe</button>
-    <span class="global-count" id="globalCount">0 / 0 completados</span>
-  </div>
-  <p class="send-status" id="sendStatus" hidden></p>
-  <p class="persist-note"><strong>El estado no se guarda solo:</strong> exporta el JSON para pausar y vuelve a importarlo para continuar. Al completar el despliegue, «Enviar informe» remite el PDF al cliente y archiva el expediente en el buzón cifrado de OLIBESC.</p>
+<div class="nav">
+<a class="logo" href="#hero">Oli<span>besc</span></a>
+<div class="navlinks">
+<a href="#que-es">Qué revisamos</a>
+<a href="#ayuda">Cómo te ayudamos</a>
+<button id="theme" type="button" title="Cambiar tema" aria-label="Cambiar tema"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+</div>
+</div>
 </header>
 
-<section class="meta" aria-label="Datos del expediente">
-  <div><label for="m-cliente">Cliente</label><input id="m-cliente" data-meta="cliente" placeholder="Nombre de la empresa"></div>
-  <div><label for="m-dominio">Dominio auditado</label><input id="m-dominio" data-meta="dominio" placeholder="clientedominio.com"></div>
-  <div><label for="m-email">Email del cliente</label><input id="m-email" data-meta="emailCliente" type="email" placeholder="contacto@clientedominio.com"></div>
-  <div><label for="m-fecha">Fecha de inicio</label><input id="m-fecha" data-meta="fechaInicio" type="date"></div>
-  <div><label for="m-auditor">Auditor</label><input id="m-auditor" data-meta="auditor" value="OLIBESC"></div>
+<section id="hero">
+<div class="hero-in">
+<div id="form-block">
+<h1>Cualquiera puede escribir un correo con el nombre de tu empresa.</h1>
+<p class="lead">Comprueba en 20 segundos si tu correo está protegido. Gratis y sin instalar nada: solo escribe lo que va después de la <strong>@</strong>.</p>
+<div class="card-cta">
+<div class="field">
+<div class="inputwrap"><span class="at">@</span><input id="domain" type="text" placeholder="ejemplo.com" autocomplete="off" spellcheck="false"></div>
+<button id="go" type="button">Comprobar gratis</button>
+</div>
+<p class="hint">¿No sabes cuál es? Mira tu propio correo: si es <em>ana@construccioneslopez.es</em>, escribe <em>construccioneslopez.es</em>.</p>
+<p id="error" hidden></p>
+</div>
+</div>
+<div id="loading" hidden>
+<div class="load-title">Analizando <span id="pending"></span>…</div>
+<div class="bar"><span></span></div>
+<div class="steps">
+<div><b>→</b>Buscando quién puede enviar en tu nombre</div>
+<div><b>→</b>Comprobando la firma de tus correos</div>
+<div><b>→</b>Viendo qué pasa con los correos falsos</div>
+<div><b>→</b>Preparando la explicación clara y sencilla</div>
+</div>
+</div>
+</div>
 </section>
 
-<!-- ════════ FASE 0 ════════ -->
-<section class="phase" data-phase-id="fase-0" data-phase-name="Intake con el cliente">
-  <div class="phase-num">0</div>
-  <div class="phase-head"><h2>Intake con el cliente</h2><span class="phase-count" data-count></span></div>
-  <p class="phase-when">Antes de tocar ningún registro DNS. Todo lo que no preguntes aquí lo descubrirás por las malas en la fase 2.</p>
-  <span class="chip">sin cambios en DNS todavía</span>
-  <ul>
-    <li class="item" data-id="f0-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Inventario de servicios que envían correo en nombre del dominio</label><p class="item-hint">Facturación/ERP (Holded, Factusol…), CRM, marketing, nómina, ticketing, pasarela de pago. Anotar proveedor y dirección remitente de cada uno.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Ciclo de facturación y nómina del cliente</label><p class="item-hint">Fechas de envío masivo. La ventana de p=none debe cubrir al menos un ciclo completo; si facturan a fin de mes, no cierres la monitorización antes.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Reglas de reenvío automático existentes</label><p class="item-hint">Buzón→buzón interno, a dominios externos, a cuentas personales (Gmail/Outlook). Los reenvíos a cuentas externas se señalan además como hallazgo de exfiltración de datos.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Listas de distribución y grupos que modifican mensajes</label><p class="item-hint">Grupos M365/Google que reescriben el asunto o añaden pies de firma: rompen DKIM además de SPF.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Quién gestiona el DNS y tiempos de cambio</label><p class="item-hint">Registrador, panel, quién tiene permisos y cuánto tarda un cambio en aplicarse. Condiciona todo el calendario.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Acceso o interlocución con el tenant M365 / panel de correo</label><p class="item-hint">Necesario para revisar reglas de transporte, reenvíos y selectores DKIM del propio tenant.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">¿Servicios de envío nuevos previstos durante la auditoría?</label><p class="item-hint">Pedir expresamente que avisen antes de activar cualquier herramienta nueva que envíe correo. Es la causa nº 1 de sorpresas a mitad de rampa.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f0-8"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Autorización por escrito y calendario acordado</label><p class="item-hint">Email de conformidad del cliente para publicar/modificar registros DNS, con el calendario de fases adjunto.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-  </ul>
+<section id="results" hidden>
+<div class="wrap res-in">
+<div class="res-head">
+<h2>Esto es lo que hemos encontrado en <span id="checked"></span></h2>
+<button id="again" type="button">Comprobar otro dominio</button>
+</div>
+<p class="res-lead">Cinco comprobaciones. En verde, lo que ya te protege. En rojo, la puerta que hoy está abierta.</p>
+<div class="grid" id="cards"></div>
+<div class="summary">
+<div style="max-width:520px">
+<h3 id="summary-title"></h3>
+<p>Te lo explicamos por teléfono en 15 minutos, sin tecnicismos, y te decimos qué costaría arreglarlo. Sin compromiso.</p>
+</div>
+<a class="btn-red" href="mailto:info@olibesc.com">Que me lo expliquen →</a>
+</div>
+</div>
 </section>
 
-<!-- ════════ FASE 1 ════════ -->
-<section class="phase" data-phase-id="fase-1" data-phase-name="Preparación técnica">
-  <div class="phase-num">1</div>
-  <div class="phase-head"><h2>Preparación técnica</h2><span class="phase-count" data-count></span></div>
-  <p class="phase-when">Semana 0. Deja montada la recepción de reportes antes de publicar el DMARC del cliente.</p>
-  <span class="chip">[dominio-cliente]._report._dmarc.olibesc.com TXT "v=DMARC1"</span>
-  <ul>
-    <li class="item" data-id="f1-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Auditar el estado actual y guardar evidencias</label><p class="item-hint">SPF (includes y nº de lookups ≤ 10), selectores DKIM activos, DMARC existente, MX. Capturas de <code>dig</code>/MXToolbox para el "antes" del informe.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f1-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Bajar el TTL de los registros implicados a 300 s</label><p class="item-hint">Durante todo el proceso, no solo al principio. Es lo que hace que el rollback sea de minutos y no de horas.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f1-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Publicar el registro de autorización externa en olibesc.com</label><p class="item-hint"><code>clientedominio.com._report._dmarc.olibesc.com TXT "v=DMARC1"</code> — uno por cada dominio del cliente. Sin esto, Google/Microsoft descartan los reportes en silencio.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f1-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Verificar propagación del registro de autorización</label><p class="item-hint"><code>dig TXT clientedominio.com._report._dmarc.olibesc.com</code> antes de dar por buena la recepción.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f1-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Publicar el DMARC inicial del cliente</label><p class="item-hint"><code>v=DMARC1; p=none; rua=mailto:reportes-dmarc@olibesc.com; ruf=mailto:reportes-dmarc@olibesc.com; fo=1</code></p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f1-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Confirmar recepción del primer reporte agregado (24–72 h)</label><p class="item-hint">Si no llega, el fallo casi siempre está en el registro <code>_report._dmarc</code> — no asumir "sin actividad".</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f1-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Conectar el buzón de reportes al parseo automático</label><p class="item-hint">Pipeline n8n con separación por cliente (buzón o etiqueta dedicada) para no mezclar datos entre expedientes.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-  </ul>
+<section id="que-es" style="border-bottom:1px solid var(--line)">
+<div class="wrap pad">
+<h2 class="big">Tu dominio es el apellido de tu empresa en internet</h2>
+<p class="sub">Es lo que va después de la @ en tu correo. Si nadie lo vigila, otra persona puede usarlo para pedirle a tu cliente que pague en otra cuenta. Nosotros cerramos esa puerta.</p>
+<div class="three">
+<div><div class="num">1</div><h3>Miramos tu dominio</h3><p>Sin tocar nada y sin pedirte contraseñas. La información es pública: la misma que ve Gmail cuando recibe un correo tuyo.</p></div>
+<div><div class="num">2</div><h3>Te lo contamos sin palabreria</h3><p>Qué está bien, qué está mal y qué puede pasarte si se queda así. Una frase por cada cosa, sin siglas sueltas.</p></div>
+<div><div class="num">3</div><h3>Lo arreglamos nosotros</h3><p>Si quieres. En tres días, hablando con quien te lleva la web o el correo. Tú no tienes que aprender nada.</p></div>
+</div>
+</div>
 </section>
 
-<!-- ════════ FASE 2 ════════ -->
-<section class="phase" data-phase-id="fase-2" data-phase-name="Monitorización en p=none">
-  <div class="phase-num">2</div>
-  <div class="phase-head"><h2>Monitorización en p=none</h2><span class="phase-count" data-count></span></div>
-  <p class="phase-when">Semanas 1–4 como mínimo, y siempre cubriendo un ciclo de facturación completo. Aquí se arregla todo; las fases siguientes solo confirman.</p>
-  <span class="chip">v=DMARC1; p=none; rua=mailto:reportes-dmarc@olibesc.com; fo=1</span>
-  <ul>
-    <li class="item" data-id="f2-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Clasificar cada source_ip con fallo de alineación</label><p class="item-hint">Tres categorías: legítimo-pendiente, legítimo-corregido, spoofing. Nunca dar por bueno "no hay fallos" sin revisar IP a IP.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Contactar a los proveedores terceros en la semana 1</label><p class="item-hint">Holded, CRM, marketing… en paralelo a la monitorización, no cuando ya quieras subir de política. El cuello de botella suele ser su soporte, no tu DNS.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Camino A por proveedor: DKIM personalizado</label><p class="item-hint">CNAMEs de selector bajo el dominio del cliente apuntando a las claves del proveedor. Es la vía preferente: la firma alinea con el dominio del From.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Camino B si A no existe: Return-Path personalizado en subdominio</label><p class="item-hint">Dominio de envío tipo <code>facturas.clientedominio.com</code> con su SPF (<code>include:</code> del proveedor). Alineación por SPF aunque DKIM no exista.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Camino C si ni A ni B: aislar el flujo en subdominio con DMARC propio</label><p class="item-hint">El subdominio dedicado con <code>p=none</code> propio se independiza de la política del raíz, que puede llegar a reject sin bloquear a ese proveedor.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Corregir el SPF del dominio raíz</label><p class="item-hint">Todos los servicios legítimos incluidos, sin superar 10 lookups DNS (aplanar si hace falta).</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Comunicar por escrito los proveedores no alineables</label><p class="item-hint">La aceptación del riesgo residual o el cambio de proveedor es decisión documentada del cliente, no tuya.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f2-8"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Verificar que los reenvíos internos no generan falsos positivos</label><p class="item-hint">Los reenvíos M365↔Gmail se apoyan en ARC; comprobar en los reportes que no aparecen como fallos que contaminen la lectura.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-  </ul>
+<section id="ayuda">
+<div class="wrap pad">
+<div class="eyebrow">Cómo te ayudamos</div>
+<h2 class="big" style="margin-bottom:2.5rem">Nos ocupamos nosotros y tú te olvidas</h2>
+<div class="cards3">
+<div><h3>Cerramos la puerta del correo</h3><p>Dejamos tu dominio configurado para que los correos falsos no lleguen a nadie. Tú sigues escribiendo igual que siempre.</p><b>Precio cerrado sin sorpresas</b></div>
+<div><h3>Vigilamos cada mes</h3><p>Te avisamos si alguien intenta usar tu nombre y te mandamos un resumen de una hoja que puedes enseñar a tus clientes.</p><b>Incluido</b></div>
+<div><h3>Hablas siempre con la misma persona</h3><p>Ángel, en Zaragoza. Por teléfono o por correo, en horario normal. Nada de centralitas.</p><b>Sin contratos eternos</b></div>
+</div>
+</div>
 </section>
 
-<!-- ════════ FASE 3 ════════ -->
-<section class="phase" data-phase-id="fase-3" data-phase-name="Rampa a quarantine">
-  <div class="phase-num">3</div>
-  <div class="phase-head"><h2>Rampa a quarantine</h2><span class="phase-count" data-count></span></div>
-  <p class="phase-when">Semanas 5–10. El pre-check se repite completo antes de <em>cada</em> subida de pct, sin excepciones.</p>
-  <span class="chip">p=quarantine; pct=10 → 50 → 100</span>
-  <ul>
-    <li class="item" data-id="f3-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: 0 fallos legítimos en los últimos 7 días de reportes</label><p class="item-hint">Y si hay silencio total, verificar antes que los reportes siguen llegando (no confundir "sin datos" con "sin fallos").</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f3-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: todo el inventario de la fase 0 alineado por A o B (o aislado por C)</label><p class="item-hint">Repasar servicio a servicio contra la lista original, no de memoria.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f3-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: confirmado con el cliente que no hay servicios nuevos</label><p class="item-hint">Pregunta explícita por email antes de cada subida. Contratan herramientas a mitad de proceso más veces de las que parece.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f3-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: rollback documentado y TTL sigue en 300 s</label><p class="item-hint">Volver a <code>p=none</code> debe ser un cambio de TXT de 5 minutos con procedimiento escrito.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f3-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a p=quarantine; pct=10 (semanas 5–6)</label><p class="item-hint">Vigilar reportes y carpetas de cuarentena/spam de los destinos habituales del cliente.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f3-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a pct=50 (semanas 7–8), previo pre-check completo</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f3-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a pct=100 (semanas 9–10), previo pre-check completo</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-  </ul>
-</section>
-
-<!-- ════════ FASE 4 ════════ -->
-<section class="phase" data-phase-id="fase-4" data-phase-name="Rampa a reject">
-  <div class="phase-num">4</div>
-  <div class="phase-head"><h2>Rampa a reject</h2><span class="phase-count" data-count></span></div>
-  <p class="phase-when">Semanas 11–13+. Solo se entra aquí tras dos semanas limpias en quarantine al 100 %.</p>
-  <span class="chip">p=reject; pct=25 → 100</span>
-  <ul>
-    <li class="item" data-id="f4-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check completo + 2 semanas sin fallos legítimos en quarantine 100 %</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f4-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a p=reject; pct=25 (semanas 11–12)</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f4-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a p=reject; pct=100 (semana 13+)</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f4-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Verificación final de extremo a extremo</label><p class="item-hint">Envío de prueba desde cada servicio del inventario + test de spoofing controlado para confirmar que el bloqueo funciona en ambos sentidos.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-  </ul>
-</section>
-
-<!-- ════════ FASE 5 ════════ -->
-<section class="phase" data-phase-id="fase-5" data-phase-name="Cierre e informe">
-  <div class="phase-num">5</div>
-  <div class="phase-head"><h2>Cierre e informe</h2><span class="phase-count" data-count></span></div>
-  <p class="phase-when">Entrega, documentación interna y conversión a servicio recurrente.</p>
-  <span class="chip">monitorización continua vía rua</span>
-  <ul>
-    <li class="item" data-id="f5-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Redactar el informe final</label><p class="item-hint">Estado inicial vs final con evidencias, hallazgos (reenvíos externos, proveedores no alineables, decisiones del cliente) y configuración entregada.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f5-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Restaurar TTL a valores normales (3600 s)</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f5-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Proponer la monitorización continua como servicio recurrente</label><p class="item-hint">Mantener <code>rua=mailto:reportes-dmarc@olibesc.com</code>: detección de spoofing y de servicios nuevos sin alinear. Argumento: sin vigilancia, el reject de hoy es el rebote de mañana.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-    <li class="item" data-id="f5-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Documentar la ficha interna del cliente</label><p class="item-hint">Selectores DKIM activos, includes SPF, subdominios aislados, contactos de soporte de cada proveedor y fechas de cada cambio.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
-  </ul>
+<section id="cierre">
+<div class="cierre-in">
+<h2>Empieza por saber cómo estás hoy</h2>
+<p>La comprobación es gratis y tarda menos que preparar un café.</p>
+<div class="btns">
+<a class="btn-red" href="#hero" id="cta-top">Comprobar mi dominio →</a>
+<a class="btn-out" href="mailto:info@olibesc.com">Hablar con una persona</a>
+</div>
+</div>
 </section>
 
 <footer>
-  <span class="brand">OLIBESC</span> · Checklist operativo DMARC/DKIM · Los ítems marcados y sus observaciones alimentan el informe final del cliente.
+<div class="foot">
+<div class="logo">Oli<span>besc</span></div>
+<div class="footlinks"><a href="mailto:info@olibesc.com">info@olibesc.com</a><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div>
+<div>© 2026 Olibesc · Pinseque, Zaragoza</div>
+</div>
 </footer>
 
-</div>
-
 <script>
-(function(){
-  'use strict';
+/* ---- Configura aquí el webhook de n8n ---- */
+/* Vacío = modo demostración (datos de ejemplo, no se consulta nada real). */
+var WEBHOOK_URL = "https://n8n.olibesc.com/webhook/bb06812f-689a-4f0c-879d-ed135aaacc8a";
 
-  /* URL del webhook de n8n (producción). Para probar con "Test workflow" en el
-     editor de n8n, cambia temporalmente /webhook/ por /webhook-test/. */
-  var WEBHOOK_URL = 'https://n8n.olibesc.com/webhook/checklist-dmarc-8f4a2c7e';
+var CHECKS = [
+  { key:'spf', name:'SPF', plain:'La lista de quién tiene permiso para enviar correo en tu nombre.',
+    ok:'Solo los servidores que tú has autorizado pueden enviar correo con tu dominio.',
+    bad:'Cualquier ordenador del mundo puede enviar correos que parezcan tuyos. Nadie comprueba de dónde salen.',
+    warn:'Tienes lista, pero está incompleta o mal escrita: algunos correos legítimos pueden acabar en spam.' },
+  { key:'dkim', name:'DKIM', plain:'El sello de lacre del sobre: demuestra que el correo no se ha tocado por el camino.',
+    ok:'Tus correos salen firmados. Si alguien los modifica, el destinatario lo detecta.',
+    bad:'Tus correos viajan sin firmar. Se pueden falsificar o alterar sin dejar rastro.',
+    warn:'Hay firma, pero no en todos los sistemas que envían correo por ti.' },
+  { key:'dmarc', name:'DMARC', plain:'El portero: decide qué hace Gmail u Outlook cuando llega un correo falso con tu nombre.',
+    ok:'Los correos que se hacen pasar por tu empresa se rechazan antes de llegar a nadie.',
+    bad:'No hay portero. Aunque tengas lista y sello, el correo falso entra igual en la bandeja de tu cliente.',
+    warn:'El portero está mirando pero no bloquea: se registra el fraude, no se impide.' },
+  { key:'bimi', name:'BIMI', plain:'Tu logotipo junto al remitente, para que se vea a simple vista que el correo es tuyo.',
+    ok:'Tu logo aparece en la bandeja de entrada de tus clientes.',
+    bad:'Tu logo no aparece. No es grave, pero un correo con marca cuesta mucho más de imitar.',
+    warn:'Está a medias: falta el certificado o el logo en el formato correcto.' },
+  { key:'mta', name:'Cifrado en tránsito', plain:'El furgón blindado: que nadie pueda leer el correo mientras viaja.',
+    ok:'Tus correos viajan cifrados entre servidores.',
+    bad:'El correo puede viajar sin cifrar en algunos tramos y ser leído por el camino.',
+    warn:'El cifrado existe pero no es obligatorio: se acepta la conexión aunque falle.' }
+];
+var STYLES = { ok:{label:'Protegido',color:'#2a9d8f'}, warn:{label:'A medias',color:'#f4a261'}, fail:{label:'Desprotegido',color:'#e63946'} };
+var DEMO = { spf:'ok', dkim:'warn', dmarc:'fail', bimi:'fail' };
 
-  var globalBar   = document.getElementById('globalBar');
-  var globalCount = document.getElementById('globalCount');
+var $ = function(id){ return document.getElementById(id); };
 
-  function allItems(){ return Array.prototype.slice.call(document.querySelectorAll('.item')); }
+/* Tema */
+var saved = null;
+try { saved = localStorage.getItem('olibesc-theme'); } catch(e){}
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+$('theme').addEventListener('click', function(){
+  var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('olibesc-theme', next); } catch(e){}
+});
 
-  function refresh(){
-    var total = 0, done = 0;
-    document.querySelectorAll('.phase').forEach(function(phase){
-      var items = phase.querySelectorAll('.item');
-      var d = 0;
-      items.forEach(function(it){
-        var cb = it.querySelector('input[type=checkbox]');
-        it.classList.toggle('checked', cb.checked);
-        if(cb.checked) d++;
-      });
-      total += items.length; done += d;
-      var counter = phase.querySelector('[data-count]');
-      if(counter) counter.textContent = d + ' / ' + items.length;
-      phase.classList.toggle('done', d === items.length && items.length > 0);
-    });
-    globalBar.style.width = total ? (done/total*100) + '%' : '0%';
-    globalCount.textContent = done + ' / ' + total + ' completados';
+function clean(v){
+  return String(v||'').trim().toLowerCase()
+    .replace(/^https?:\/\//,'').replace(/^www\./,'')
+    .split('@').pop().split('/')[0].replace(/\.$/,'');
+}
+function norm(raw){
+  var v = typeof raw === 'string' ? raw : (raw && (raw.status || raw.state || raw.result)) || '';
+  var s = String(v).toLowerCase();
+  if (raw === true || ['ok','pass','valid','good','reject','protected','quarantine'].indexOf(s) > -1) return 'ok';
+  if (['warn','warning','partial','none','monitor','p=none','soft'].indexOf(s) > -1) return 'warn';
+  return 'fail';
+}
+function tieneChecks(d){
+  return CHECKS.some(function(c){ return d[c.key] !== undefined; });
+}
+function fallo(mensaje){
+  $('loading').hidden = true;
+  $('results').hidden = true;
+  $('hero').hidden = false;
+  $('form-block').hidden = false;
+  var err = $('error');
+  err.textContent = mensaje || 'No hemos podido completar el análisis ahora mismo. Vuelve a intentarlo en unos minutos o escríbenos a info@olibesc.com y lo revisamos contigo.';
+  err.hidden = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function render(data, domain){
+  var cards = $('cards'); cards.innerHTML = ''; var bad = 0, medias = 0;
+  CHECKS.forEach(function(c){
+    if (data[c.key] === undefined) return;
+    var st = norm(data[c.key]);
+    if (st === 'fail') bad++; else if (st === 'warn') medias++;
+    var meta = STYLES[st];
+    var detail = data[c.key] && data[c.key].detail;
+    var el = document.createElement('div');
+    el.className = 'rescard';
+    el.innerHTML = '<header><h3></h3><span class="pill" style="color:' + meta.color + '"><i></i>' + meta.label + '</span></header>'
+      + '<p class="plain"></p><p class="verdict"></p>';
+    el.querySelector('h3').textContent = c.name;
+    el.querySelector('.plain').textContent = c.plain;
+    el.querySelector('.verdict').textContent = detail || (st === 'ok' ? c.ok : st === 'warn' ? c.warn : c.bad);
+    cards.appendChild(el);
+  });
+  $('checked').textContent = domain;
+  $('summary-title').textContent =
+      bad > 1  ? 'Hay ' + bad + ' puertas abiertas en tu correo.'
+    : bad === 1 ? 'Hay una puerta abierta en tu correo.'
+    : medias > 1 ? 'Lo esencial está cubierto, pero quedan ' + medias + ' cosas a medias.'
+    : medias === 1 ? 'Lo esencial está cubierto, pero queda una cosa a medias.'
+    : 'Tu correo está bien protegido. Mantengámoslo así.';
+}
+function check(){
+  var domain = clean($('domain').value);
+  var err = $('error');
+  if (domain.indexOf('.') === -1){
+    err.textContent = 'Escribe el dominio completo, con su punto. Por ejemplo: miempresa.com';
+    err.hidden = false; return;
   }
+  err.hidden = true;
+  $('pending').textContent = domain;
+  $('form-block').hidden = true;
+  $('loading').hidden = false;
+  $('results').hidden = true;
 
-  function grow(t){ t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+  var minWait = new Promise(function(r){ setTimeout(r, 3200); });
+  var req = WEBHOOK_URL
+    ? fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ domain: domain }) })
+        .then(function(r){ return r.json(); })
+        .catch(function(){ return null; })
+    : Promise.resolve({ __demo:true });
 
-  document.addEventListener('change', function(e){
-    if(e.target.matches('input[type=checkbox]')) refresh();
+  Promise.all([req, minWait]).then(function(out){
+    var data = out[0];
+    if (Array.isArray(data)) data = data[0];
+    if (data && data.result) data = data.result;
+    if (data && data.__demo) data = DEMO;
+
+    /* Nunca mostramos datos inventados sobre un dominio real: si el análisis
+       no llega o el servidor lo rechaza (dominio inválido, límite de uso),
+       se enseña el motivo y se devuelve al formulario. */
+    if (!data || typeof data !== 'object' || data.ok === false || !tieneChecks(data)){
+      fallo(data && data.mensaje);
+      return;
+    }
+
+    render(data, domain);
+    $('loading').hidden = true;
+    $('hero').hidden = true;
+    $('results').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-  document.addEventListener('input', function(e){
-    if(e.target.matches('textarea.obs')) grow(e.target);
-  });
-
-  /* ---- estado actual → objeto JSON (lo usan exportar y enviar) ---- */
-  function buildData(){
-    var meta = {};
-    document.querySelectorAll('[data-meta]').forEach(function(inp){ meta[inp.dataset.meta] = inp.value; });
-    meta.exportado = new Date().toISOString();
-
-    var fases = [];
-    var total = 0, done = 0;
-    document.querySelectorAll('.phase').forEach(function(phase){
-      var f = { id: phase.dataset.phaseId, nombre: phase.dataset.phaseName, items: [] };
-      phase.querySelectorAll('.item').forEach(function(it){
-        var completado = it.querySelector('input[type=checkbox]').checked;
-        total++; if(completado) done++;
-        f.items.push({
-          id: it.dataset.id,
-          texto: it.querySelector('.item-label').textContent.trim(),
-          completado: completado,
-          observaciones: it.querySelector('textarea.obs').value
-        });
-      });
-      fases.push(f);
-    });
-
-    return { meta: meta, progreso: { completados: done, total: total }, fases: fases };
-  }
-
-  /* ---- documento completo con el estado horneado en atributos ----
-     El HTML resultante se archiva en el servidor (reabierto en un navegador
-     vuelve a ser este checklist, ya rellenado) y Gotenberg lo convierte a PDF
-     aplicando la hoja @media print. */
-  function serializeChecklist(){
-    document.querySelectorAll('[data-meta]').forEach(function(inp){ inp.setAttribute('value', inp.value); });
-    document.querySelectorAll('.item input[type=checkbox]').forEach(function(cb){
-      if(cb.checked) cb.setAttribute('checked',''); else cb.removeAttribute('checked');
-    });
-    document.querySelectorAll('textarea.obs').forEach(function(ta){ ta.textContent = ta.value; });
-    return '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-  }
-
-  /* ---- enviar al workflow de n8n ---- */
-  var btnSend    = document.getElementById('btnSend');
-  var sendStatus = document.getElementById('sendStatus');
-
-  function setStatus(msg, cls){
-    sendStatus.hidden = !msg;
-    sendStatus.textContent = msg || '';
-    sendStatus.className = 'send-status' + (cls ? ' ' + cls : '');
-  }
-
-  btnSend.addEventListener('click', function(){
-    var data = buildData();
-    if(!data.meta.dominio){ alert('Rellena el dominio auditado antes de enviar.'); return; }
-    if(!/.+@.+\..+/.test(data.meta.emailCliente || '')){ alert('Rellena el email del cliente antes de enviar.'); return; }
-    if(!confirm('Se enviará el informe en PDF a ' + data.meta.emailCliente + ' y se archivará el expediente. ¿Continuar?')) return;
-
-    data.informeHtml = serializeChecklist();
-    btnSend.disabled = true;
-    setStatus('Enviando informe…', '');
-
-    fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function(r){
-      if(!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    }).then(function(){
-      setStatus('Informe enviado a ' + data.meta.emailCliente + ' y expediente archivado.', 'ok');
-    }).catch(function(err){
-      setStatus('Error al enviar (' + err.message + '). Exporta el JSON para no perder el estado y reintenta.', 'err');
-    }).then(function(){
-      btnSend.disabled = false;
-    });
-  });
-
-  /* ---- exportar JSON ---- */
-  document.getElementById('btnExport').addEventListener('click', function(){
-    var data = buildData();
-    var nombre = 'checklist-dmarc-' + (data.meta.dominio || 'cliente').replace(/[^a-z0-9.\-]/gi,'_') + '.json';
-    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = nombre;
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
-  });
-
-  /* ---- importar JSON ---- */
-  var fileInput = document.getElementById('fileImport');
-  document.getElementById('btnImport').addEventListener('click', function(){ fileInput.click(); });
-  fileInput.addEventListener('change', function(){
-    var file = fileInput.files[0];
-    if(!file) return;
-    var reader = new FileReader();
-    reader.onload = function(){
-      try{
-        var data = JSON.parse(reader.result);
-        if(data.meta){
-          document.querySelectorAll('[data-meta]').forEach(function(inp){
-            if(data.meta[inp.dataset.meta] !== undefined) inp.value = data.meta[inp.dataset.meta];
-          });
-        }
-        var byId = {};
-        (data.fases || []).forEach(function(f){ (f.items || []).forEach(function(i){ byId[i.id] = i; }); });
-        allItems().forEach(function(it){
-          var saved = byId[it.dataset.id];
-          if(!saved) return;
-          it.querySelector('input[type=checkbox]').checked = !!saved.completado;
-          var ta = it.querySelector('textarea.obs');
-          ta.value = saved.observaciones || '';
-          grow(ta);
-        });
-        refresh();
-      }catch(err){
-        alert('No se pudo leer el archivo: no es un JSON válido de este checklist.');
-      }
-      fileInput.value = '';
-    };
-    reader.readAsText(file);
-  });
-
-  /* ---- imprimir ---- */
-  document.getElementById('btnPrint').addEventListener('click', function(){
-    document.querySelectorAll('textarea.obs').forEach(grow);
-    window.print();
-  });
-
-  /* Al cargar: dimensionar observaciones (necesario cuando el documento llega
-     con estado horneado, p. ej. al renderizar el PDF) y refrescar contadores. */
-  document.querySelectorAll('textarea.obs').forEach(grow);
-  refresh();
-})();
+}
+$('go').addEventListener('click', check);
+$('domain').addEventListener('keydown', function(e){ if (e.key === 'Enter') check(); });
+$('again').addEventListener('click', function(){
+  $('results').hidden = true;
+  $('hero').hidden = false;
+  $('form-block').hidden = false;
+  $('domain').value = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  $('domain').focus();
+});
+$('cta-top').addEventListener('click', function(){
+  if ($('hero').hidden){ $('results').hidden = true; $('hero').hidden = false; $('form-block').hidden = false; }
+});
 </script>
-
 </body>
 </html>
