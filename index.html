@@ -438,6 +438,58 @@
     .audit-card { padding: 1.6rem; }
     #hero { padding-top: 6.5rem; }
   }
+
+  /* ══ RESULTADOS DEL ANÁLISIS (SPF / DKIM / DMARC) ══ */
+  .domain-form { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .audit-results { display: none; margin-top: 0.4rem; }
+  .audit-results.visible { display: block; }
+
+  .results-verdict {
+    border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.2rem;
+    font-size: 0.88rem; line-height: 1.6; border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+  }
+  .results-verdict.verdict-bad  { border-color: rgba(230,57,70,0.35); background: rgba(230,57,70,0.08); }
+  .results-verdict.verdict-warn { border-color: rgba(244,162,97,0.35); background: rgba(244,162,97,0.08); }
+  .results-verdict.verdict-good { border-color: rgba(42,157,143,0.35); background: rgba(42,157,143,0.08); }
+
+  .check-item {
+    border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.7rem;
+    background: rgba(255,255,255,0.02); overflow: hidden;
+  }
+  .check-header {
+    width: 100%; display: flex; align-items: center; gap: 0.7rem;
+    background: none; border: none; cursor: pointer; text-align: left;
+    padding: 0.9rem 1rem; font-family: 'DM Sans', sans-serif; color: var(--white);
+  }
+  .check-status { font-size: 1.05rem; flex-shrink: 0; width: 1.4rem; text-align: center; }
+  .check-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; flex-shrink: 0; width: 4rem; }
+  .check-verdict { font-size: 0.85rem; color: var(--muted); flex: 1; }
+  .check-chevron { color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+  .check-item.open .check-chevron { transform: rotate(180deg); }
+
+  .check-body { max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease; padding: 0 1rem; }
+  .check-item.open .check-body { max-height: 420px; padding: 0 1rem 1.1rem; }
+
+  .check-plain { font-size: 0.87rem; color: rgba(240,240,245,0.75); line-height: 1.65; margin-bottom: 0.7rem; }
+  .check-tech { font-size: 0.78rem; color: var(--muted); }
+  .check-tech summary { cursor: pointer; color: rgba(240,240,245,0.5); }
+  .check-tech pre {
+    margin-top: 0.6rem; padding: 0.7rem 0.85rem; background: rgba(0,0,0,0.3);
+    border-radius: 6px; white-space: pre-wrap; word-break: break-all;
+    font-size: 0.74rem; color: rgba(240,240,245,0.6); font-family: monospace;
+  }
+
+  .status-pass    { color: var(--green); }
+  .status-fail    { color: var(--red); }
+  .status-warn    { color: var(--amber); }
+
+  .results-restart { width: 100%; margin-bottom: 1.4rem; padding: 0.7rem 1.5rem; font-size: 0.85rem; }
+
+  .lead-upsell { border-top: 1px solid var(--border); padding-top: 1.4rem; }
+  .lead-upsell h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .lead-upsell > p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
 </style>
 </head>
 <body>
@@ -462,12 +514,12 @@
         Necesita no <span class="underline-word accent">quebrar</span> por un ciberataque.
       </h1>
       <p class="hero-sub">
-        Comprueba ahora mismo si alguien puede enviar emails haciéndose pasar por tu empresa. Gratis, en 60 segundos, sin instalar nada.
+        Escribe solo el dominio de tu empresa. Comprobamos al instante si alguien puede enviar emails haciéndose pasar por ti. Gratis, sin registrarte, sin instalar nada.
       </p>
       <div class="hero-points">
-        <div class="hero-point"><div class="check-icon">✓</div>Informe real de vulnerabilidades en tu email</div>
-        <div class="hero-point"><div class="check-icon">✓</div>Sin jerga técnica: te decimos qué riesgo tienes y cómo cerrarlo</div>
-        <div class="hero-point"><div class="check-icon">✓</div>Sin compromiso, sin contratos eternos, sin llamadas no deseadas</div>
+        <div class="hero-point"><div class="check-icon">✓</div>Resultado al instante, explicado sin jerga técnica</div>
+        <div class="hero-point"><div class="check-icon">✓</div>Te decimos qué falla y por qué importa, protección por protección</div>
+        <div class="hero-point"><div class="check-icon">✓</div>Solo pedimos tu email si quieres el informe completo</div>
       </div>
     </div>
 
@@ -475,7 +527,7 @@
       <div class="audit-card-head">
         <div class="audit-badge"><div class="pulse-dot"></div>Análisis automático en tiempo real</div>
         <h2>¿Pueden suplantar tu email?</h2>
-        <p>Introduce tu dominio y te enviamos un informe con lo que un atacante ve de tu empresa hoy.</p>
+        <p>Escribe tu dominio. Comprobamos al instante tus tres protecciones clave y te explicamos qué significan, sin tecnicismos.</p>
         <div class="audit-chips">
           <span class="audit-chip">SPF</span>
           <span class="audit-chip">DKIM</span>
@@ -484,50 +536,118 @@
         </div>
       </div>
 
-      <form class="audit-form" id="auditForm" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="f-nombre">Tu nombre</label>
-            <input type="text" id="f-nombre" name="nombre" placeholder="Ana García" autocomplete="given-name">
-          </div>
-          <div class="form-field">
-            <label for="f-empresa">Empresa</label>
-            <input type="text" id="f-empresa" name="empresa" placeholder="Mi empresa S.L." autocomplete="organization">
-          </div>
-        </div>
+      <!-- Paso 1: solo el dominio -->
+      <form class="domain-form" id="domainForm" novalidate>
         <div class="form-field">
-          <label for="f-dominio">Dominio de tu empresa</label>
-          <input type="text" id="f-dominio" name="dominio" placeholder="miempresa.com" autocomplete="off" inputmode="url">
-          <span class="form-hint">Es la parte de tu email después de la @. Lo analizamos al instante.</span>
+          <label for="f-dominio">Tu dominio</label>
+          <input type="text" id="f-dominio" name="dominio" placeholder="www.tuempresa.com" autocomplete="off" inputmode="url">
+          <span class="form-hint">Es el nombre que usas después de la @ en tu email. Por ejemplo: www.tuempresa.com</span>
         </div>
-        <div class="form-field">
-          <label for="f-email">Tu email</label>
-          <input type="email" id="f-email" name="email" placeholder="ana@miempresa.com" autocomplete="email">
-          <span class="form-hint">Te enviamos el informe aquí. Sin spam, sin llamadas no deseadas.</span>
-        </div>
-
-        <button type="submit" class="form-submit" id="auditBtn">
-          <span class="f-label">Analizar mi dominio ahora →</span>
+        <button type="submit" class="form-submit" id="domainBtn">
+          <span class="f-label">Comprobar mi dominio gratis →</span>
           <div class="f-spinner"></div>
         </button>
-
-        <p class="form-legal">
-          Al enviar aceptas nuestra <a href="/privacidad.html">política de privacidad</a>.
-          Tus datos solo se usan para enviarte el informe y contactarte si lo solicitas.
-        </p>
-
-        <div class="form-error-msg" id="formErrorMsg">
-          Ha ocurrido un error al enviar. Por favor inténtalo de nuevo o escríbenos a <a href="mailto:info@olibesc.com" style="color:#f07060;">info@olibesc.com</a>
-        </div>
+        <div class="form-error-msg" id="domainErrorMsg"></div>
       </form>
+
+      <!-- Paso 2: resultados desplegables, uno por cada protección -->
+      <div class="audit-results" id="auditResults">
+        <div class="results-verdict" id="resultsVerdict"></div>
+
+        <div class="check-item" data-check="spf">
+          <button type="button" class="check-header" aria-expanded="false">
+            <span class="check-status" id="status-spf">⏳</span>
+            <span class="check-name">SPF</span>
+            <span class="check-verdict" id="verdict-spf">Comprobando…</span>
+            <span class="check-chevron">⌄</span>
+          </button>
+          <div class="check-body" id="body-spf">
+            <p class="check-plain" id="plain-spf"></p>
+            <details class="check-tech">
+              <summary>Ver el registro técnico</summary>
+              <pre id="tech-spf"></pre>
+            </details>
+          </div>
+        </div>
+
+        <div class="check-item" data-check="dkim">
+          <button type="button" class="check-header" aria-expanded="false">
+            <span class="check-status" id="status-dkim">⏳</span>
+            <span class="check-name">DKIM</span>
+            <span class="check-verdict" id="verdict-dkim">Comprobando…</span>
+            <span class="check-chevron">⌄</span>
+          </button>
+          <div class="check-body" id="body-dkim">
+            <p class="check-plain" id="plain-dkim"></p>
+            <details class="check-tech">
+              <summary>Ver el registro técnico</summary>
+              <pre id="tech-dkim"></pre>
+            </details>
+          </div>
+        </div>
+
+        <div class="check-item" data-check="dmarc">
+          <button type="button" class="check-header" aria-expanded="false">
+            <span class="check-status" id="status-dmarc">⏳</span>
+            <span class="check-name">DMARC</span>
+            <span class="check-verdict" id="verdict-dmarc">Comprobando…</span>
+            <span class="check-chevron">⌄</span>
+          </button>
+          <div class="check-body" id="body-dmarc">
+            <p class="check-plain" id="plain-dmarc"></p>
+            <details class="check-tech">
+              <summary>Ver el registro técnico</summary>
+              <pre id="tech-dmarc"></pre>
+            </details>
+          </div>
+        </div>
+
+        <button type="button" class="btn-outline results-restart" id="resultsRestart">← Comprobar otro dominio</button>
+
+        <!-- Paso 3: informe completo + contacto humano -->
+        <div class="lead-upsell" id="leadUpsell">
+          <h3>¿Quieres el informe completo y hablar con un experto?</h3>
+          <p>Te lo enviamos por email con recomendaciones concretas para tu empresa. Gratis, sin compromiso.</p>
+          <form class="audit-form" id="auditForm" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-nombre">Tu nombre</label>
+                <input type="text" id="f-nombre" name="nombre" placeholder="Ana García" autocomplete="given-name">
+              </div>
+              <div class="form-field">
+                <label for="f-empresa">Empresa</label>
+                <input type="text" id="f-empresa" name="empresa" placeholder="Mi empresa S.L." autocomplete="organization">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="f-email">Tu email</label>
+              <input type="email" id="f-email" name="email" placeholder="ana@miempresa.com" autocomplete="email">
+              <span class="form-hint">Te enviamos el informe aquí. Sin spam, sin llamadas no deseadas.</span>
+            </div>
+
+            <button type="submit" class="form-submit" id="auditBtn">
+              <span class="f-label">Enviarme el informe completo →</span>
+              <div class="f-spinner"></div>
+            </button>
+
+            <p class="form-legal">
+              Al enviar aceptas nuestra <a href="/privacidad.html">política de privacidad</a>.
+              Tus datos solo se usan para enviarte el informe y contactarte si lo solicitas.
+            </p>
+
+            <div class="form-error-msg" id="formErrorMsg">
+              Ha ocurrido un error al enviar. Por favor inténtalo de nuevo o escríbenos a <a href="mailto:info@olibesc.com" style="color:#f07060;">info@olibesc.com</a>
+            </div>
+          </form>
+        </div>
+      </div>
 
       <div class="form-success" id="formSuccess">
         <div class="s-icon">✅</div>
-        <h3>¡Análisis en marcha!</h3>
+        <h3>¡Informe en camino!</h3>
         <p>
-          Estamos escaneando tu dominio ahora mismo.<br>
-          Recibirás el informe en <strong style="color:var(--white);">tu email en los próximos minutos</strong>.<br><br>
-          Si no lo ves, revisa la carpeta de spam.
+          Revisa tu bandeja de entrada en los próximos minutos.<br>
+          Si no lo ves, mira en la carpeta de spam.
         </p>
       </div>
     </div>
@@ -783,7 +903,223 @@
 </footer>
 
 <script>
-  /* ══ FORMULARIO AUDITORÍA → n8n Webhook ══ */
+  /* ══ PASO 1: comprobación automática de SPF / DKIM / DMARC ══ */
+  const DKIM_SELECTORS = ['google','selector1','selector2','default','k1','k2','dkim','mail','smtp','s1','s2','mandrill','sendgrid','mailjet','zoho','pm','fm1','fm2','fm3','protonmail','protonmail2','protonmail3'];
+
+  function cleanDomain(raw) {
+    return raw.trim()
+      .replace(/^https?:\/\//i, '')
+      .replace(/^www\./i, '')
+      .replace(/\/.*$/, '')
+      .toLowerCase();
+  }
+  function validateDomain(v) { return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v); }
+
+  // Consulta DNS-over-HTTPS directamente desde el navegador (sin backend propio).
+  async function dohQuery(name, type) {
+    const attempts = [
+      { url: `https://dns.google/resolve?name=${encodeURIComponent(name)}&type=${type}`, opts: {} },
+      { url: `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(name)}&type=${type}`, opts: { headers: { Accept: 'application/dns-json' } } }
+    ];
+    let lastErr;
+    for (const attempt of attempts) {
+      try {
+        const res = await fetch(attempt.url, attempt.opts);
+        if (!res.ok) throw new Error('DoH HTTP ' + res.status);
+        return await res.json();
+      } catch (err) { lastErr = err; }
+    }
+    throw lastErr;
+  }
+
+  function txtRecords(dohResponse) {
+    if (!dohResponse || !dohResponse.Answer) return [];
+    return dohResponse.Answer.filter(a => a.type === 16).map(a => a.data.replace(/"/g, '').trim());
+  }
+
+  async function checkSPF(domain) {
+    try {
+      const records = txtRecords(await dohQuery(domain, 'TXT'));
+      const spf = records.find(r => /^v=spf1/i.test(r));
+      if (!spf) return { status: 'fail' };
+      const allMatch = spf.match(/([+\-~?])all\b/i);
+      const qualifier = allMatch ? allMatch[1] : null;
+      let strength = 'open';
+      if (qualifier === '-') strength = 'strict';
+      else if (qualifier === '~') strength = 'soft';
+      return { status: 'pass', record: spf, strength };
+    } catch (e) { return { status: 'error' }; }
+  }
+
+  async function checkDMARC(domain) {
+    try {
+      const records = txtRecords(await dohQuery('_dmarc.' + domain, 'TXT'));
+      const dmarc = records.find(r => /^v=dmarc1/i.test(r));
+      if (!dmarc) return { status: 'fail' };
+      const pMatch = dmarc.match(/p=(\w+)/i);
+      return { status: 'pass', record: dmarc, policy: pMatch ? pMatch[1].toLowerCase() : null };
+    } catch (e) { return { status: 'error' }; }
+  }
+
+  async function checkDKIM(domain) {
+    const attempts = DKIM_SELECTORS.map(sel =>
+      dohQuery(`${sel}._domainkey.${domain}`, 'TXT')
+        .then(data => ({ sel, records: txtRecords(data) }))
+        .catch(() => ({ sel, records: [] }))
+    );
+    const results = await Promise.all(attempts);
+    for (const r of results) {
+      const found = r.records.find(rec => /p=[a-z0-9+/]{20,}/i.test(rec));
+      if (found) return { status: 'pass', selector: r.sel, record: found };
+    }
+    return { status: 'unknown' };
+  }
+
+  const CHECK_COPY = {
+    spf: {
+      pass: {
+        strict: ['✅', 'Configurado y estricto', 'Tienes SPF activo en modo estricto. Es como una lista de invitados: solo los servidores que tú autorizas pueden enviar emails con el nombre de tu dominio. Si alguien no está en la lista, se le rechaza en la puerta.'],
+        soft:   ['⚠️', 'Configurado pero en modo blando', 'Tienes SPF, pero en modo "aviso": los emails no autorizados no se bloquean del todo, solo se marcan como sospechosos. Es como tener lista de invitados pero dejar pasar igual a quien no está apuntado, con una nota de advertencia.'],
+        open:   ['⚠️', 'Configurado pero demasiado permisivo', 'Tienes SPF, pero configurado de forma tan abierta que casi cualquier servidor puede enviar en tu nombre sin ser rechazado. Es como tener una lista de invitados que en la práctica deja pasar a todo el mundo.']
+      },
+      fail:  ['❌', 'No configurado', 'No hemos encontrado un registro SPF en tu dominio. Sin él, no existe ninguna "lista de servidores autorizados": cualquiera en internet puede intentar enviar un email que parezca venir de ti.'],
+      error: ['❓', 'No hemos podido comprobarlo', 'No hemos podido consultar este dato ahora mismo, puede ser un problema temporal de conexión. Vuelve a intentarlo o pide el informe completo abajo.']
+    },
+    dmarc: {
+      pass: {
+        reject:     ['✅', 'Modo estricto (reject)', 'Tu DMARC está en modo "rechazar". Cuando un email falso intenta hacerse pasar por ti y no cumple tus reglas de SPF/DKIM, se bloquea antes de llegar a la bandeja de tu cliente. Es tu protección más fuerte.'],
+        quarantine: ['⚠️', 'Modo cuarentena', 'Tu DMARC está en modo "cuarentena". Los emails falsos no se bloquean del todo: se envían a la carpeta de spam. Mejor que nada, pero un atacante con suerte aún puede llegar a la bandeja de entrada.'],
+        none:       ['⚠️', 'Modo solo vigilancia (none)', 'Tienes DMARC, pero en modo "solo observar". Recibes informes de quién usa tu dominio, pero no se bloquea ni se pone en cuarentena ningún email falso todavía. Es como tener cámaras grabando pero sin alarma conectada.'],
+        otro:       ['⚠️', 'Configurado con una política personalizada', 'Tienes DMARC configurado, aunque con una política poco habitual. Te lo revisamos en detalle en el informe completo.']
+      },
+      fail:  ['❌', 'No configurado', 'No hemos encontrado un registro DMARC. Sin él, nadie decide qué hacer con los emails falsos que usan tu dominio: cada proveedor de correo (Gmail, Outlook...) decide por su cuenta, y muchas veces los deja pasar.'],
+      error: ['❓', 'No hemos podido comprobarlo', 'No hemos podido consultar este dato ahora mismo, puede ser un problema temporal de conexión. Vuelve a intentarlo o pide el informe completo abajo.']
+    },
+    dkim: {
+      pass:    ['✅', 'Firma detectada', 'Hemos encontrado una firma DKIM en tu dominio. Es como un sello notarial invisible que se añade a cada email: demuestra que el mensaje no se ha modificado por el camino y que realmente sale de donde dice salir.'],
+      unknown: ['⚠️', 'No hemos podido confirmarlo', 'DKIM usa una "palabra clave" (selector) que cada proveedor de correo elige de forma distinta y no hay una lista oficial. Hemos probado las más habituales y no hemos encontrado ninguna, pero eso no significa que no la tengas: tu proveedor puede usar una poco común. Te lo confirmamos con seguridad en el informe completo.'],
+      error:   ['❓', 'No hemos podido comprobarlo', 'No hemos podido consultar este dato ahora mismo, puede ser un problema temporal de conexión. Vuelve a intentarlo o pide el informe completo abajo.']
+    }
+  };
+
+  function renderCheck(id, result, domain) {
+    const statusEl  = document.getElementById(`status-${id}`);
+    const verdictEl = document.getElementById(`verdict-${id}`);
+    const plainEl   = document.getElementById(`plain-${id}`);
+    const techEl    = document.getElementById(`tech-${id}`);
+
+    let icon, verdict, plain;
+    if (id === 'spf') {
+      [icon, verdict, plain] = result.status === 'pass' ? CHECK_COPY.spf.pass[result.strength] : CHECK_COPY.spf[result.status];
+    } else if (id === 'dmarc') {
+      if (result.status === 'pass') {
+        const key = ['reject','quarantine','none'].includes(result.policy) ? result.policy : 'otro';
+        [icon, verdict, plain] = CHECK_COPY.dmarc.pass[key];
+      } else {
+        [icon, verdict, plain] = CHECK_COPY.dmarc[result.status];
+      }
+    } else {
+      [icon, verdict, plain] = CHECK_COPY.dkim[result.status];
+    }
+
+    statusEl.textContent = icon;
+    statusEl.className = 'check-status ' + (result.status === 'pass' ? 'status-pass' : result.status === 'fail' ? 'status-fail' : 'status-warn');
+    verdictEl.textContent = verdict;
+    plainEl.textContent = plain;
+    techEl.textContent = result.record
+      ? result.record
+      : (result.status === 'unknown'
+          ? `Selectores probados: ${DKIM_SELECTORS.map(s => s + '._domainkey.' + domain).join(', ')}`
+          : 'Sin datos disponibles.');
+  }
+
+  function computeVerdict(spf, dkim, dmarc, domain) {
+    const el = document.getElementById('resultsVerdict');
+    const spfStrict  = spf.status === 'pass' && spf.strength === 'strict';
+    const dmarcMid   = dmarc.status === 'pass' && ['quarantine','none'].includes(dmarc.policy);
+
+    if (spf.status !== 'pass' || dmarc.status !== 'pass') {
+      el.className = 'results-verdict verdict-bad';
+      el.innerHTML = `<strong>⚠️ ${domain} es vulnerable a la suplantación de email hoy mismo.</strong> Falta al menos una protección clave: cualquiera podría enviar un email haciéndose pasar por tu empresa.`;
+    } else if (dmarcMid || !spfStrict) {
+      el.className = 'results-verdict verdict-warn';
+      el.innerHTML = `<strong>🟡 ${domain} tiene protección parcial.</strong> Hay una base, pero la configuración actual todavía deja huecos que un atacante puede aprovechar.`;
+    } else {
+      el.className = 'results-verdict verdict-good';
+      el.innerHTML = `<strong>🟢 ${domain} tiene una buena base de protección.</strong> Aun así, una auditoría completa puede detectar detalles que este análisis automático no ve.`;
+    }
+  }
+
+  const domainForm     = document.getElementById('domainForm');
+  const domainBtn      = document.getElementById('domainBtn');
+  const domainErrorMsg = document.getElementById('domainErrorMsg');
+  const auditResults   = document.getElementById('auditResults');
+  let lastDomain  = '';
+  let lastResults = {};
+
+  domainForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    domainErrorMsg.style.display = 'none';
+    const dInput = document.getElementById('f-dominio');
+    const domain = cleanDomain(dInput.value);
+
+    if (!validateDomain(domain)) {
+      dInput.classList.add('f-error');
+      domainErrorMsg.textContent = 'Escribe un dominio válido, por ejemplo: www.tuempresa.com';
+      domainErrorMsg.style.display = 'block';
+      return;
+    }
+    dInput.classList.remove('f-error');
+    dInput.value = domain;
+    lastDomain = domain;
+
+    domainBtn.disabled = true;
+    domainBtn.classList.add('loading');
+
+    ['spf','dkim','dmarc'].forEach(id => {
+      document.getElementById(`status-${id}`).textContent = '⏳';
+      document.getElementById(`status-${id}`).className = 'check-status';
+      document.getElementById(`verdict-${id}`).textContent = 'Comprobando…';
+      document.getElementById(`plain-${id}`).textContent = '';
+      document.getElementById(`tech-${id}`).textContent = '';
+    });
+
+    domainForm.style.display = 'none';
+    auditResults.classList.add('visible');
+    auditResults.style.display = '';
+
+    const [spf, dkim, dmarc] = await Promise.all([checkSPF(domain), checkDKIM(domain), checkDMARC(domain)]);
+
+    lastResults = { spf, dkim, dmarc };
+    renderCheck('spf', spf, domain);
+    renderCheck('dkim', dkim, domain);
+    renderCheck('dmarc', dmarc, domain);
+    computeVerdict(spf, dkim, dmarc, domain);
+
+    domainBtn.disabled = false;
+    domainBtn.classList.remove('loading');
+  });
+
+  document.querySelectorAll('.check-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.check-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.check-item.open').forEach(el => {
+        if (el !== item) { el.classList.remove('open'); el.querySelector('.check-header').setAttribute('aria-expanded','false'); }
+      });
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  document.getElementById('resultsRestart').addEventListener('click', () => {
+    auditResults.classList.remove('visible');
+    domainForm.style.display = 'flex';
+    document.getElementById('f-dominio').value = '';
+    document.querySelectorAll('.check-item.open').forEach(el => el.classList.remove('open'));
+  });
+
+  /* ══ PASO 3: informe completo + contacto → n8n Webhook ══ */
   const N8N_ENDPOINT = 'https://n8n.olibesc.com/webhook/bb06812f-689a-4f0c-879d-ed135aaacc8a';
 
   const auditForm    = document.getElementById('auditForm');
@@ -791,19 +1127,10 @@
   const formSuccess  = document.getElementById('formSuccess');
   const formErrorMsg = document.getElementById('formErrorMsg');
 
-  function cleanDomain(raw) {
-    return raw.trim().replace(/^https?:\/\//i,'').replace(/\/.*$/,'').toLowerCase();
-  }
-  function validateEmail(v)  { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function validateDomain(v) { return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v); }
+  function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
-  function markError(inputId) {
-    document.getElementById(inputId).classList.add('f-error');
-  }
-  function showError(msg) {
-    formErrorMsg.textContent = msg;
-    formErrorMsg.style.display = 'block';
-  }
+  function markError(inputId) { document.getElementById(inputId).classList.add('f-error'); }
+  function showError(msg) { formErrorMsg.textContent = msg; formErrorMsg.style.display = 'block'; }
   function clearErrors() {
     auditForm.querySelectorAll('input').forEach(i => i.classList.remove('f-error'));
     formErrorMsg.style.display = 'none';
@@ -816,18 +1143,16 @@
 
     const nombre  = document.getElementById('f-nombre').value.trim();
     const empresa = document.getElementById('f-empresa').value.trim();
-    const dominio = cleanDomain(document.getElementById('f-dominio').value);
     const email   = document.getElementById('f-email').value.trim();
+    const dominio = lastDomain;
 
-    // Validación en el navegador (primera barrera, rápida)
     let ok = true;
-    if (!nombre)                 { markError('f-nombre');  ok = false; }
-    if (!empresa)                { markError('f-empresa'); ok = false; }
-    if (!validateDomain(dominio)){ markError('f-dominio'); ok = false; }
-    if (!validateEmail(email))   { markError('f-email');   ok = false; }
+    if (!nombre)               { markError('f-nombre');  ok = false; }
+    if (!empresa)              { markError('f-empresa'); ok = false; }
+    if (!validateEmail(email)) { markError('f-email');   ok = false; }
+    if (!dominio) { ok = false; showError('Comprueba primero tu dominio arriba.'); }
     if (!ok) return;
 
-    document.getElementById('f-dominio').value = dominio;
     auditBtn.disabled = true;
     auditBtn.classList.add('loading');
 
@@ -835,16 +1160,19 @@
       const res = await fetch(N8N_ENDPOINT, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ nombre, empresa, dominio, email })
+        body: JSON.stringify({
+          nombre, empresa, dominio, email,
+          resultado_spf:   lastResults.spf   ? lastResults.spf.status   : null,
+          resultado_dkim:  lastResults.dkim  ? lastResults.dkim.status  : null,
+          resultado_dmarc: lastResults.dmarc ? lastResults.dmarc.status : null
+        })
       });
 
       if (res.ok) {
-        // Éxito — n8n aceptó y procesará el informe
-        auditForm.style.display   = 'none';
-        formSuccess.style.display = 'block';
-
+        domainForm.style.display  = 'none';
+        auditResults.style.display = 'none';
+        formSuccess.style.display  = 'block';
       } else {
-        // n8n devolvió 400 con un mensaje de error de validación
         let mensaje = 'Datos incorrectos. Revisa el formulario e inténtalo de nuevo.';
         try {
           const data = await res.json();
@@ -855,9 +1183,7 @@
         auditBtn.disabled = false;
         auditBtn.classList.remove('loading');
       }
-
     } catch (err) {
-      // Error de red (n8n caído, CORS, sin conexión...)
       console.error('Error de red:', err);
       showError('No hemos podido conectar con el servidor. Inténtalo de nuevo en unos segundos.');
       auditBtn.disabled = false;
