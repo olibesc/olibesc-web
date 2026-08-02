@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist despliegue DMARC/DKIM · OLIBESC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --surface:#12121a;
+    --surface-2:#181822;
+    --border:#26263a;
+    --text:#e9e9f0;
+    --muted:#8b8b9e;
+    --accent:#e63946;
+    --accent-dim:#e6394626;
+    --display:'Syne',system-ui,sans-serif;
+    --body:'DM Sans',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'Courier New',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55}
+
+  /* ---- barra de progreso global ---- */
+  .progress-track{position:sticky;top:0;z-index:50;height:4px;background:var(--surface-2)}
+  .progress-fill{height:100%;width:0%;background:var(--accent);transition:width .35s ease}
+
+  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 96px}
+
+  /* ---- cabecera ---- */
+  header{margin-bottom:8px}
+  .brand{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.28em;color:var(--accent);text-transform:uppercase}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,40px);line-height:1.12;margin:10px 0 6px}
+  .subtitle{color:var(--muted);max-width:62ch}
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 6px}
+  .btn{font-family:var(--body);font-weight:500;font-size:13.5px;color:var(--text);background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:9px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+  .btn:hover{border-color:var(--accent)}
+  .btn:disabled{opacity:.55;cursor:default}
+  .btn:focus-visible,input:focus-visible,textarea:focus-visible,.check input:focus-visible + .box{outline:2px solid var(--accent);outline-offset:2px}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:#0a0a0f;font-weight:700}
+  .btn-primary:hover{background:#f04b58}
+  .global-count{align-self:center;margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .send-status{font-family:var(--mono);font-size:13px;color:var(--muted);margin:2px 0 10px}
+  .send-status.ok{color:#5dd39e}
+  .send-status.err{color:var(--accent)}
+  .persist-note{font-size:12.5px;color:var(--muted);margin-bottom:28px}
+  .persist-note strong{color:var(--text);font-weight:500}
+
+  /* ---- metadatos del expediente ---- */
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:44px}
+  .meta label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .meta input{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--body);font-size:14px;padding:8px 10px}
+
+  /* ---- fases: raíl vertical ---- */
+  .phase{position:relative;padding-left:56px;margin-bottom:52px}
+  .phase::before{content:'';position:absolute;left:17px;top:44px;bottom:-52px;width:2px;background:var(--border)}
+  .phase:last-of-type::before{display:none}
+  .phase-num{position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:15px;color:var(--muted);transition:border-color .2s,color .2s}
+  .phase.done .phase-num{border-color:var(--accent);color:var(--accent)}
+  .phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin-bottom:4px}
+  h2{font-family:var(--display);font-weight:700;font-size:20px}
+  .phase-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+  .phase-when{font-size:13px;color:var(--muted);margin-bottom:10px}
+  .chip{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--accent);background:var(--accent-dim);border:1px solid #e6394640;border-radius:6px;padding:3px 10px;margin-bottom:16px;word-break:break-all}
+
+  /* ---- ítems ---- */
+  ul{list-style:none}
+  .item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s}
+  .item:hover{border-color:#34344c}
+  .item.checked{border-color:#2c1a22}
+  .item.checked .item-label{color:var(--muted)}
+  .item-row{display:flex;gap:12px;align-items:flex-start}
+  .check{position:relative;flex:none;margin-top:2px;cursor:pointer}
+  .check input{position:absolute;inset:0;opacity:0;cursor:pointer}
+  .check .box{display:block;width:21px;height:21px;border-radius:6px;border:1.5px solid #3c3c52;background:var(--surface-2);transition:background .15s,border-color .15s}
+  .check input:checked + .box{background:var(--accent);border-color:var(--accent)}
+  .check input:checked + .box::after{content:'';position:absolute;left:7px;top:3.5px;width:5px;height:10px;border:solid #0a0a0f;border-width:0 2.5px 2.5px 0;transform:rotate(43deg)}
+  .item-label{font-weight:500;cursor:pointer}
+  .item-hint{font-size:13px;color:var(--muted);margin-top:3px}
+  .item-hint code{font-family:var(--mono);font-size:12px;color:#c9c9d8;background:var(--surface-2);border-radius:4px;padding:1px 5px;word-break:break-all}
+  .obs{width:100%;margin-top:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--body);font-size:13.5px;line-height:1.5;padding:8px 11px;resize:none;overflow:hidden;min-height:36px;field-sizing:content}
+  .obs::placeholder{color:#5c5c70}
+
+  footer{margin-top:56px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border);padding-top:18px}
+  footer .brand{font-size:12px}
+
+  @media (max-width:560px){
+    .phase{padding-left:0}
+    .phase::before,.phase-num{display:none}
+    .global-count{width:100%;margin-left:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---- impresión: informe (también la usa Gotenberg para el PDF) ---- */
+  @media print{
+    :root{--bg:#fff;--surface:#fff;--surface-2:#fff;--border:#bbb;--text:#111;--muted:#555;--accent-dim:#fff}
+    body{font-size:12px}
+    .progress-track,.toolbar,.persist-note,.send-status{display:none}
+    .wrap{padding:0;max-width:none}
+    .chip{color:#b3202c;border-color:#b3202c}
+    .phase{page-break-inside:avoid;padding-left:0;margin-bottom:28px}
+    .phase::before{display:none}
+    .phase-num{position:static;display:inline-flex;width:26px;height:26px;font-size:12px;margin-bottom:6px;border-color:#111;color:#111}
+    .item{border:1px solid #ccc;padding:8px 10px;margin-bottom:6px;page-break-inside:avoid}
+    .check .box{border-color:#111}
+    .check input:checked + .box{background:#111;border-color:#111}
+    .check input:checked + .box::after{border-color:#fff}
+    .obs{border:1px dashed #999;min-height:auto}
+    .obs:placeholder-shown{display:none}
+    .meta input{border:none;border-bottom:1px solid #999;border-radius:0;padding-left:0}
+    a{color:#111}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
+
+<div class="wrap">
+
+<header>
+  <div class="brand">OLIBESC · Seguridad de correo</div>
+  <h1>Checklist de despliegue DMARC / DKIM</h1>
+  <p class="subtitle">Procedimiento por fases para activar autenticación de correo en un cliente sin romper flujos legítimos: intake, preparación, monitorización, rampa progresiva y cierre.</p>
+  <div class="toolbar">
+    <button class="btn btn-primary" id="btnSend" type="button">Enviar informe</button>
+    <button class="btn" id="btnExport" type="button">Exportar JSON</button>
+    <button class="btn" id="btnImport" type="button">Importar JSON</button>
+    <input type="file" id="fileImport" accept="application/json" hidden>
+    <button class="btn" id="btnPrint" type="button">Imprimir informe</button>
+    <span class="global-count" id="globalCount">0 / 0 completados</span>
+  </div>
+  <p class="send-status" id="sendStatus" hidden></p>
+  <p class="persist-note"><strong>El estado no se guarda solo:</strong> exporta el JSON para pausar y vuelve a importarlo para continuar. Al completar el despliegue, «Enviar informe» remite el PDF al cliente y archiva el expediente en el buzón cifrado de OLIBESC.</p>
+</header>
+
+<section class="meta" aria-label="Datos del expediente">
+  <div><label for="m-cliente">Cliente</label><input id="m-cliente" data-meta="cliente" placeholder="Nombre de la empresa"></div>
+  <div><label for="m-dominio">Dominio auditado</label><input id="m-dominio" data-meta="dominio" placeholder="clientedominio.com"></div>
+  <div><label for="m-email">Email del cliente</label><input id="m-email" data-meta="emailCliente" type="email" placeholder="contacto@clientedominio.com"></div>
+  <div><label for="m-fecha">Fecha de inicio</label><input id="m-fecha" data-meta="fechaInicio" type="date"></div>
+  <div><label for="m-auditor">Auditor</label><input id="m-auditor" data-meta="auditor" value="OLIBESC"></div>
+</section>
+
+<!-- ════════ FASE 0 ════════ -->
+<section class="phase" data-phase-id="fase-0" data-phase-name="Intake con el cliente">
+  <div class="phase-num">0</div>
+  <div class="phase-head"><h2>Intake con el cliente</h2><span class="phase-count" data-count></span></div>
+  <p class="phase-when">Antes de tocar ningún registro DNS. Todo lo que no preguntes aquí lo descubrirás por las malas en la fase 2.</p>
+  <span class="chip">sin cambios en DNS todavía</span>
+  <ul>
+    <li class="item" data-id="f0-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Inventario de servicios que envían correo en nombre del dominio</label><p class="item-hint">Facturación/ERP (Holded, Factusol…), CRM, marketing, nómina, ticketing, pasarela de pago. Anotar proveedor y dirección remitente de cada uno.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Ciclo de facturación y nómina del cliente</label><p class="item-hint">Fechas de envío masivo. La ventana de p=none debe cubrir al menos un ciclo completo; si facturan a fin de mes, no cierres la monitorización antes.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Reglas de reenvío automático existentes</label><p class="item-hint">Buzón→buzón interno, a dominios externos, a cuentas personales (Gmail/Outlook). Los reenvíos a cuentas externas se señalan además como hallazgo de exfiltración de datos.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Listas de distribución y grupos que modifican mensajes</label><p class="item-hint">Grupos M365/Google que reescriben el asunto o añaden pies de firma: rompen DKIM además de SPF.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Quién gestiona el DNS y tiempos de cambio</label><p class="item-hint">Registrador, panel, quién tiene permisos y cuánto tarda un cambio en aplicarse. Condiciona todo el calendario.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Acceso o interlocución con el tenant M365 / panel de correo</label><p class="item-hint">Necesario para revisar reglas de transporte, reenvíos y selectores DKIM del propio tenant.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">¿Servicios de envío nuevos previstos durante la auditoría?</label><p class="item-hint">Pedir expresamente que avisen antes de activar cualquier herramienta nueva que envíe correo. Es la causa nº 1 de sorpresas a mitad de rampa.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f0-8"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Autorización por escrito y calendario acordado</label><p class="item-hint">Email de conformidad del cliente para publicar/modificar registros DNS, con el calendario de fases adjunto.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+  </ul>
+</section>
+
+<!-- ════════ FASE 1 ════════ -->
+<section class="phase" data-phase-id="fase-1" data-phase-name="Preparación técnica">
+  <div class="phase-num">1</div>
+  <div class="phase-head"><h2>Preparación técnica</h2><span class="phase-count" data-count></span></div>
+  <p class="phase-when">Semana 0. Deja montada la recepción de reportes antes de publicar el DMARC del cliente.</p>
+  <span class="chip">[dominio-cliente]._report._dmarc.olibesc.com TXT "v=DMARC1"</span>
+  <ul>
+    <li class="item" data-id="f1-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Auditar el estado actual y guardar evidencias</label><p class="item-hint">SPF (includes y nº de lookups ≤ 10), selectores DKIM activos, DMARC existente, MX. Capturas de <code>dig</code>/MXToolbox para el "antes" del informe.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f1-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Bajar el TTL de los registros implicados a 300 s</label><p class="item-hint">Durante todo el proceso, no solo al principio. Es lo que hace que el rollback sea de minutos y no de horas.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f1-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Publicar el registro de autorización externa en olibesc.com</label><p class="item-hint"><code>clientedominio.com._report._dmarc.olibesc.com TXT "v=DMARC1"</code> — uno por cada dominio del cliente. Sin esto, Google/Microsoft descartan los reportes en silencio.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f1-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Verificar propagación del registro de autorización</label><p class="item-hint"><code>dig TXT clientedominio.com._report._dmarc.olibesc.com</code> antes de dar por buena la recepción.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f1-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Publicar el DMARC inicial del cliente</label><p class="item-hint"><code>v=DMARC1; p=none; rua=mailto:reportes-dmarc@olibesc.com; ruf=mailto:reportes-dmarc@olibesc.com; fo=1</code></p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f1-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Confirmar recepción del primer reporte agregado (24–72 h)</label><p class="item-hint">Si no llega, el fallo casi siempre está en el registro <code>_report._dmarc</code> — no asumir "sin actividad".</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f1-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Conectar el buzón de reportes al parseo automático</label><p class="item-hint">Pipeline n8n con separación por cliente (buzón o etiqueta dedicada) para no mezclar datos entre expedientes.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+  </ul>
+</section>
+
+<!-- ════════ FASE 2 ════════ -->
+<section class="phase" data-phase-id="fase-2" data-phase-name="Monitorización en p=none">
+  <div class="phase-num">2</div>
+  <div class="phase-head"><h2>Monitorización en p=none</h2><span class="phase-count" data-count></span></div>
+  <p class="phase-when">Semanas 1–4 como mínimo, y siempre cubriendo un ciclo de facturación completo. Aquí se arregla todo; las fases siguientes solo confirman.</p>
+  <span class="chip">v=DMARC1; p=none; rua=mailto:reportes-dmarc@olibesc.com; fo=1</span>
+  <ul>
+    <li class="item" data-id="f2-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Clasificar cada source_ip con fallo de alineación</label><p class="item-hint">Tres categorías: legítimo-pendiente, legítimo-corregido, spoofing. Nunca dar por bueno "no hay fallos" sin revisar IP a IP.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Contactar a los proveedores terceros en la semana 1</label><p class="item-hint">Holded, CRM, marketing… en paralelo a la monitorización, no cuando ya quieras subir de política. El cuello de botella suele ser su soporte, no tu DNS.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Camino A por proveedor: DKIM personalizado</label><p class="item-hint">CNAMEs de selector bajo el dominio del cliente apuntando a las claves del proveedor. Es la vía preferente: la firma alinea con el dominio del From.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Camino B si A no existe: Return-Path personalizado en subdominio</label><p class="item-hint">Dominio de envío tipo <code>facturas.clientedominio.com</code> con su SPF (<code>include:</code> del proveedor). Alineación por SPF aunque DKIM no exista.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Camino C si ni A ni B: aislar el flujo en subdominio con DMARC propio</label><p class="item-hint">El subdominio dedicado con <code>p=none</code> propio se independiza de la política del raíz, que puede llegar a reject sin bloquear a ese proveedor.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Corregir el SPF del dominio raíz</label><p class="item-hint">Todos los servicios legítimos incluidos, sin superar 10 lookups DNS (aplanar si hace falta).</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Comunicar por escrito los proveedores no alineables</label><p class="item-hint">La aceptación del riesgo residual o el cambio de proveedor es decisión documentada del cliente, no tuya.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f2-8"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Verificar que los reenvíos internos no generan falsos positivos</label><p class="item-hint">Los reenvíos M365↔Gmail se apoyan en ARC; comprobar en los reportes que no aparecen como fallos que contaminen la lectura.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+  </ul>
+</section>
+
+<!-- ════════ FASE 3 ════════ -->
+<section class="phase" data-phase-id="fase-3" data-phase-name="Rampa a quarantine">
+  <div class="phase-num">3</div>
+  <div class="phase-head"><h2>Rampa a quarantine</h2><span class="phase-count" data-count></span></div>
+  <p class="phase-when">Semanas 5–10. El pre-check se repite completo antes de <em>cada</em> subida de pct, sin excepciones.</p>
+  <span class="chip">p=quarantine; pct=10 → 50 → 100</span>
+  <ul>
+    <li class="item" data-id="f3-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: 0 fallos legítimos en los últimos 7 días de reportes</label><p class="item-hint">Y si hay silencio total, verificar antes que los reportes siguen llegando (no confundir "sin datos" con "sin fallos").</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f3-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: todo el inventario de la fase 0 alineado por A o B (o aislado por C)</label><p class="item-hint">Repasar servicio a servicio contra la lista original, no de memoria.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f3-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: confirmado con el cliente que no hay servicios nuevos</label><p class="item-hint">Pregunta explícita por email antes de cada subida. Contratan herramientas a mitad de proceso más veces de las que parece.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f3-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check: rollback documentado y TTL sigue en 300 s</label><p class="item-hint">Volver a <code>p=none</code> debe ser un cambio de TXT de 5 minutos con procedimiento escrito.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f3-5"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a p=quarantine; pct=10 (semanas 5–6)</label><p class="item-hint">Vigilar reportes y carpetas de cuarentena/spam de los destinos habituales del cliente.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f3-6"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a pct=50 (semanas 7–8), previo pre-check completo</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f3-7"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a pct=100 (semanas 9–10), previo pre-check completo</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+  </ul>
+</section>
+
+<!-- ════════ FASE 4 ════════ -->
+<section class="phase" data-phase-id="fase-4" data-phase-name="Rampa a reject">
+  <div class="phase-num">4</div>
+  <div class="phase-head"><h2>Rampa a reject</h2><span class="phase-count" data-count></span></div>
+  <p class="phase-when">Semanas 11–13+. Solo se entra aquí tras dos semanas limpias en quarantine al 100 %.</p>
+  <span class="chip">p=reject; pct=25 → 100</span>
+  <ul>
+    <li class="item" data-id="f4-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Pre-check completo + 2 semanas sin fallos legítimos en quarantine 100 %</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f4-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a p=reject; pct=25 (semanas 11–12)</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f4-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Subir a p=reject; pct=100 (semana 13+)</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f4-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Verificación final de extremo a extremo</label><p class="item-hint">Envío de prueba desde cada servicio del inventario + test de spoofing controlado para confirmar que el bloqueo funciona en ambos sentidos.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+  </ul>
+</section>
+
+<!-- ════════ FASE 5 ════════ -->
+<section class="phase" data-phase-id="fase-5" data-phase-name="Cierre e informe">
+  <div class="phase-num">5</div>
+  <div class="phase-head"><h2>Cierre e informe</h2><span class="phase-count" data-count></span></div>
+  <p class="phase-when">Entrega, documentación interna y conversión a servicio recurrente.</p>
+  <span class="chip">monitorización continua vía rua</span>
+  <ul>
+    <li class="item" data-id="f5-1"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Redactar el informe final</label><p class="item-hint">Estado inicial vs final con evidencias, hallazgos (reenvíos externos, proveedores no alineables, decisiones del cliente) y configuración entregada.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f5-2"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Restaurar TTL a valores normales (3600 s)</label></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f5-3"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Proponer la monitorización continua como servicio recurrente</label><p class="item-hint">Mantener <code>rua=mailto:reportes-dmarc@olibesc.com</code>: detección de spoofing y de servicios nuevos sin alinear. Argumento: sin vigilancia, el reject de hoy es el rebote de mañana.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+    <li class="item" data-id="f5-4"><div class="item-row"><label class="check"><input type="checkbox"><span class="box"></span></label><div><label class="item-label">Documentar la ficha interna del cliente</label><p class="item-hint">Selectores DKIM activos, includes SPF, subdominios aislados, contactos de soporte de cada proveedor y fechas de cada cambio.</p></div></div><textarea class="obs" placeholder="Observaciones para el informe…" rows="1"></textarea></li>
+  </ul>
+</section>
+
+<footer>
+  <span class="brand">OLIBESC</span> · Checklist operativo DMARC/DKIM · Los ítems marcados y sus observaciones alimentan el informe final del cliente.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* URL del webhook de n8n (producción). Para probar con "Test workflow" en el
+     editor de n8n, cambia temporalmente /webhook/ por /webhook-test/. */
+  var WEBHOOK_URL = 'https://n8n.olibesc.com/webhook/checklist-dmarc-8f4a2c7e';
+
+  var globalBar   = document.getElementById('globalBar');
+  var globalCount = document.getElementById('globalCount');
+
+  function allItems(){ return Array.prototype.slice.call(document.querySelectorAll('.item')); }
+
+  function refresh(){
+    var total = 0, done = 0;
+    document.querySelectorAll('.phase').forEach(function(phase){
+      var items = phase.querySelectorAll('.item');
+      var d = 0;
+      items.forEach(function(it){
+        var cb = it.querySelector('input[type=checkbox]');
+        it.classList.toggle('checked', cb.checked);
+        if(cb.checked) d++;
+      });
+      total += items.length; done += d;
+      var counter = phase.querySelector('[data-count]');
+      if(counter) counter.textContent = d + ' / ' + items.length;
+      phase.classList.toggle('done', d === items.length && items.length > 0);
+    });
+    globalBar.style.width = total ? (done/total*100) + '%' : '0%';
+    globalCount.textContent = done + ' / ' + total + ' completados';
+  }
+
+  function grow(t){ t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+
+  document.addEventListener('change', function(e){
+    if(e.target.matches('input[type=checkbox]')) refresh();
+  });
+  document.addEventListener('input', function(e){
+    if(e.target.matches('textarea.obs')) grow(e.target);
+  });
+
+  /* ---- estado actual → objeto JSON (lo usan exportar y enviar) ---- */
+  function buildData(){
+    var meta = {};
+    document.querySelectorAll('[data-meta]').forEach(function(inp){ meta[inp.dataset.meta] = inp.value; });
+    meta.exportado = new Date().toISOString();
+
+    var fases = [];
+    var total = 0, done = 0;
+    document.querySelectorAll('.phase').forEach(function(phase){
+      var f = { id: phase.dataset.phaseId, nombre: phase.dataset.phaseName, items: [] };
+      phase.querySelectorAll('.item').forEach(function(it){
+        var completado = it.querySelector('input[type=checkbox]').checked;
+        total++; if(completado) done++;
+        f.items.push({
+          id: it.dataset.id,
+          texto: it.querySelector('.item-label').textContent.trim(),
+          completado: completado,
+          observaciones: it.querySelector('textarea.obs').value
+        });
+      });
+      fases.push(f);
+    });
+
+    return { meta: meta, progreso: { completados: done, total: total }, fases: fases };
+  }
+
+  /* ---- documento completo con el estado horneado en atributos ----
+     El HTML resultante se archiva en el servidor (reabierto en un navegador
+     vuelve a ser este checklist, ya rellenado) y Gotenberg lo convierte a PDF
+     aplicando la hoja @media print. */
+  function serializeChecklist(){
+    document.querySelectorAll('[data-meta]').forEach(function(inp){ inp.setAttribute('value', inp.value); });
+    document.querySelectorAll('.item input[type=checkbox]').forEach(function(cb){
+      if(cb.checked) cb.setAttribute('checked',''); else cb.removeAttribute('checked');
+    });
+    document.querySelectorAll('textarea.obs').forEach(function(ta){ ta.textContent = ta.value; });
+    return '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  }
+
+  /* ---- enviar al workflow de n8n ---- */
+  var btnSend    = document.getElementById('btnSend');
+  var sendStatus = document.getElementById('sendStatus');
+
+  function setStatus(msg, cls){
+    sendStatus.hidden = !msg;
+    sendStatus.textContent = msg || '';
+    sendStatus.className = 'send-status' + (cls ? ' ' + cls : '');
+  }
+
+  btnSend.addEventListener('click', function(){
+    var data = buildData();
+    if(!data.meta.dominio){ alert('Rellena el dominio auditado antes de enviar.'); return; }
+    if(!/.+@.+\..+/.test(data.meta.emailCliente || '')){ alert('Rellena el email del cliente antes de enviar.'); return; }
+    if(!confirm('Se enviará el informe en PDF a ' + data.meta.emailCliente + ' y se archivará el expediente. ¿Continuar?')) return;
+
+    data.informeHtml = serializeChecklist();
+    btnSend.disabled = true;
+    setStatus('Enviando informe…', '');
+
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(){
+      setStatus('Informe enviado a ' + data.meta.emailCliente + ' y expediente archivado.', 'ok');
+    }).catch(function(err){
+      setStatus('Error al enviar (' + err.message + '). Exporta el JSON para no perder el estado y reintenta.', 'err');
+    }).then(function(){
+      btnSend.disabled = false;
+    });
+  });
+
+  /* ---- exportar JSON ---- */
+  document.getElementById('btnExport').addEventListener('click', function(){
+    var data = buildData();
+    var nombre = 'checklist-dmarc-' + (data.meta.dominio || 'cliente').replace(/[^a-z0-9.\-]/gi,'_') + '.json';
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = nombre;
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  });
+
+  /* ---- importar JSON ---- */
+  var fileInput = document.getElementById('fileImport');
+  document.getElementById('btnImport').addEventListener('click', function(){ fileInput.click(); });
+  fileInput.addEventListener('change', function(){
+    var file = fileInput.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var data = JSON.parse(reader.result);
+        if(data.meta){
+          document.querySelectorAll('[data-meta]').forEach(function(inp){
+            if(data.meta[inp.dataset.meta] !== undefined) inp.value = data.meta[inp.dataset.meta];
+          });
+        }
+        var byId = {};
+        (data.fases || []).forEach(function(f){ (f.items || []).forEach(function(i){ byId[i.id] = i; }); });
+        allItems().forEach(function(it){
+          var saved = byId[it.dataset.id];
+          if(!saved) return;
+          it.querySelector('input[type=checkbox]').checked = !!saved.completado;
+          var ta = it.querySelector('textarea.obs');
+          ta.value = saved.observaciones || '';
+          grow(ta);
+        });
+        refresh();
+      }catch(err){
+        alert('No se pudo leer el archivo: no es un JSON válido de este checklist.');
+      }
+      fileInput.value = '';
+    };
+    reader.readAsText(file);
+  });
+
+  /* ---- imprimir ---- */
+  document.getElementById('btnPrint').addEventListener('click', function(){
+    document.querySelectorAll('textarea.obs').forEach(grow);
+    window.print();
+  });
+
+  /* Al cargar: dimensionar observaciones (necesario cuando el documento llega
+     con estado horneado, p. ej. al renderizar el PDF) y refrescar contadores. */
+  document.querySelectorAll('textarea.obs').forEach(grow);
+  refresh();
+})();
+</script>
+
+</body>
+</html>
