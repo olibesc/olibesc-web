@@ -10,8 +10,12 @@ Normas para cualquier agente (Claude Code u otro) que trabaje en este repo.
   antes de proponer cambios.
 - Los emails los ofusca Cloudflare al servir la página: el `mailto:` en claro
   del fuente es correcto.
-- Las páginas legales identifican al titular: no tocar sus datos sin
-  confirmación.
+- Las páginas legales identifican al titular (Ángel Oliván): no tocar sus
+  datos sin confirmación.
 - Frontend: taste-skill aplica aquí; ponytail al reescribir o limpiar código.
 - Estándar mínimo: `README.md`, `.gitignore`, `.gitattributes` (LF) y este
   `AGENTS.md`.
+- **Sin `LICENSE`, a propósito:** todos los derechos reservados, coherente con
+  el aviso legal. No añadir MIT ni ninguna otra licencia.
+- Esta es la única copia de la portada: el formulario habla con el workflow
+  de auditoría de dominio de n8n, pero la página vive solo aquí.
