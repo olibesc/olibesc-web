@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/arquitectura/publicacion.md": {
+      "gitHead": "76b332b923364cca1e5b417aa0992930c18e26c6",
+      "sourceFingerprint": "sha256:2589278a04d1ec47e4c536002707bb4da6700a9c8f6e19a44c8c865294415361",
+      "pageVersion": "sha256:0e5fe231e92ef571401e9be8618c39f73a10194b1968271499f5bb19c92c70ff",
+      "completedBy": "claude-code",
+      "completedRunId": "60ed18eb-a697-44da-8786-1ccf74a5c49e"
+    },
+    "/openwiki/contenido/paginas-legales.md": {
+      "gitHead": "76b332b923364cca1e5b417aa0992930c18e26c6",
+      "sourceFingerprint": "sha256:2589278a04d1ec47e4c536002707bb4da6700a9c8f6e19a44c8c865294415361",
+      "pageVersion": "sha256:6ba22751eac944a62814d945a639dc6b5eb100ae4bc7b4499f7944f657e509f1",
+      "completedBy": "claude-code",
+      "completedRunId": "60ed18eb-a697-44da-8786-1ccf74a5c49e"
+    },
+    "/openwiki/flujos/comprobacion-de-dominio.md": {
+      "gitHead": "76b332b923364cca1e5b417aa0992930c18e26c6",
+      "sourceFingerprint": "sha256:2589278a04d1ec47e4c536002707bb4da6700a9c8f6e19a44c8c865294415361",
+      "pageVersion": "sha256:cf53e258edd627e0004d6e376c1084a1f4a725acea64a0bee810b9075dfa47a3",
+      "completedBy": "claude-code",
+      "completedRunId": "60ed18eb-a697-44da-8786-1ccf74a5c49e"
+    },
+    "/openwiki/quickstart.md": {
+      "gitHead": "76b332b923364cca1e5b417aa0992930c18e26c6",
+      "sourceFingerprint": "sha256:2589278a04d1ec47e4c536002707bb4da6700a9c8f6e19a44c8c865294415361",
+      "pageVersion": "sha256:dede3e8e916bff993f2a984d69fc1fc2c141006d5dc7decc6e55a57ffb538094",
+      "completedBy": "claude-code",
+      "completedRunId": "60ed18eb-a697-44da-8786-1ccf74a5c49e"
+    }
+  }
+}

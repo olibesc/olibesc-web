@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0e5fe231e92ef571401e9be8618c39f73a10194b1968271499f5bb19c92c70ff",
+  "claims": [
+    {
+      "id": "claim_22a6075e68b645ddb11e470619dd35d2",
+      "statement": "El sitio es HTML estático sin dependencias ni paso de build; se publica haciendo push a main y GitHub Pages lo sirve en un par de minutos.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L18-L31",
+          "version": "repo-lines-v1:sha256:6482c10b244944eb28440b36b4795299d0fcc8fdb1246c0266b6208b25ee430d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkNWYxYjk0MTE2NGNiZjFiMDQ1ZjcyM2IyZDUyODljZDI3Y2YxNzNkY2JmNWVkOGNhZDA1YzljZWI4Y2M3MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjMTA3MmJjNTcyMDUxMTAyNWYxMzllZmQzNGM0NzI3ODJjODNkNTcwMzgzY2JhZDExYWMyODhjYWViNmIyNGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFmNjBhMTM2NTZlMDkwZmMwOTcxMjZiZTgxYTkwZGE5MTE1NmFjMjQ5ZGUxZDc0MWE5MDljM2ZhNzliOWVmODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhM2UxNDU0MzMxMzYyOTNlYzdhYTA1NGViMjZmOTFkOTE1YmU4YTkxZjc1Nzc2OTkwM2YyNGExNWY1MTcxOWQifQ"
+        },
+        {
+          "resource": "repo://README.md#L3-L5",
+          "version": "repo-lines-v1:sha256:c772b4e4d877587694804ac39533c2ea418d858d7c0afa63d5c1f7d85ddda922:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZThmMmIwNzlkYzVmYWU0OWU4NGZhNmQ3MGU5NTUxZWU0MmZkNmIwNzQ4MmM1Y2FhMTg4ODMwYjA1NTg3N2JmZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTY2YjI0M2U1YWUzMGE1MmEyMjZjODc0Y2YzZWM5MmNmMWIyNjdlNjNmZjdhZDhkNzVmZThkM2FjMWQ4M2YyMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDdjODc0MzJiMGNhNmJlOTdjMWI5ZDJlNDVjYTQzNDBhNjQ3MmUzMzIzNzBkYmFlZmNkYjMyODFiN2Q4MTk1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGRhMjI5MmEyODgyOWE3ZTRlYWQzNDExN2NiZTc3YzIwYzViZDVmNjRmOTc5MDNiYjE2N2I1MGMxMjk2ZDMyNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dea476f3e6824438bb93c524f71f5d97",
+      "statement": "El dominio del sitio publicado por GitHub Pages lo fija el fichero CNAME con el valor olibesc.com.",
+      "evidence": [
+        {
+          "resource": "repo://CNAME",
+          "version": "repo-file-v1:sha256:faf69e838d42306b9922b04b91f5cf7670cf67b5d3602f30f01932b14bd71c50"
+        }
+      ]
+    },
+    {
+      "id": "claim_60d90a1f8de64f9db14584700addba5b",
+      "statement": "GitHub Pages publica todo el repositorio salvo lo listado en _config.yml, que excluye README.md, AGENTS.md, CLAUDE.md, docs/ y openwiki/.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L23-L24",
+          "version": "repo-lines-v1:sha256:88a2492140641458b1f05d7ec94d94d532ff531ac78fbf7a3d335b2ae4785c7f:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmQ3MzIzNGNjNTExNTRmOTRlYTM5YjY4N2MyMTQ4MTFkZjU4OGQ4NDVjNzhmM2U0NGZhNmIzOTM3YTRiNTBjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjJlYWZhOTRlMzQ4MDU3ZWIyMzkzYWVkYmEzZjAxOGI0MGQ2ZTI3NGRlMWU2ZmYwOGVhOGZkNDBiODlhZWU5YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGZiODlhYjJjNTVjMjlmMWU1NDhiODA3NTJjYzQ1ODIwMzI2NGM3Yjc3ZWY4NTlmYjUzMGVkNDczMmU4Y2YxZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWIxYmM1YmM0YTIzN2Y1NzhlNmFmNGE0MTVkMDY0N2Y5OTEwYjAzYjM2NGUxZTI3YzFmMWRiYWE3NDNkMDNiYSJ9"
+        },
+        {
+          "resource": "repo://_config.yml#L1-L8",
+          "version": "repo-lines-v1:sha256:0cb34790a5d1e641e0bc21a215e14219f0f9b3e0be92923a1fc392c25cd0d501:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzk0MDI3NDVmMTg2MzBmMDM2MTBkN2VhYzMzN2IxZDM4ODdiMWNhNDJkYWFlNWJmOGU5M2NjYWI3ZGI2MjI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Q4NzM4YTE4OTdhNzNkZmU5NDc0MGQ4ZjYzMjM0NmQ0ZjE0N2EwNjIzOTU2MGIwZDcwODI0NzBhYjZiNjE0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bad91e58a8b548a7b841d50f05e9df65",
+      "statement": "Las direcciones mailto aparecen en claro en el HTML fuente porque Cloudflare las ofusca al servir la página.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L11-L12",
+          "version": "repo-lines-v1:sha256:cfd63044f81996869b9bc9d32ba64a04bcbedf86886ef779f62e30b99430f8ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjhlYzMyYzIxMzRkOWE4Njg3OGIyYTc5MDU2ZjU4YjI1OTcxODRjZDEzZjE1MGRhYjQ5MGMyOTdjMGM0YzMwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM2YjY1NjlmODRmZWQyN2UxMzMzYmUwNWIyNDhmOGEyMTlkNWNiODIyZDdmMTcxYzc0ZDI5MDY1N2E5YTJjZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2RkOGU2ZGIyYzI4YTVmMGU1MGNlODc1MTliOTBhMWJmNjVhNzVkMWU4MzhhNTA1NGMwZGFhNWYzMDAwODU5NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDM1MWJjZTkxYjAxZjk4NmRlMWU2ZTAwMTc4ZDQyNWNmNjY5YjYwOGI1YTgzYzk0NGE2OWM5MWY0NGUxMjgwZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5f9ef0af070b4fa68f4c53c63dd90f1f",
+      "statement": "Las tipografías del sitio se cargan desde Google Fonts (fonts.googleapis.com y fonts.gstatic.com).",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L8-L10",
+          "version": "repo-lines-v1:sha256:8d8eeaaa86da8fdd6aeb0934025296114cab72e7944db0a4796dadbb46e3b9bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZkMTc4NjZjODJlYWM1NGIxZjkxY2QzMmE2NjE3YmE0MTJjMWUxNGQ3MDRiNjgzMzhlN2VlYjM5NThlN2QxOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE0OThlMGJhYjczN2Q4MzVlZjgwMjIwMDdhNTY2YzY2ZDQyYTkwYzc4YTkxODM4OGFiMTRjNTI5MjQ1NzExNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmZlYjA5NTBlMjk1ZTZjZWEyOWQ4YjQ0YTI1NTdkMWE2ZGJiODY0ZTViNWE5N2RjM2Q2ZmZiZGVjY2UzYzJiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGFiZjMwMDFjNjBjMjdjOGM2ZDRjNmZjZDdhYzg3YTc3NmYwZjI3NDg3YzhiZmZiZjg5NDIwNTZiOTY0YTAzZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0624211b05048fbb2973b4532901f6b",
+      "statement": "El repositorio no tiene LICENSE a propósito: su contenido tiene todos los derechos reservados.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L18-L19",
+          "version": "repo-lines-v1:sha256:25027f08ae849426485e99514fa436da958a20817c96676c7e86ee1a3203801d:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTQ1YjliMjNhYzQ0YThmNGEyZDBhNTcwYjJlMzA0MTJhMGUzMTZmMDhkNmYxNWE0ODlmYjQ2MjBkZjQxM2Q5YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjYzY2M2NDE1MTI3ZmZmZDU5MDBhZDU5NDkwZWNkNzM3NTcwMDBiY2U1OTRlODZhZGJjZTRjZmI2MjJkMDg2NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWM1NjdhMjI0N2E4ODUxZDg4ZGM4ODI4NTMyNDYzZDQ3MzU3YTliZjUxZTNlOGJlYmFkYzdiYTY0ZWZmNzYyZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGZiODlhYjJjNTVjMjlmMWU1NDhiODA3NTJjYzQ1ODIwMzI2NGM3Yjc3ZWY4NTlmYjUzMGVkNDczMmU4Y2YxZiJ9"
+        },
+        {
+          "resource": "repo://README.md#L39-L43",
+          "version": "repo-lines-v1:sha256:7450adb3c065764c7bbd07fb43b332d4189136a2c57d28d436a1fca870af6021:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmEwNDI4YzMxNTM4NDAzOTRjMjdiZWY3ZTg0ZTlkMzRkMzQyZWRjZjBhM2IyNTEzMjgyNzFkZGM1NTcyNGRkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmM1YzFjZWY1YzA4ZDMyZjA5MTAyOTVhYjc1MWRiZWE0ZGQzYjIzM2JiNTRlNTM4M2Q2N2U3YWE0MDJmOGQ4MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmI3NjMzM2ZjNTdkNDA2NmMwYmZlYjkxZjU5ZGI5MDE3YmYwNzEzZmI3YTI5YTk4YTBjMjU1OGVmYjM1YzdlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.6.0",
+    "at": "2026-09-25T11:01:50.364Z"
+  }
+}

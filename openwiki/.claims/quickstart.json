@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:dede3e8e916bff993f2a984d69fc1fc2c141006d5dc7decc6e55a57ffb538094",
+  "claims": [
+    {
+      "id": "claim_fc35790193c24d82922d8a445560a4bd",
+      "statement": "La web se previsualiza en local con python -m http.server 8765 y se publica haciendo push a main.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L5-L10",
+          "version": "repo-lines-v1:sha256:6838b7e704ccd84e2675d77a1669d4b3eccd08bb7e289d09faa36da9c782b0c8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWZlMDZlMGZjNzY3ZDNiNTIwYTg2ZTA3NTAzYzEwMTU3MGU3MzdmMzY0MmEzODk1MzIxYTM0YTNkMjA0ZGFiNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjNmYTQ4MjZkMDZkMWY0M2UwMWU0YjA3NTZmNjVjNjNkNWQ0ODY0MDc2MTdmMTY1NGVmYzc0YWNmNzhkODY5ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWYyZmY0ZDc2MWM2NWMwYWRiYjJlZGUyZTM5YTFiMTQ5N2I1YzY4NWE3YzYwYzM1YjIxMGI4MDczMzcxMjMzMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjU0MDNmZmQyZjFhYWQ1Yzg0NDY1OGU3ZWU4ZDc2OWI0NjJlMTA1MDJiZDcwMDVhMGYzN2MwMzc5YTNjMmEzNyJ9"
+        },
+        {
+          "resource": "repo://README.md#L22-L31",
+          "version": "repo-lines-v1:sha256:2952dabcdd4c4bb0b1260dd83340c19d58e4e6892832f49e01a9299588ac6097:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYxZjQ1ZTdiODlhZjAyNTM1NTBiMjFmOGM5NzZmYmUwNDJmOGVkYTNhMWRjY2E1YWEyNDEwZGNjYmQ2OWViZWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjMTA3MmJjNTcyMDUxMTAyNWYxMzllZmQzNGM0NzI3ODJjODNkNTcwMzgzY2JhZDExYWMyODhjYWViNmIyNGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMWQ1MmViYTNjYjk5YTI4MTQ1ZGUyZjc5YzgwOTdkZmE2MzE1NjNiMGUxMTYwODRiZmE5MGFhMWQ5MzBmZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhM2UxNDU0MzMxMzYyOTNlYzdhYTA1NGViMjZmOTFkOTE1YmU4YTkxZjc1Nzc2OTkwM2YyNGExNWY1MTcxOWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d8a1083cb76844aaa994fe515327f952",
+      "statement": "Los ficheros que no deben publicarse se añaden a la lista exclude de _config.yml, que ya excluye la documentación del repositorio, docs/ y openwiki/.",
+      "evidence": [
+        {
+          "resource": "repo://_config.yml#L1-L8",
+          "version": "repo-lines-v1:sha256:0cb34790a5d1e641e0bc21a215e14219f0f9b3e0be92923a1fc392c25cd0d501:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzk0MDI3NDVmMTg2MzBmMDM2MTBkN2VhYzMzN2IxZDM4ODdiMWNhNDJkYWFlNWJmOGU5M2NjYWI3ZGI2MjI4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Q4NzM4YTE4OTdhNzNkZmU5NDc0MGQ4ZjYzMjM0NmQ0ZjE0N2EwNjIzOTU2MGIwZDcwODI0NzBhYjZiNjE0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_919822e15abf48f1bb5aa8a66f3a566c",
+      "statement": "La portada index.html ofrece la comprobación gratuita de SPF, DKIM y DMARC de un dominio.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L114-L126",
+          "version": "repo-lines-v1:sha256:de8d6c054bd27924e7d6c22da02dba6eb75408650f8a3c24794b5522a9f1ffa5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiZGY1OGU5MmFhMGRlMGY1Yjk2ZTA1OWVkZDIwMjliMTg2OTdmNDZiMzVhM2VmNzYxZDM5NGJhOTcxOWVkYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxNmY0M2Q4Yzc0ZWJhMTYwMWJmMGVmY2Y5NTE3NjA0ODRiYmIzMWQ4ZjIwMDY5NWMzMmEyZTc2N2E5YmMxMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiZDNhZjFmOTE3NDM2NzEyYTdjYWY5ODc3MTY5MmQxY2RlOTE5NDhlMWJlYTVmNjY5NGZmM2NiNzZiOTFhZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4MmFjZjgyMmU5NDZiMTcyMzNkMTUxYjRiMWM2NzBiMDRkNTI0NDQ2NWQ3ZjJiYjA0MzljZjhkNjM5Y2IzMzEifQ"
+        },
+        {
+          "resource": "repo://index.html#L207-L220",
+          "version": "repo-lines-v1:sha256:4a61b685ccb076caa9c8b1e2da53a97ef8a8ef43a5daac6b919b842b8676f307:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0OTc2ZmQ2ZGIxZDk1ZGU0ZWEwNjE2NDY1NGYyNTU2YTlhZWUwZmMyOGYyNTIyNDUxMDcxZTNmMDQ4YjIxYzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4YzNiMzRjMDkxMzRmOTc3MGU5OGMzNTBmZjJiNjE2YmRjNjQ0MTgzOWQ2OGJiZjRhYmQyMjkzMTZlN2Y4NzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1ZDU1ZDg0OTkzMWIwOWFiZjYyZjVkMjdkNjlhOWZkMGMwMTk1YzdhMDViZDMyOGVhMTIzZDZiZTE0MzliYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0NTBjYzU1MGFlYTA5NDNkMDQ0ZmFlZjIyMjRhZjQ5NGU0MDRhYzUxNWY2MmE5MWEwOTA0MDhkNjI3ODExMTcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.6.0",
+    "at": "2026-09-25T11:01:50.364Z"
+  }
+}

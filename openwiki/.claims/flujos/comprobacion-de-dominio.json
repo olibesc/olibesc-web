@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:cf53e258edd627e0004d6e376c1084a1f4a725acea64a0bee810b9075dfa47a3",
+  "claims": [
+    {
+      "id": "claim_88d8e1273f354bca8e78e9e28331413f",
+      "statement": "clean() normaliza la entrada a minúsculas y quita esquema http(s), prefijo www., lo anterior a una @, la ruta y el punto final; sin punto no se hace petición.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L236-L240",
+          "version": "repo-lines-v1:sha256:8864e090daa0f5ae0b6e8e8697d1573473f76a8e27c140b3a0a19aa6ccdb9c0f:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTFiYTQ5NWVkODM5NjMyN2MxNDZjMGM2MGFiNjI3MjQ3YjIyOTFhNzIxOGNlMzQ3MDAwMTYwNjBjOGEwYzA2YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2U3ZTlmZTZjNDc4NGRkZGVhMGI5YTNlZWIyZWRmODg5ZmE0ODY5NzkxYzYwZmI3MTUyMjE4M2YyOGU1OTAxZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWU5MTMxMDM5MzU4MDVkZThiMzU0ODcwNDI1YmQ5NjIyMDc5ZGFhMGI1NTU4NDU0MWUwMWNjMjI3NjIwYWRiOCJ9"
+        },
+        {
+          "resource": "repo://index.html#L286-L292",
+          "version": "repo-lines-v1:sha256:4b9827a7923698219c21aeb8f1ea37b459db111d2bb2593b617c97a8746e2f4b:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjEyNjBjZmVkMWZiYmU2YjYyYmFhYTJlZWExN2Q4YWUzMGFiMzk4ZTNmMjc5MmM1ZThkNjdlMzViMTcyMDZjNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEzNDUxODAxMDViMGM2NmE3N2RhZDUxYmIzNzkwMWEzNzMyYzk2NTRiYTRkZTM5ODFmODFlMTgxNzUyNDhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTg1YTZkNDNhYjZjNTU5NzEwZmUwMDE3NDI2MWI4NTJkNTRhYmEwZWVhYjIyNTQyMDVmMmVlMzk2YmRhMzVmZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWI2MjQzYzNjYjQyOGFlMTcyMTY0NTUzYWQ0M2U4OTE3N2ZiOWYyZjVlOTUzNWI2YzdhZTM0NmU0ZjM1NDBiYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e27b9625c6754dc784cdac88a2f08817",
+      "statement": "La comprobación envía un POST JSON {domain} a WEBHOOK_URL en paralelo con una espera mínima de 3,2 segundos, y un fallo de red se trata como respuesta vacía.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L299-L306",
+          "version": "repo-lines-v1:sha256:accd2f5c21ca267726051403c6437f310d262df20e6167eab18a7e62c90144ef:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmRiNGE0OTIwZTVlYmZmNGIxNzNkNzg5NTE3MjMxMTQwMjRkYWJiZDczYjU0MTczYTFjNTVlODkwMThhMGRlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWQ0NTNmNTllOThhZWU4ZDY3MzljZDAzMzUwZTJiODNiNjg4MGNlNjhjYTRjNzE3MDAxNmQzOWE4YjhmNzhlYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGU0MjIxNmJhNTk4NDhkZDZiYWVkNzBhY2M4NWJjY2Q5M2Q2NGJjZDJmMWQyZjA0ZjI1ZjljYjc2ZDNmZWIyMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjdiZWU3MmFiMGNiMTBiMzcwM2E2YWUzYTNjYTU5YzZjOGM5NTU1OWEwZmRiY2Y4YjAxZTQyNTUyYWRlN2I4NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6f8f67d2056a4494b850cdf76e23c40d",
+      "statement": "La página desenvuelve un array a su primer elemento y un objeto con result a su contenido antes de interpretar spf, dkim y dmarc.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L248-L250",
+          "version": "repo-lines-v1:sha256:373bb69428e3966b8d16c340ebba1372c328db3f939d5f957c5197856434a064:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDRhZmZjNDkxZTNkZDE3MzlmYzgzZWZjODkwZjI0ZjA2ZGFhMGVkOGI3YWY3OWE1NWUyODM1NWU2YzVhMTJkYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjVlMjNlOTM5MzlkODdjOWU1ZDkwYWI5OWM4NTc3NzM5Y2ZkOWQ5NGU0NDJiZTYxNzRjNWJjYTVlNzlkMTA3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDE3N2MwNzY2NWM4NWIxYTIzMGQ3NGU5M2VhNjhhNjBjZmY1YzdlNjQ4ODVjNzlhNGIyMmE1NjBjNmFmZTgzNyJ9"
+        },
+        {
+          "resource": "repo://index.html#L306-L310",
+          "version": "repo-lines-v1:sha256:4434924f5daa72e6c6b435793df9717989f0a967fd6c5f0121cee9c6a9ef12a9:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWQ0NTNmNTllOThhZWU4ZDY3MzljZDAzMzUwZTJiODNiNjg4MGNlNjhjYTRjNzE3MDAxNmQzOWE4YjhmNzhlYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDdlZDZkNWE2NDk0Y2FjNGI4OGViN2E0NDg0OGYzZGE2NDkzNmNmMjU0NzI3ZmUzNjI2YWVjMTQwZjkyZThmMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmJkZmNjNjFkOWJmYTk0NzU4MDNmM2IzNDk4NDRhYWJhNjg2Yjk0OWQyZGVkOTczYWRjNjhlNmE4ZDhiOWJiZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjM3OWZlNjMyNTU5YWU2Y2JkNjM4NWExNjE4OWQ0NGY4ZmViOWMzZmE4ODVmNjg0MTQwNzUzNDJjMGQ1Mjg5MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5811b3ae99cc4105881305c520185fd5",
+      "statement": "norm() clasifica cada estado en ok, warn o fail según listas fijas de valores, y cualquier valor no reconocido cuenta como fail.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L241-L247",
+          "version": "repo-lines-v1:sha256:cd0c8390bdb7937415d88a511b8677356af86f1caa5b1a09928732efbf3823aa:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDg0NjFmODZkYWY2ZDM1YWYyNjQzMWVhNjE3OWQyN2MzOGRhOGIyY2UwYWRjNGY1MjY1NGQ0YTBmMzAwZDk0NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTIyZmFhNTM1YmQyZWEzZDUyZTc0MWVkNDU0NDM1YjdmZTQ5ZTgzNTg2ZTk0M2Q5OGQ4MmJiZmIyNGQxZjVjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGJmZWNiYWYyNDEwNTI4ZTM0Nzg2NjQ5ZGY0MTIzMzE4YjhmMTAyMzAyN2Y3ODhjYTczZjYxYjE2MTUwZTJmNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzczYmI2OTQyOGUzOTY2YjhkMTZjMzQwZWJiYTEzNzJjMzI4ZGIzZjkzOWQ1Zjk1N2M1MTk3ODU2NDM0YTA2NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3ea8855fe7984c2485fabb1f65403091",
+      "statement": "Cada tarjeta muestra el detail enviado por el servidor si existe y, si no, el texto fijo de CHECKS para su nivel; el resumen se elige contando fails y warns.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L207-L220",
+          "version": "repo-lines-v1:sha256:4a61b685ccb076caa9c8b1e2da53a97ef8a8ef43a5daac6b919b842b8676f307:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0OTc2ZmQ2ZGIxZDk1ZGU0ZWEwNjE2NDY1NGYyNTU2YTlhZWUwZmMyOGYyNTIyNDUxMDcxZTNmMDQ4YjIxYzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4YzNiMzRjMDkxMzRmOTc3MGU5OGMzNTBmZjJiNjE2YmRjNjQ0MTgzOWQ2OGJiZjRhYmQyMjkzMTZlN2Y4NzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1ZDU1ZDg0OTkzMWIwOWFiZjYyZjVkMjdkNjlhOWZkMGMwMTk1YzdhMDViZDMyOGVhMTIzZDZiZTE0MzliYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0NTBjYzU1MGFlYTA5NDNkMDQ0ZmFlZjIyMjRhZjQ5NGU0MDRhYzUxNWY2MmE5MWEwOTA0MDhkNjI3ODExMTcifQ"
+        },
+        {
+          "resource": "repo://index.html#L261-L285",
+          "version": "repo-lines-v1:sha256:c7874931251a1e6a23b928aff573c6e151026bb06775b104bee58fd739520e41:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2NjM0NTc0NzdmNmYxMmFjZjI3NWUzMDMxOTNmMmI5Njk1NWJlYjk5YzYxZWU2MTM3OWUxOWQzZjFiNDFhOWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5Y2JiOTYzZWU2NmViZjA3NGI4NzUzZjM4ODE0MjQ2MGZkZmUwZDA4MjMyMmM2Mjc4Y2I0OWY1N2ZkMjA4OGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4OTkwYWQ4MDdkMDQwN2NmNjk0ZTk5YWRjM2M0N2U5MzkyZDVmMTQyOGVmMjhhMmM5NGMyMzM3MDcyOTc5ZDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b7cc89ff5ece404ab6ca6e127a7d7b16",
+      "statement": "Si la respuesta falta, no es objeto, trae ok:false o no contiene comprobaciones, no se muestran resultados: se vuelve al formulario con el mensaje del servidor o un texto genérico.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L251-L260",
+          "version": "repo-lines-v1:sha256:337e8368f846fe6597c317744903c2c7bd6d5f1ebafe4be9ad5a0e2014e012ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhMDBjZGVlMjc0YWRiYWFkN2QzYjI0NThkYzA0NTVmZDhiM2JhMjQ3Y2VmNWZhNzdjYjIyZDRkZDk1NjZjY2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyMmZhYTUzNWJkMmVhM2Q1MmU3NDFlZDQ1NDQzNWI3ZmU0OWU4MzU4NmU5NDNkOThkODJiYmZiMjRkMWY1YzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3M2JiNjk0MjhlMzk2NmI4ZDE2YzM0MGViYmExMzcyYzMyOGRiM2Y5MzlkNWY5NTdjNTE5Nzg1NjQzNGEwNjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzMDNhMGFiMmVhZDJmODU1M2ZjMjg0NGE0NmYxOWIxY2FmYmYwN2EyYmZmY2MxMDEzOWJkM2M1MTZlZTk3NTgifQ"
+        },
+        {
+          "resource": "repo://index.html#L312-L318",
+          "version": "repo-lines-v1:sha256:8ce890a4f6d776b025cddb0114236db170c132ae1d524e41544b79f3e2912d73:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY1NmViMTc0NDhlMzUwNjQ5MTRiNGY3NjIzN2NlZGQ5ZGRmOWU5MGQwODg1ZjI0Zjk4OTU2MjlmZmI5NmY0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTQxOWE2ZGNjMDRlMjEzYTNjN2E3N2E0NTZiMDFlNzZkMWVmNzhjZDAwYmJlYzFkOGY4MTQ1OGZlOTNlZGM1NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDBiMDk2NzliMDM1MzJjYWVmMjFkYmIyY2MzZjBhOWExOTBjNjBmMzU1YTljZWFkNGI5ZTI5NWEzMGE0MDNjNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTUwZWI1ZjM2YzBiNzJkMTZjM2QyNmFiNzNhODc5ODZiOTFkYTU0ZWQ5NDVkNzgwNmVmYWVmMjQyMWMyNTZiYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fcd2f0296cea4208b081e0ded9670ff9",
+      "statement": "Con WEBHOOK_URL vacía la página no hace petición y muestra un resultado de demostración fijo.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L203-L205",
+          "version": "repo-lines-v1:sha256:00c20683f8476f04f803695c1fb5a90be91c941e9f27c4b2f8f14e264879f5ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzE5ZTY2ZDg3NmEyM2VlYjE4NThkZTc1NDI5YmQ0YzE4ODY3N2Q0MWE1ZWNmNTQ3MjRlNGFhZjZiNTcwOGM3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVmMTUwYTE3ZjA2NjM4OTFmYmM3NTBhZGI1ZWNkMjcyNjA2MmJiMTEzMWEyODFjYzEwNGRkMTBhYTE5ODBkYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjZlMWFjNjljMjc4YzNlZjQ5ODEyMTBjYTQ3NzJmNjI2MmQ0M2JjNWQ1MWQ5NzhlNzhjOTk2ZDhlZmUwY2ViMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzM0MmI3Mzc2YTY5NWY2ZWFhYzJkNDlhOWMyNzdhMGM5NWMyZTUxOTNjMGUyNWQwMGQ1MmNkYTBmYjIxNzI2NSJ9"
+        },
+        {
+          "resource": "repo://index.html#L222-L222",
+          "version": "repo-lines-v1:sha256:298bfe82319a3f13b07fbb9c31e545fd66de1e8d682e56aa35ee50693f236bc6:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjk4YmZlODIzMTlhM2YxM2IwN2ZiYjljMzFlNTQ1ZmQ2NmRlMWU4ZDY4MmU1NmFhMzVlZTUwNjkzZjIzNmJjNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjk4YmZlODIzMTlhM2YxM2IwN2ZiYjljMzFlNTQ1ZmQ2NmRlMWU4ZDY4MmU1NmFhMzVlZTUwNjkzZjIzNmJjNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzYxNzA3OGNmNDYyOTliNjQ5Y2NjNWNlOTZhMDg1NmEwNmY2ZWYwZTU2ODhjNmE3NzEwMDhiMDE1ZGM0Y2IzOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjZkZTE5MDcxNTgyZjU5YzcwOWMzM2RjMjkyMmQ1OGZjZWJhYjAwY2I5Y2M5ZTEzYTg3NTYyMDYzYjMwNDkxMCJ9"
+        },
+        {
+          "resource": "repo://index.html#L300-L310",
+          "version": "repo-lines-v1:sha256:1cbe4d37604e6d8cc82d06aae4264a289cd87f0168bf76e538292940f73c86b7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhNmQwZmIwYjYxOWI2OGVkMmQ1NDhjYzYyMDc5NzM0MWNlMzIyZjcyNTMzOTI4N2JjYWYzMjgzYmVlMjIzNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZWQ2ZDVhNjQ5NGNhYzRiODhlYjdhNDQ4NDhmM2RhNjQ5MzZjZjI1NDcyN2ZlMzYyNmFlYzE0MGY5MmU4ZjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiMzk2YTYwZGEzYmMxNWZjY2MwNmVmMzQ2ODFmNDk0ZDkwMDU2ZTkyNWYzOTFiMDRiMTY0NWNlN2M5OGRhN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzNzlmZTYzMjU1OWFlNmNiZDYzODVhMTYxODlkNDRmOGZlYjljM2ZhODg1ZjY4NDE0MDc1MzQyYzBkNTI4OTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ba2ee65a8b774f71be5b6ffb705ba979",
+      "statement": "La preferencia de tema claro u oscuro se guarda en localStorage con la clave olibesc-theme, tolerando que el almacenamiento esté bloqueado.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L226-L234",
+          "version": "repo-lines-v1:sha256:0c1e0af758fe5bda0185d26502b4f4b48a19d7bfbc6ed1aee2fe750218c7b952:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGY5MmZhNjZhZTA1YTg5MTBhOGY4OWYxZTMxOGRlZmI2MjFiYTU2Y2QxMzAwZGZiZTc3ZGI2MjI1ZWY3MTM3MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTNkZGVmNzI0Nzg2YjRhZjQ1YWI3Y2FkODFkMzc3YWU1NDNiYjc4NDEyOTY1NjhmYjUyMjY5OThhZWMyMTYzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjZkZTE5MDcxNTgyZjU5YzcwOWMzM2RjMjkyMmQ1OGZjZWJhYjAwY2I5Y2M5ZTEzYTg3NTYyMDYzYjMwNDkxMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTBhMmJmMGQ2OWVlNjFmNjdjMmJiY2FkNjgyYmZjOGJiMTM5ZmE0NTNhZTkxOTA5ODhkZDljZGNmOWY5MWUyMyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.6.0",
+    "at": "2026-09-25T11:01:50.364Z"
+  }
+}

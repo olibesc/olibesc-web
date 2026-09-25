@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:6ba22751eac944a62814d945a639dc6b5eb100ae4bc7b4499f7944f657e509f1",
+  "claims": [
+    {
+      "id": "claim_b24edb3c794a496aaefd08a5f68d6638",
+      "statement": "El aviso legal identifica como titular a Ángel Oliván (Olibesc), con domicilio en Pinseque (Zaragoza).",
+      "evidence": [
+        {
+          "resource": "repo://aviso-legal.html#L69-L72",
+          "version": "repo-lines-v1:sha256:7be9c117d431fd938ba0776d301b777e7d9bdcb832f42f9deecfbface16d2822:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFjYmNiN2JiNTgyMTExZTI2MzQ1NjRjYjY5ZGY1YzRkMDc2Y2YzZmVkNDM5ZjcwMzBiMTJlM2E0YThiYTViYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVjNjk0YTYwZTg4NDZiMDY1NTk2ZjgxMjgwMmNkMTU4MzgzMTYzNGJjYzUwM2Q4ZmNkZGM2NmZjYzg0OGIwYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjQzMzc4YWY1M2UxZjkwNzdhNjM1YTQyNWJhNTY4YmE0Mzc4OWU3ODRlMjBjMWVhZTY2ZDAzMDdkN2QyNWNmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTU4ZjgyNDgwMGVlNWQ5ZDg0YTk3YmZiMTNhYmQ0NWM4MGIyMWZlMTcxOTRiM2YxYjQyNjlhMDI1YTZmZTViYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e58bcfa1a0e641f387b6e7b0ee943926",
+      "statement": "La política de privacidad nombra a Ángel Oliván como responsable del tratamiento con contacto en info@olibesc.com.",
+      "evidence": [
+        {
+          "resource": "repo://privacidad.html#L132-L134",
+          "version": "repo-lines-v1:sha256:5c12694b25a4e8ac579cde89d1b423331d9da00af3961bd752b8a21714177bcc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2RmMzU5NGVhODE5Y2M3ZTFkYThhZTVkMjc1Mjk5NTllZjZmZmYwOTE2MzEyOGZkNzJlOTJjYmU2MjNjZWY2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGYzMDA5YTFiMWYxNmFiZGFlYTUyMTA4OGRkMDE2MmQ2NzI0NmFiZDVkMTE2NzA0N2IwZTFlYjc4ZDdhZDYyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGU1NzNhZWMyMWNhYWIwM2RlOWRmYTkwZDY5MDM4NTIzN2IwOGRjYTU4M2NlYjFjNTQyN2M0MmRlYzg1MmE4MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd4bc8029adb45fc93211a3d3c7519d1",
+      "statement": "Los datos del titular en las páginas legales no se modifican sin confirmación del titular.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L13-L14",
+          "version": "repo-lines-v1:sha256:7ac386422ea1456e52ee6098a00e712ba1794abd056d8aa5f1aadee98dd4636a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjBkNWY2ZjUxNDlkZDEzNzQ1ZWNiZDk0N2UxMTQyZTJmMjdjNzhjZDk3MjgyYWNkYjk3MmYwZjliNDZkZmZiNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzA5ODYxYTBhNWQ2ZTJkYWM3NmY5YmJlNGYwMWQ1NWZiYmI5ODIzMzE3NmE5OGNkY2U2Y2YwNjkxZDUzNDliYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODIzN2UyYjllYzczMDdiN2NmYWY2NDYzMGMxZDE3MTE1NzhjYjllOGNmZTFhODc5ZTdkZDljZDFmNTU1ZTc1YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWM1NjdhMjI0N2E4ODUxZDg4ZGM4ODI4NTMyNDYzZDQ3MzU3YTliZjUxZTNlOGJlYmFkYzdiYTY0ZWZmNzYyZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_68a58e886c684b19a84bf7dc9a2c8b6e",
+      "statement": "Las condiciones de uso del aviso legal prohíben analizar dominios sin titularidad o autorización y el uso masivo o automatizado del formulario.",
+      "evidence": [
+        {
+          "resource": "repo://aviso-legal.html#L85-L93",
+          "version": "repo-lines-v1:sha256:d6d05c57cf2b4a3ca800f25d7e6f2317735565b018a689a7dd66304dfbed9d2e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg4NjUwZGE2NDEzZTI0OTEyMDFmNDY3MTJmZDcwZWVjMmJmNGQ2MGQ5Y2MxYWRhNWE3NDE3ZTU1MDllNTI2MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjAyZTNlZmEwMGI5NDFkODViMWRkMWNiNjYxN2RmYTQ4YTI1NzA0ZjA5NTUxMjAxMmUzMTFjMDU5MTM0NWM3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODllNzRkMGE5MDc3NDc5NDEyNWU0YjAyMzQ3M2IwZmMwOGUyYzQ0ZDU2YThhNjdmNzYyZjhhYzBlMGQ0M2JiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk2ZDZiNWY3YjU1YWVjZTVlZjc5YTU4YzZmYjA1M2VkNDNkNzVmMjk3NmY0NjI3YjQxNTJlZDQ2ODgxNzVlNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4680162440644e139491602a2a5993ed",
+      "statement": "La política de privacidad enlaza a la política de cookies.",
+      "evidence": [
+        {
+          "resource": "repo://privacidad.html#L195-L196",
+          "version": "repo-lines-v1:sha256:4f37c294a858538d37fe46fc496ee5275b7d2b5af2311a7af0f0fdc9ced4059b:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGM4N2E1ZmU4ZTUyYWUzNDdjY2FiOTZhZGY2NGZhMmUyNDgzMzU0YzM3NDE0YTFlODkyNDM5Zjg1ZDY0Mjc5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODc5NjY5MTQxN2FjYWFiNzM4YzcyNmEwZDNhZTIyM2IxZWVkNTk3YjkxNDViNTA4MjY1NDViNWY2ZjY2NWZkYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODY0ZGZlYTdhYWI0M2JlYzU2ZDFjYjA1ZDA2MmNjMmQ0MmQyODJmODFiZWY3YWY4NjY1YmMyMWMzZDhhZTVjZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTUzZTQ1YjI1NzQwYjEwMDY4ZTMwYTEwYjk2YzUwZjllYjhkN2IwYWZlZTBlYWVlMmQ5YjBiYjQyN2RmZjA4YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c345f3c7bf3b49699148fddb5a39fd27",
+      "statement": "El repositorio no concede licencia de uso: no hay LICENSE y el README declara todos los derechos reservados, en línea con la propiedad intelectual del aviso legal.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L18-L19",
+          "version": "repo-lines-v1:sha256:25027f08ae849426485e99514fa436da958a20817c96676c7e86ee1a3203801d:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTQ1YjliMjNhYzQ0YThmNGEyZDBhNTcwYjJlMzA0MTJhMGUzMTZmMDhkNmYxNWE0ODlmYjQ2MjBkZjQxM2Q5YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjYzY2M2NDE1MTI3ZmZmZDU5MDBhZDU5NDkwZWNkNzM3NTcwMDBiY2U1OTRlODZhZGJjZTRjZmI2MjJkMDg2NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWM1NjdhMjI0N2E4ODUxZDg4ZGM4ODI4NTMyNDYzZDQ3MzU3YTliZjUxZTNlOGJlYmFkYzdiYTY0ZWZmNzYyZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGZiODlhYjJjNTVjMjlmMWU1NDhiODA3NTJjYzQ1ODIwMzI2NGM3Yjc3ZWY4NTlmYjUzMGVkNDczMmU4Y2YxZiJ9"
+        },
+        {
+          "resource": "repo://README.md#L39-L43",
+          "version": "repo-lines-v1:sha256:7450adb3c065764c7bbd07fb43b332d4189136a2c57d28d436a1fca870af6021:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmEwNDI4YzMxNTM4NDAzOTRjMjdiZWY3ZTg0ZTlkMzRkMzQyZWRjZjBhM2IyNTEzMjgyNzFkZGM1NTcyNGRkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmM1YzFjZWY1YzA4ZDMyZjA5MTAyOTVhYjc1MWRiZWE0ZGQzYjIzM2JiNTRlNTM4M2Q2N2U3YWE0MDJmOGQ4MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmI3NjMzM2ZjNTdkNDA2NmMwYmZlYjkxZjU5ZGI5MDE3YmYwNzEzZmI3YTI5YTk4YTBjMjU1OGVmYjM1YzdlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://aviso-legal.html#L81-L83",
+          "version": "repo-lines-v1:sha256:ce29060d45852cf9dc708e7b2c0debaa30788838f18452e119056500a1f8a404:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDIwYWRlYjM1OTA2NWVmYWYzNWU2YmYxZjQ2NjJjNjI1YjE1YjhkNzE4YjI1MWI5ZTcwYjAyOTUzMjg4NzNmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDlmZTZjM2Y2YTM0ZWM2NmU4YzljYTQ0NzdhY2ExM2M2NjBhNjdjNmY3YjZlNmY3YWFiMzUxOWM3OGIwMTI5NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjk3ZmQ4NjU3Nzc2ZGMxYzdkY2ViMzNjZTIzN2QzMmMwMDA1NTU5NzRkMDRiZDY0MjAyMTk1MzA0ZmRkNDc4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk2OGVlMmNmNDc0NzNkYjY4Y2E2Zjk0MjNkNzNkYWNlZmZiZmRiNmNjN2I4N2EzYzQ3MjUxMTE5M2I0YjVmOCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.6.0",
+    "at": "2026-09-25T11:01:50.364Z"
+  }
+}

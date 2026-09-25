@@ -8,3 +8,7 @@ desktop.ini
 
 # Evidencias de archify visual-check (se regeneran)
 docs/*.visual-check.*
+
+# Workflow programado que crea «openwiki init»: enviaría el código a OpenAI.
+# La wiki se actualiza a mano con Claude Code (ver AGENTS.md).
+.github/workflows/openwiki-update.yml
