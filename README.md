@@ -30,6 +30,12 @@ python -m http.server 8765
 
 Publicar: hacer push a `main`. GitHub Pages la publica en un par de minutos.
 
+## Arquitectura
+
+Diagrama interactivo en [`docs/arquitectura.html`](docs/arquitectura.html)
+(se abre en el navegador). Su fuente es `docs/arquitectura.json`, generado con
+archify.
+
 ## Licencia
 
 Todos los derechos reservados. El código, los textos y el logo son propiedad

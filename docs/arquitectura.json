@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "olibesc-web — olibesc.com",
+    "output": "arquitectura.html",
+    "quality_profile": "showcase",
+    "viewBox": [860, 420]
+  },
+  "components": [
+    { "id": "repo", "type": "backend", "label": "Repo olibesc-web", "sublabel": "rama main", "pos": [620, 30], "size": [170, 64] },
+    { "id": "visitante", "type": "external", "label": "Visitante", "sublabel": "navegador", "pos": [40, 170], "size": [170, 64] },
+    { "id": "cloudflare", "type": "security", "label": "Cloudflare", "sublabel": "HTTPS · proxy", "pos": [330, 170], "size": [170, 64] },
+    { "id": "pages", "type": "cloud", "label": "GitHub Pages", "sublabel": "HTML estático", "pos": [620, 170], "size": [170, 64] },
+    { "id": "auditoria", "type": "backend", "label": "Servicio de auditoría", "sublabel": "webhook de Olibesc", "pos": [620, 310], "size": [170, 64] }
+  ],
+  "connections": [
+    { "id": "visitante-cloudflare", "from": "visitante", "to": "cloudflare", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "cloudflare-pages", "from": "cloudflare", "to": "pages", "label": "páginas", "variant": "emphasis" },
+    { "id": "repo-pages", "from": "repo", "to": "pages", "label": "push", "variant": "dashed", "fromSide": "bottom", "toSide": "top", "labelDy": 24 },
+    { "id": "cloudflare-auditoria", "from": "cloudflare", "to": "auditoria", "label": "formulario", "fromSide": "bottom", "toSide": "left" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Qué es", "items": ["HTML estático, sin paso de build", "Portada: comprobación gratuita del correo"] },
+    { "dot": "emerald", "title": "Publicar", "items": ["Push a main y GitHub Pages publica en minutos", "Cloudflare delante: HTTPS y emails ofuscados"] },
+    { "dot": "slate", "title": "Legal", "items": ["Aviso legal, privacidad y cookies", "Sin licencia: todos los derechos reservados"] }
+  ]
+}

@@ -1,0 +1,7 @@
+# GitHub Pages publica todo el repo salvo lo que se excluye aquí.
+# Documentación interna del repo: no forma parte de olibesc.com.
+exclude:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/
