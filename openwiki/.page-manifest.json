@@ -9,11 +9,11 @@
       "completedRunId": "60ed18eb-a697-44da-8786-1ccf74a5c49e"
     },
     "/openwiki/contenido/paginas-legales.md": {
-      "gitHead": "76b332b923364cca1e5b417aa0992930c18e26c6",
-      "sourceFingerprint": "sha256:2589278a04d1ec47e4c536002707bb4da6700a9c8f6e19a44c8c865294415361",
-      "pageVersion": "sha256:6ba22751eac944a62814d945a639dc6b5eb100ae4bc7b4499f7944f657e509f1",
+      "pageVersion": "sha256:f91dadb1b11452365b60b4abfe1d96b21b8820ad82e818c478997cf25c1fe778",
       "completedBy": "claude-code",
-      "completedRunId": "60ed18eb-a697-44da-8786-1ccf74a5c49e"
+      "completedRunId": "94c166bc-5b9f-4fe1-95d6-6d134afa766c",
+      "gitHead": "7c3bd33325b14526d481c5118c1ab01e5b07159b",
+      "sourceFingerprint": "sha256:85db2d56a7a134fcc07d34393361276567bc873f8cf72d0c868698ce0366db8d"
     },
     "/openwiki/flujos/comprobacion-de-dominio.md": {
       "gitHead": "76b332b923364cca1e5b417aa0992930c18e26c6",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:6ba22751eac944a62814d945a639dc6b5eb100ae4bc7b4499f7944f657e509f1",
+  "pageVersion": "sha256:f91dadb1b11452365b60b4abfe1d96b21b8820ad82e818c478997cf25c1fe778",
   "claims": [
     {
       "id": "claim_b24edb3c794a496aaefd08a5f68d6638",
@@ -48,7 +48,7 @@
       "evidence": [
         {
           "resource": "repo://privacidad.html#L195-L196",
-          "version": "repo-lines-v1:sha256:4f37c294a858538d37fe46fc496ee5275b7d2b5af2311a7af0f0fdc9ced4059b:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGM4N2E1ZmU4ZTUyYWUzNDdjY2FiOTZhZGY2NGZhMmUyNDgzMzU0YzM3NDE0YTFlODkyNDM5Zjg1ZDY0Mjc5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODc5NjY5MTQxN2FjYWFiNzM4YzcyNmEwZDNhZTIyM2IxZWVkNTk3YjkxNDViNTA4MjY1NDViNWY2ZjY2NWZkYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODY0ZGZlYTdhYWI0M2JlYzU2ZDFjYjA1ZDA2MmNjMmQ0MmQyODJmODFiZWY3YWY4NjY1YmMyMWMzZDhhZTVjZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTUzZTQ1YjI1NzQwYjEwMDY4ZTMwYTEwYjk2YzUwZjllYjhkN2IwYWZlZTBlYWVlMmQ5YjBiYjQyN2RmZjA4YiJ9"
+          "version": "repo-lines-v1:sha256:78d65eed0eceea621b306afec0cc68e9147d5e40a63c7203d636fa209d6b48f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGM4N2E1ZmU4ZTUyYWUzNDdjY2FiOTZhZGY2NGZhMmUyNDgzMzU0YzM3NDE0YTFlODkyNDM5Zjg1ZDY0Mjc5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjYwZTBjMjYxNGJjOTEzZGI2MGM2YTQwMDAyZmIwZjBjNzYzMTBmNmYzMjQwYjcyMmMyMjA5NDZkMDc0MGNkNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODY0ZGZlYTdhYWI0M2JlYzU2ZDFjYjA1ZDA2MmNjMmQ0MmQyODJmODFiZWY3YWY4NjY1YmMyMWMzZDhhZTVjZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTUzZTQ1YjI1NzQwYjEwMDY4ZTMwYTEwYjk2YzUwZjllYjhkN2IwYWZlZTBlYWVlMmQ5YjBiYjQyN2RmZjA4YiJ9"
         }
       ]
     },
@@ -69,10 +69,44 @@
           "version": "repo-lines-v1:sha256:ce29060d45852cf9dc708e7b2c0debaa30788838f18452e119056500a1f8a404:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDIwYWRlYjM1OTA2NWVmYWYzNWU2YmYxZjQ2NjJjNjI1YjE1YjhkNzE4YjI1MWI5ZTcwYjAyOTUzMjg4NzNmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDlmZTZjM2Y2YTM0ZWM2NmU4YzljYTQ0NzdhY2ExM2M2NjBhNjdjNmY3YjZlNmY3YWFiMzUxOWM3OGIwMTI5NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjk3ZmQ4NjU3Nzc2ZGMxYzdkY2ViMzNjZTIzN2QzMmMwMDA1NTU5NzRkMDRiZDY0MjAyMTk1MzA0ZmRkNDc4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk2OGVlMmNmNDc0NzNkYjY4Y2E2Zjk0MjNkNzNkYWNlZmZiZmRiNmNjN2I4N2EzYzQ3MjUxMTE5M2I0YjVmOCJ9"
         }
       ]
+    },
+    {
+      "id": "claim_0b75e719b7b64dc2afba5da4f0ff4f28",
+      "statement": "La política de cookies declara que el sitio no instala cookies y que solo guarda en el navegador la preferencia de tema olibesc-theme si se elige.",
+      "evidence": [
+        {
+          "resource": "repo://cookies.html#L87-L90",
+          "version": "repo-lines-v1:sha256:c433cbd20b7f0378e1718a56b0e70c3cb984eaf405b6e4952fc07cbb88dab851:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWJlNjYzMzc4YzkyN2VmNGZlNjNiZDU1ZWVjYjU0YTczNDAxZjEwNmYyNjdhNDNiMTY1N2MyNTA2YzRjOGYyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWNmZTA0MjcxOTc3ZTlkZmQ1YjgzZDdmZmE1MGJhMWQ1YWFlOWFmZDQ3ZmRkMGEyYTE1YThkZDNiYmZjZDY5YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmE1ZTQ4YWQ4NTg4Y2M3NDZlYWVmZTFjYjhmZDYwYzM3ZTUwOGJmYTM1OTA2NDI2ZjhlNzFlYzY0OTU1Nzk3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODI1MGI5NWEzYWQyODcyYmJhMjk3YmEyZWU3NTQwNDhmYWIyZTlmMmZjMjQwNjdiMDkxNzM2NzZlMmMzNmQxYSJ9"
+        },
+        {
+          "resource": "repo://cookies.html#L96-L116",
+          "version": "repo-lines-v1:sha256:b942c6c6fb7a2e9ed21a129201a08fe11145e593a84fa6a4f208dd09a1a2d152:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmYTUyODY2YjFmNTFlN2Q0MjUwMDdmM2FlNzk3OTc1YzgwMzRiMGY0NDI4ZDY3ZGIyMGM4MjJjNzEzZTIxMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4MGY1MmI4ZGU3YmM3ZTIxMGM5ZjcyYmQ1NzdkZDU1MTYyNjNkODlhNDgxZWNhNDEyMzM4YTg4MDkyMGFiMTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmOTc5OGJhNDQzYTk5ZmZjNTVhNWE1NTUxZmJhNDBmZmZkOWM2YzhkMzYyZTY2M2IzNDdmNDUxNDhiYzNiMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2Mjk5YTA1NDk2MWEyNjkxYzk1NTM1MGYxZDljODQzOTFlMTMyZDlhZDY1NzY5MmUxZmE5OWY5OGZiZWVmZWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7743e99b53784b97b6bda171be7de3c5",
+      "statement": "La política de privacidad declara que el formulario solo pide el dominio.",
+      "evidence": [
+        {
+          "resource": "repo://privacidad.html#L135-L136",
+          "version": "repo-lines-v1:sha256:499af0116c13da4df7fd0f037f8b295d3462e9bb4324cb603654eeaa93b98e8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjY3MjY1ZTdiZmQyM2E4MjVlYzU0MGVhNjRmOTJiODEyNWVmYWU5ZDMwNmY1ZTczZDc3NjEyNDUxNmUwMTg3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMwYmE3NTA4MDdhY2MxZWI2Y2QwMjk4YzhkOThmOTgyZjc2ODQ5MmRmMmRkOGI3ODI2NjE3NDM2ZjY0NTQ0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMxMjY5NGIyNWE0ZThhYzU3OWNkZTg5ZDFiNDIzMzMxZDlkYTAwYWYzOTYxYmQ3NTJiOGEyMTcxNDE3N2JjYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzVkN2ZlNDFmOTZmNjVjNzBmZDZjYTA1MDA4OTQ4MDkyNjA3OTgxODRkMmUyYjMzYTU0ZDU5M2I2Y2FkYjYxYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_90296bdd42614facad82c3aa5ef56e94",
+      "statement": "Quedan pendientes el CIF/NIF del titular y servir las tipografías desde la propia web en lugar de Google Fonts.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L33-L44",
+          "version": "repo-lines-v1:sha256:2757118c4873b6f4f775feb3d116c3e9c8befa79779a3e3cddf4c00aca344ec3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NWYzYjk4ZDJkNGRkZjMzYTU4Y2Q4MWVhNjdmZjRlNzdlYzEzZTlhOWZlYjZkN2UxN2Q2YjExMTJlYzZhZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxZjA1NGIwYWIwOWFhMWNiZGU4ZWZjNjc0MjY5NTZlMDE4ZWViYjE1NGUxMzA1OWRlNTM5ZjczZWE2Y2JmZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhNmY1M2EzY2Y4NmUzYzg2ODczNzVkMjEzZmJhYjIzOTBmOTEyZmI1NTNlN2NkOGQ3ZDIyNmJmMTkyZjYzMTUifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.6.0",
-    "at": "2026-09-25T11:01:50.364Z"
+    "at": "2026-09-25T19:03:50.575Z"
   }
 }

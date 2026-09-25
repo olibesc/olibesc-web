@@ -5,17 +5,19 @@ description: "Qué cubre cada página legal de olibesc.com (aviso legal, privaci
 tags: [legal, privacy, cookies, license]
 verified:
   - by: openwiki/0.6.0
-    at: 2026-09-25T11:01:50.364Z
+    at: 2026-09-25T19:03:50.575Z
 sources:
   - id: openwiki-source-8037e2358a2c4f9b2c722a11
     resource: repo://AGENTS.md
   - id: openwiki-source-e320da9701799d224f507871
     resource: repo://aviso-legal.html
+  - id: openwiki-source-9b664b5ee4667443e3aea97b
+    resource: repo://cookies.html
   - id: openwiki-source-db52439eedcdaa2e13646ec1
     resource: repo://privacidad.html
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "claude-code", at: "2026-09-25T11:01:50.364Z" }
+generated: { by: "claude-code", at: "2026-09-25T19:03:50.575Z" }
 ---
 
 # Páginas legales y licencia
@@ -37,7 +39,12 @@ titular: es una regla del repositorio.
 |---|---|
 | `aviso-legal.html` | Datos del titular, propiedad intelectual, condiciones de uso, descripción del servicio de auditoría gratuita y su limitación de responsabilidad, enlaces, ley aplicable y jurisdicción, modificaciones y contacto. |
 | `privacidad.html` | Responsable del tratamiento, datos que se recogen, finalidades, base legal, plazos de conservación, proveedores con los que se comparten datos, derechos del interesado, seguridad, cookies, cambios y contacto. |
-| `cookies.html` | Qué son las cookies, inventario de las que declara el sitio, las que no usa, servicios de terceros, cómo gestionarlas, actualizaciones y contacto. |
+| `cookies.html` | Qué son las cookies, inventario de lo que el sitio guarda en el navegador (ninguna cookie; solo la preferencia de tema `olibesc-theme`, si se elige), las que no usa, servicios de terceros que carga la página (Google Fonts, Cloudflare, GitHub Pages), cómo borrarlo, actualizaciones y contacto. |
+
+Desde septiembre de 2026 los textos describen lo que la web hace de verdad:
+el formulario solo pide el dominio, no hay cookies y la lista de proveedores es
+la real. Quedan pendientes el CIF/NIF del titular y servir las tipografías
+desde la propia web en vez de Google Fonts (ver el README).
 
 El aviso legal fija dos reglas de uso relevantes para la herramienta de la
 portada: prohíbe analizar dominios de los que no se sea titular o para los que
