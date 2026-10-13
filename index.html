@@ -3,193 +3,382 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Olibesc · Comprueba si tu correo está protegido</title>
-<meta name="description" content="Comprueba gratis si alguien puede enviar correos en nombre de tu empresa. Sin instalar nada y explicado en cristiano.">
+<title>Olibesc · Correo profesional y seguro para autónomos y pymes</title>
+<meta name="description" content="Pasamos tu negocio de Gmail o Yahoo a un correo profesional protegido y revisado cada mes. Protegemos el correo de tu empresa contra suplantaciones sin que dejen de llegar tus mensajes, y lo vigilamos cada día en Google Workspace y Microsoft 365. Desde Aragón, para cualquier empresa.">
+<link rel="canonical" href="https://olibesc.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Olibesc · Seguridad del correo para empresas">
+<meta property="og:description" content="Proteger tu dominio es fácil. Hacerlo sin que tus correos dejen de llegar, no. Hablamos 15 minutos y te lo explicamos.">
+<meta property="og:url" content="https://olibesc.com/">
+<meta property="og:locale" content="es_ES">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"ProfessionalService","name":"Olibesc","url":"https://olibesc.com/","email":"info@olibesc.com",
+     "description":"Protección y vigilancia del correo electrónico para empresas que usan Google Workspace o Microsoft 365.",
+     "address":{"@type":"PostalAddress","addressLocality":"Pinseque","addressRegion":"Zaragoza","addressCountry":"ES"},
+     "areaServed":[{"@type":"AdministrativeArea","name":"Aragón"},{"@type":"Country","name":"España"}],
+     "knowsAbout":["seguridad del correo electrónico","suplantación de dominio","fraude del CEO","Google Workspace","Microsoft 365"]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"¿Puedo proteger mi dominio yo mismo con una IA?","acceptedAnswer":{"@type":"Answer","text":"Puedes conseguir la configuración, sí. Lo difícil es saber qué programas envían correo en nombre de tu empresa antes de activarla. Si se te olvida uno, sus correos dejan de llegar y nadie te avisa."}},
+      {"@type":"Question","name":"¿Es ilegal usar Gmail o Yahoo para mi negocio?","acceptedAnswer":{"@type":"Answer","text":"No está prohibido. Pero si tratas datos de clientes, eres tú quien debe demostrar que los proteges, y un correo gratuito no te da ni el contrato que pide el RGPD ni control sobre la cuenta. Si algo sale mal, la responsabilidad es tuya."}},
+      {"@type":"Question","name":"¿Mis correos dejarán de llegar mientras lo hacéis?","acceptedAnswer":{"@type":"Answer","text":"No. Primero observamos durante unas semanas quién envía en tu nombre y solo bloqueamos cuando todo lo legítimo está identificado."}},
+      {"@type":"Question","name":"¿Tengo que cambiar de proveedor de correo?","acceptedAnswer":{"@type":"Answer","text":"No. Trabajamos sobre lo que ya usas: Google Workspace, Microsoft 365 u otro proveedor con dominio propio."}},
+      {"@type":"Question","name":"¿Trabajáis fuera de Aragón?","acceptedAnswer":{"@type":"Answer","text":"Sí. Todo el trabajo es en remoto, así que da igual dónde esté tu empresa."}}
+    ]}
+  ]
+}
+</script>
 <style>
-:root{--bg:#ffffff;--alt:#f7fafc;--surface:#ffffff;--text:#0d1b2a;--muted:#5a6b7c;--line:#e2e8ee;--panel:#0d1b2a;--panel-text:#ffffff;--panel-muted:rgba(255,255,255,.72);--red:#e63946;--green:#2a9d8f;--amber:#f4a261;--shadow:0 1px 2px rgba(13,27,42,.04),0 16px 40px rgba(13,27,42,.09)}
-html[data-theme="dark"]{--bg:#0a0a0f;--alt:#111118;--surface:#16161f;--text:#f0f0f5;--muted:rgba(240,240,245,.55);--line:rgba(255,255,255,.09);--panel:#16161f;--panel-text:#f0f0f5;--panel-muted:rgba(240,240,245,.6);--shadow:0 24px 80px rgba(0,0,0,.45)}
+:root{--bg:#ffffff;--alt:#f7fafc;--surface:#ffffff;--text:#0d1b2a;--muted:#5a6b7c;--line:#e2e8ee;--panel:#0d1b2a;--panel-text:#ffffff;--panel-muted:rgba(255,255,255,.72);--panel-line:rgba(255,255,255,.14);--red:#e63946;--red-dark:#c1121f;--green:#2a9d8f;--amber:#f4a261;--shadow:0 1px 2px rgba(13,27,42,.04),0 16px 40px rgba(13,27,42,.09)}
+html[data-theme="dark"]{--bg:#0a0a0f;--alt:#111118;--surface:#16161f;--text:#f0f0f5;--muted:rgba(240,240,245,.58);--line:rgba(255,255,255,.09);--panel:#16161f;--panel-text:#f0f0f5;--panel-muted:rgba(240,240,245,.62);--shadow:0 24px 80px rgba(0,0,0,.45)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .2s ease,color .2s ease}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .2s ease,color .2s ease}
 h1,h2,h3{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-.02em}
-a{color:var(--red)}a:hover{color:#c1121f}
-.wrap{max-width:1000px;margin:0 auto;padding:0 5vw}
+a{color:var(--red)}a:hover{color:var(--red-dark)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 5vw}
+section{border-bottom:1px solid var(--line)}
+.pad{padding:5rem 0}
+.alt{background:var(--alt)}
+
+/* Cabecera */
 header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
-.nav{max-width:1100px;margin:0 auto;padding:1rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.nav{max-width:1100px;margin:0 auto;padding:.9rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
 .logo span{color:var(--red)}
-.navlinks{display:flex;align-items:center;gap:1.4rem}
-.navlinks a{font-size:.92rem;color:var(--muted);text-decoration:none}
-.navlinks a:hover{color:var(--text)}
-#theme{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;padding:0}
-#hero{border-bottom:1px solid var(--line)}
-.hero-in{max-width:860px;margin:0 auto;padding:5.5rem 5vw 4rem;text-align:center}
-h1{font-size:clamp(2.4rem,5.2vw,3.9rem);line-height:1.08;letter-spacing:-.03em;margin:0 0 1.3rem;text-wrap:balance}
-.lead{font-size:1.22rem;color:var(--muted);max-width:600px;margin:0 auto 2.6rem;text-wrap:pretty}
+.navlinks{display:flex;align-items:center;gap:1.3rem}
+.navlinks a.lk{font-size:.92rem;color:var(--muted);text-decoration:none}
+.navlinks a.lk:hover{color:var(--text)}
+.nav-cta{font-size:.9rem;font-weight:500;color:#fff;background:var(--red);text-decoration:none;padding:.55rem 1rem;border-radius:8px;white-space:nowrap}
+.nav-cta:hover{background:var(--red-dark);color:#fff}
+#theme{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;padding:0;flex:0 0 auto}
+@media (max-width:760px){.navlinks a.lk{display:none}}
+
+/* Botones */
+.btn{display:inline-block;font-size:1.02rem;font-weight:500;text-decoration:none;padding:.95rem 1.6rem;border-radius:10px;white-space:nowrap;transition:background .2s ease}
+.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red-dark);color:#fff}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}.btn-ghost:hover{color:var(--text);background:var(--alt)}
+.note{font-size:.88rem;color:var(--muted);margin:1rem 0 0}
+
+/* Hero */
+.hero{max-width:880px;margin:0 auto;padding:6rem 5vw 5rem;text-align:center}
+.eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0 0 1rem}
+h1{font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.06;letter-spacing:-.035em;margin:0 0 1.4rem;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red)}
+.lead{font-size:1.2rem;color:var(--muted);max-width:620px;margin:0 auto 2.4rem;text-wrap:pretty}
 .lead strong{color:var(--text);font-weight:500}
-.card-cta{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.6rem;box-shadow:var(--shadow);max-width:620px;margin:0 auto;text-align:left}
-.field{display:flex;gap:.75rem;flex-wrap:wrap}
-.inputwrap{flex:1 1 260px;display:flex;align-items:center;gap:.15rem;border:1px solid var(--line);border-radius:10px;padding:0 1rem;background:var(--bg)}
-.at{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;color:var(--red)}
-#domain{flex:1;min-width:0;font-family:'DM Sans',sans-serif;font-size:1.05rem;color:var(--text);background:transparent;border:none;outline:none;padding:.95rem .55rem}
-#go{flex:0 0 auto;font-family:'DM Sans',sans-serif;font-size:1.02rem;font-weight:500;color:#fff;background:var(--red);border:none;border-radius:10px;padding:.95rem 1.6rem;cursor:pointer;transition:background .2s ease}
-#go:hover{background:#c1121f}
-.hint{font-size:.87rem;color:var(--muted);margin:.9rem .2rem 0;line-height:1.55}
-.hint em{font-style:normal;color:var(--text)}
-#error{font-size:.9rem;color:var(--red);margin:.8rem .2rem 0}
-#loading{max-width:520px;margin:0 auto;text-align:left;animation:olin .35s ease both}
-.load-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.025em;line-height:1.15;margin:0 0 1.6rem;text-align:center}
-.bar{position:relative;height:5px;border-radius:100px;background:var(--line);overflow:hidden;margin-bottom:1.8rem}
-.bar span{position:absolute;top:0;bottom:0;background:var(--red);border-radius:100px;animation:olbar 1.15s ease-in-out infinite}
-.steps{display:grid;gap:.85rem}
-.steps div{display:flex;gap:.7rem;align-items:center;font-size:1rem;color:var(--text);animation:olstep .4s ease both}
-.steps div:nth-child(2){animation-delay:.9s}.steps div:nth-child(3){animation-delay:1.8s}.steps div:nth-child(4){animation-delay:2.7s}
-.steps b{color:var(--red);font-weight:500}
-#results{background:var(--alt);border-bottom:1px solid var(--line)}
-.res-in{padding:4rem 0;animation:olin .45s ease both}
-.res-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem}
-.res-head h2{font-size:clamp(1.7rem,3vw,2.2rem);margin:0}
-#again{font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;white-space:nowrap}
-.res-lead{font-size:1.05rem;color:var(--muted);max-width:640px;margin:0 0 2.5rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
-.rescard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.7rem;display:grid;gap:.75rem;align-content:start}
-.rescard header{position:static;background:none;border:none;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.rescard h3{font-size:1.25rem;margin:0}
-.pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;border:1px solid currentColor;white-space:nowrap}
-.pill i{width:7px;height:7px;border-radius:50%;background:currentColor}
-.plain{font-size:.95rem;color:var(--muted);margin:0;font-style:italic}
-.verdict{font-size:1rem;color:var(--text);margin:0}
-.summary{margin-top:2.5rem;background:var(--panel);color:var(--panel-text);border-radius:16px;padding:2.2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-.summary h3{font-size:1.4rem;margin:0 0 .5rem}
-.summary p{font-size:1rem;color:var(--panel-muted);margin:0}
-.btn-red{background:var(--red);color:#fff;font-size:1rem;font-weight:500;text-decoration:none;padding:.9rem 1.6rem;border-radius:10px;white-space:nowrap;display:inline-block}
-.btn-red:hover{background:#c1121f;color:#fff}
-section.pad{padding:4.5rem 0}
-h2.big{font-size:clamp(1.8rem,3vw,2.3rem);line-height:1.15;margin:0 0 1rem;max-width:620px}
-.sub{font-size:1.08rem;color:var(--muted);max-width:640px;margin:0 0 3rem}
-.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem}
+.hero .btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* Títulos de sección */
+h2.big{font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.12;margin:0 0 1rem;max-width:680px;text-wrap:balance}
+.sub{font-size:1.08rem;color:var(--muted);max-width:660px;margin:0 0 3rem;text-wrap:pretty}
+
+/* Riesgos */
+.risks{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem}
+.risk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.8rem;border-top:3px solid var(--red)}
+.risk h3{font-size:1.15rem;margin:0 0 .5rem}
+.risk p{font-size:.97rem;color:var(--muted);margin:0}
+
+/* Datos */
+.data-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:3.5rem;align-items:center}
+@media (max-width:820px){.data-grid{grid-template-columns:1fr;gap:2.2rem}}
+.bignum{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(4rem,10vw,6.5rem);line-height:.9;letter-spacing:-.04em;color:var(--red)}
+.bignum small{font-size:.4em;letter-spacing:-.02em;color:var(--text)}
+.data-grid p.cap{font-size:1.05rem;color:var(--muted);margin:1rem 0 0;max-width:420px}
+.bars{display:grid;gap:1rem}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem 1rem;align-items:baseline}
+.row .lbl{font-size:.97rem}
+.row .val{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem}
+.track{grid-column:1 / -1;height:10px;border-radius:100px;background:var(--line);overflow:hidden}
+.track span{display:block;height:100%;border-radius:100px}
+.src{font-size:.82rem;color:var(--muted);margin:1.6rem 0 0}
+
+/* Por qué no basta una IA */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.box{border-radius:14px;padding:2rem;border:1px solid var(--line);background:var(--surface)}
+.box h3{font-size:1.15rem;margin:0 0 1rem}
+.box ul{margin:0;padding:0;list-style:none;display:grid;gap:.75rem}
+.box li{font-size:.98rem;color:var(--muted);padding-left:1.5rem;position:relative}
+.box li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.box.us{background:var(--panel);border-color:var(--panel);color:var(--panel-text)}
+.box.us li{color:var(--panel-muted)}
+.box.us li::before{background:var(--red)}
+
+/* Servicios */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;align-items:stretch}
+.svc.star{border:2px solid var(--red);position:relative;box-shadow:var(--shadow)}
+.badge{position:absolute;top:-.8rem;left:1.6rem;background:var(--red);color:#fff;font-size:.74rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .75rem;border-radius:100px}
+.callout{margin:2.2rem 0 0;font-size:1.1rem;color:var(--muted);max-width:720px;padding-left:1.2rem;border-left:3px solid var(--red)}
+.callout strong{color:var(--text);font-weight:500}
+.box li em{font-style:normal;color:var(--text)}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2.1rem;display:flex;flex-direction:column;gap:.9rem}
+.svc .tag{font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.svc h3{font-size:1.4rem;margin:0;line-height:1.2}
+.svc p{font-size:.98rem;color:var(--muted);margin:0}
+.svc ul{margin:.3rem 0 0;padding:0;list-style:none;display:grid;gap:.55rem}
+.svc li{font-size:.95rem;padding-left:1.6rem;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:.42em;width:12px;height:7px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
+.works{font-size:.88rem;color:var(--muted);margin-top:auto;padding-top:1rem;border-top:1px solid var(--line)}
+
+/* Cómo trabajamos */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.5rem}
 .num{font-family:'Syne',sans-serif;font-weight:700;font-size:2.4rem;line-height:1;color:var(--red);margin-bottom:.9rem}
-.three h3{font-size:1.15rem;margin:0 0 .5rem}
-.three p{font-size:.97rem;color:var(--muted);margin:0}
-#ayuda{background:var(--alt);border-bottom:1px solid var(--line)}
-.eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem}
-.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
-.cards3 div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
-.cards3 h3{font-size:1.15rem;margin:0 0 .5rem}
-.cards3 p{font-size:.96rem;color:var(--muted);margin:0 0 1rem}
-.cards3 b{font-size:.88rem;color:var(--text);font-weight:500}
-#cierre{background:var(--panel);color:var(--panel-text)}
-.cierre-in{max-width:760px;margin:0 auto;padding:5rem 5vw;text-align:center}
-.cierre-in h2{font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.025em;line-height:1.14;margin:0 0 1rem}
-.cierre-in p{font-size:1.08rem;color:var(--panel-muted);margin:0 0 2rem}
-.btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-out{border:1px solid var(--line);color:var(--panel-text);font-size:1.02rem;text-decoration:none;padding:.95rem 1.6rem;border-radius:10px}
-.btn-out:hover{color:var(--panel-text);background:rgba(255,255,255,.06)}
+.steps h3{font-size:1.15rem;margin:0 0 .5rem}
+.steps p{font-size:.97rem;color:var(--muted);margin:0}
+
+/* Quién */
+.who{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2rem;align-items:start;max-width:760px}
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--panel);color:var(--panel-text);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem}
+.who p{font-size:1.05rem;color:var(--muted);margin:0 0 1rem}
+.who p strong{color:var(--text);font-weight:500}
+@media (max-width:560px){.who{grid-template-columns:1fr;gap:1.2rem}}
+
+/* FAQ */
+.faq{max-width:760px;display:grid;gap:.75rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 1.4rem}
+summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-weight:500;font-size:1.03rem;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:'Syne',sans-serif;color:var(--red);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 1.2rem;color:var(--muted);font-size:.98rem}
+
+/* Cierre */
+#cierre{background:var(--panel);color:var(--panel-text);border-bottom:none}
+.cierre-in{max-width:760px;margin:0 auto;padding:5.5rem 5vw;text-align:center}
+.cierre-in h2{font-size:clamp(1.9rem,3.6vw,2.7rem);letter-spacing:-.025em;line-height:1.12;margin:0 0 1rem;text-wrap:balance}
+.cierre-in p{font-size:1.08rem;color:var(--panel-muted);margin:0 0 2.2rem}
+.cierre-in .btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-out{border:1px solid var(--panel-line);color:var(--panel-text)}.btn-out:hover{color:var(--panel-text);background:rgba(255,255,255,.06)}
+
 footer{background:var(--bg);border-top:1px solid var(--line)}
-.foot{max-width:1000px;margin:0 auto;padding:2.5rem 5vw;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
-.foot a{text-decoration:none;color:var(--muted)}
-.foot a:hover{color:var(--text)}
+.foot{max-width:1040px;margin:0 auto;padding:2.5rem 5vw;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.foot a{text-decoration:none;color:var(--muted)}.foot a:hover{color:var(--text)}
 .footlinks{display:flex;gap:1.3rem;flex-wrap:wrap}
-[hidden]{display:none !important}
-@keyframes olbar{0%{left:-40%;width:40%}50%{width:55%}100%{left:100%;width:35%}}
-@keyframes olstep{from{opacity:.25}to{opacity:1}}
-@keyframes olin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<!-- Enlace de reserva: sustituir el mailto de las etiquetas con class="js-book"
+     por la URL de reserva definitiva cuando esté decidida. -->
 <header>
 <div class="nav">
-<a class="logo" href="#hero">Oli<span>besc</span></a>
+<a class="logo" href="#inicio">Oli<span>besc</span></a>
 <div class="navlinks">
-<a href="#que-es">Qué revisamos</a>
-<a href="#ayuda">Cómo te ayudamos</a>
-<button id="theme" type="button" title="Cambiar tema" aria-label="Cambiar tema"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+<a class="lk" href="#correo-gratuito">Correo gratuito</a>
+<a class="lk" href="#servicios">Qué hacemos</a>
+<a class="lk" href="#preguntas">Preguntas</a>
+<a class="nav-cta js-book" href="mailto:info@olibesc.com?subject=Quiero%20reservar%20una%20llamada">Reservar llamada</a>
+<button id="theme" type="button" title="Cambiar tema" aria-label="Cambiar tema"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg></button>
 </div>
 </div>
 </header>
 
-<section id="hero">
-<div class="hero-in">
-<div id="form-block">
-<h1>Cualquiera puede escribir un correo con el nombre de tu empresa.</h1>
-<p class="lead">Comprueba en 20 segundos si tu correo está protegido. Gratis y sin instalar nada: solo escribe lo que va después de la <strong>@</strong>.</p>
-<div class="card-cta">
-<div class="field">
-<div class="inputwrap"><span class="at">@</span><input id="domain" type="text" placeholder="ejemplo.com" autocomplete="off" spellcheck="false"></div>
-<button id="go" type="button">Comprobar gratis</button>
+<main>
+<section id="inicio">
+<div class="hero">
+<p class="eyebrow">Seguridad del correo para autónomos y pymes</p>
+<h1>Proteger tu correo es fácil. <em>Hacerlo sin que deje de llegar</em>, no.</h1>
+<p class="lead">Hoy cualquier IA te da la configuración. Lo que no te dice es qué correos tuyos van a desaparecer al aplicarla. <strong>Nosotros lo hacemos bien a la primera y luego lo vigilamos cada día.</strong></p>
+<div class="btns">
+<a class="btn btn-red js-book" href="mailto:info@olibesc.com?subject=Quiero%20reservar%20una%20llamada">Reservar 15 minutos →</a>
+<a class="btn btn-ghost" href="#riesgo">Ver qué está en juego</a>
 </div>
-<p class="hint">¿No sabes cuál es? Mira tu propio correo: si es <em>ana@construccioneslopez.es</em>, escribe <em>construccioneslopez.es</em>.</p>
-<p id="error" hidden></p>
+<p class="note">Sin compromiso. Una llamada, sin tecnicismos.</p>
+</div>
+</section>
+
+<section id="riesgo" class="alt">
+<div class="wrap pad">
+<p class="eyebrow">Qué está en juego</p>
+<h2 class="big">El correo de tu empresa es la puerta por la que entra el dinero</h2>
+<p class="sub">Y también por la que se va. Tres cosas que vemos cada semana en empresas que creían estar tranquilas.</p>
+<div class="risks">
+<div class="risk"><h3>Facturas falsas con tu nombre</h3><p>Alguien escribe a tus clientes desde tu dirección y les pide que paguen en otra cuenta. El dinero no vuelve, y la confianza tampoco.</p></div>
+<div class="risk"><h3>Correos que nunca llegan</h3><p>Presupuestos, facturas o avisos que acaban en spam o desaparecen sin rastro. No te enteras hasta que pierdes la venta.</p></div>
+<div class="risk"><h3>Falsa sensación de seguridad</h3><p>Una herramienta en verde no significa que estés protegido. Una configuración a medias da tranquilidad, pero no frena a nadie.</p></div>
 </div>
 </div>
-<div id="loading" hidden>
-<div class="load-title">Analizando <span id="pending"></span>…</div>
-<div class="bar"><span></span></div>
+</section>
+
+<section id="correo-gratuito">
+<div class="wrap pad">
+<p class="eyebrow">¿Tu negocio usa @gmail, @yahoo o @hotmail?</p>
+<h2 class="big">Un correo gratuito no es un correo de empresa</h2>
+<p class="sub">Sirve para empezar. Pero si con él mandas presupuestos, cobras facturas y guardas datos de tus clientes, el riesgo es todo tuyo. Y la ley no distingue entre una multinacional y un autónomo con dos empleados.</p>
+<div class="split">
+<div class="box">
+<h3>Lo que te puede pasar</h3>
+<ul>
+<li>Cualquiera puede abrir <em>tuempresa@gmail.com</em> y escribir a tus clientes. Con un correo gratuito no hay forma de impedirlo, porque la dirección no es tuya.</li>
+<li>Si te bloquean la cuenta o se va quien la llevaba, pierdes presupuestos, facturas y contactos. Y no tienes a quién reclamar.</li>
+<li>Tus correos acaban en spam más a menudo, y tu presupuesto compite con empresas que firman con su propio nombre.</li>
+</ul>
+</div>
+<div class="box us">
+<h3>Lo que dice la ley</h3>
+<ul>
+<li>Eres responsable de los datos de tus clientes y tienes que poder demostrar que los proteges con medidas adecuadas (RGPD, art. 32).</li>
+<li>Los servicios gratuitos no firman contigo el contrato que el RGPD exige cuando otro guarda datos por ti (art. 28).</li>
+<li>Si te roban la cuenta y afecta a datos de clientes, puedes estar obligado a notificarlo a la AEPD en 72 horas (art. 33).</li>
+<li>La AEPD también sanciona a autónomos y micropymes. Y los clientes grandes ya exigen seguridad a sus proveedores.</li>
+</ul>
+</div>
+</div>
+<p class="callout">La salida es sencilla: <strong>un correo con el nombre de tu empresa, protegido y revisado cada mes.</strong> Sin cambiar tu forma de trabajar.</p>
+</div>
+</section>
+
+<section class="alt">
+<div class="wrap pad">
+<div class="data-grid">
+<div>
+<p class="eyebrow">Datos propios · 2026</p>
+<div class="bignum">63<small>%</small></div>
+<p class="cap">de las empresas aragonesas que analizamos dejaría pasar un correo falso con su nombre hasta la bandeja de sus clientes.</p>
+</div>
+<div>
+<div class="bars" role="list" aria-label="Qué pasa con un correo falso, según 139 empresas analizadas">
+<div class="row" role="listitem"><span class="lbl">Sin ninguna protección</span><span class="val">46</span><div class="track"><span style="width:33.1%;background:var(--red)"></span></div></div>
+<div class="row" role="listitem"><span class="lbl">Lo ven, pero no lo frenan</span><span class="val">41</span><div class="track"><span style="width:29.5%;background:var(--red);opacity:.65"></span></div></div>
+<div class="row" role="listitem"><span class="lbl">Lo mandan a spam</span><span class="val">42</span><div class="track"><span style="width:30.2%;background:var(--amber)"></span></div></div>
+<div class="row" role="listitem"><span class="lbl">Lo bloquean de verdad</span><span class="val">10</span><div class="track"><span style="width:7.2%;background:var(--green)"></span></div></div>
+</div>
+<p class="src">139 empresas del tejido industrial y tecnológico de Aragón. Datos públicos, analizados por Olibesc y presentados de forma anónima.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap pad">
+<p class="eyebrow">Por qué no basta con preguntarle a una IA</p>
+<h2 class="big">La configuración es lo fácil. Lo difícil es todo lo demás</h2>
+<p class="sub">Tu empresa no envía correo solo desde tu bandeja. Lo hacen tu programa de facturación, la web, el CRM, la gestoría, las newsletters… Si te olvidas de uno al protegerte, sus correos dejan de llegar y nadie te avisa.</p>
+<div class="split">
+<div class="box">
+<h3>Hacerlo por tu cuenta</h3>
+<ul>
+<li>Copias una configuración genérica sin saber qué rompe.</li>
+<li>Te enteras de que algo falla cuando un cliente no recibe una factura.</li>
+<li>Se queda a medias por miedo a romperlo, y a medias no protege.</li>
+<li>Nadie mira qué pasa después.</li>
+</ul>
+</div>
+<div class="box us">
+<h3>Con Olibesc</h3>
+<ul>
+<li>Primero vemos quién envía en tu nombre. Después protegemos.</li>
+<li>Avanzamos por fases: ningún correo legítimo se queda por el camino.</li>
+<li>Terminamos en protección completa, no en un término medio.</li>
+<li>Seguimos vigilando cada día y te avisamos si algo cambia.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="servicios" class="alt">
+<div class="wrap pad">
+<p class="eyebrow">Qué hacemos</p>
+<h2 class="big">Lo justo para estar tranquilo. Ni más, ni menos</h2>
+<p class="sub">No necesitas la seguridad de un banco. Necesitas que nadie use tu nombre y que alguien lo revise. Empieza por lo básico y crece cuando lo necesites.</p>
+<div class="services">
+<div class="svc star">
+<span class="badge">Para empezar</span>
+<span class="tag">Autónomos y pequeñas empresas</span>
+<h3>Correo profesional y revisado</h3>
+<p>Dejas el correo gratuito y pasas a uno con el nombre de tu empresa, protegido desde el primer día. Cada mes te llega un informe que he revisado yo.</p>
+<ul>
+<li>Cambio a correo con tu dominio, sin perder nada</li>
+<li>Tu dominio protegido contra suplantaciones</li>
+<li>Informe mensual claro, revisado por una persona</li>
+<li>Cuota mensual pequeña y sin permanencia</li>
+</ul>
+<p class="works">Pensado para que te olvides: tú sigues trabajando como siempre.</p>
+</div>
+<div class="svc">
+<span class="tag">Empresas con más equipo · Por fuera</span>
+<h3>Protección del dominio sin cortes</h3>
+<p>Dejamos tu dominio blindado para que nadie pueda escribir en tu nombre, sin que dejen de llegar tus correos legítimos.</p>
+<ul>
+<li>Inventario de todo lo que envía correo por ti</li>
+<li>Activación por fases, sin perder mensajes</li>
+<li>Protección completa al final, no a medias</li>
+<li>Un resumen claro de cómo ha quedado</li>
+</ul>
+<p class="works">Funciona con cualquier proveedor de correo con dominio propio.</p>
+</div>
+<div class="svc">
+<span class="tag">Empresas con más equipo · Por dentro</span>
+<h3>Vigilancia continua del correo</h3>
+<p>Conectamos tu correo a nuestro sistema de vigilancia y miramos lo que pasa dentro de las cuentas, todos los días.</p>
+<ul>
+<li>Accesos desde lugares o equipos extraños</li>
+<li>Reglas ocultas que reenvían tus correos a terceros</li>
+<li>Intentos de suplantación contra tu empresa</li>
+<li>Aviso inmediato y un informe mensual de una hoja</li>
+</ul>
+<p class="works">Para empresas con Google Workspace o Microsoft 365.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap pad">
+<p class="eyebrow">Cómo empezamos</p>
+<h2 class="big" style="margin-bottom:2.8rem">Sin formularios ni letra pequeña</h2>
 <div class="steps">
-<div><b>→</b>Buscando quién puede enviar en tu nombre</div>
-<div><b>→</b>Comprobando la firma de tus correos</div>
-<div><b>→</b>Viendo qué pasa con los correos falsos</div>
-<div><b>→</b>Preparando la explicación clara y sencilla</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="results" hidden>
-<div class="wrap res-in">
-<div class="res-head">
-<h2>Esto es lo que hemos encontrado en <span id="checked"></span></h2>
-<button id="again" type="button">Comprobar otro dominio</button>
-</div>
-<p class="res-lead">Tres comprobaciones. En verde, lo que ya te protege. En rojo, la puerta que hoy está abierta.</p>
-<div class="grid" id="cards"></div>
-<div class="summary">
-<div style="max-width:520px">
-<h3 id="summary-title"></h3>
-<p>Te lo explicamos por teléfono en 15 minutos, sin tecnicismos, y te decimos qué costaría arreglarlo. Sin compromiso.</p>
-</div>
-<a class="btn-red" href="mailto:info@olibesc.com">Que me lo expliquen →</a>
+<div><div class="num">1</div><h3>Hablamos 15 minutos</h3><p>Me cuentas cómo usáis el correo y qué te preocupa. Sin tecnicismos.</p></div>
+<div><div class="num">2</div><h3>Reviso tu caso</h3><p>Miro tu dominio y tu correo desde fuera, sin tocar nada ni pedirte contraseñas.</p></div>
+<div><div class="num">3</div><h3>Te explico lo que he visto</h3><p>Qué riesgo real tienes, qué haría y cuánto costaría. Tú decides.</p></div>
 </div>
 </div>
 </section>
 
-<section id="que-es" style="border-bottom:1px solid var(--line)">
+<section class="alt">
 <div class="wrap pad">
-<h2 class="big">Tu dominio es el apellido de tu empresa en internet</h2>
-<p class="sub">Es lo que va después de la @ en tu correo. Si nadie lo vigila, otra persona puede usarlo para pedirle a tu cliente que pague en otra cuenta. Nosotros cerramos esa puerta.</p>
-<div class="three">
-<div><div class="num">1</div><h3>Miramos tu dominio</h3><p>Sin tocar nada y sin pedirte contraseñas. La información es pública: la misma que ve Gmail cuando recibe un correo tuyo.</p></div>
-<div><div class="num">2</div><h3>Te lo contamos sin palabreria</h3><p>Qué está bien, qué está mal y qué puede pasarte si se queda así. Una frase por cada cosa, sin siglas sueltas.</p></div>
-<div><div class="num">3</div><h3>Lo arreglamos nosotros</h3><p>Si quieres. En tres días, hablando con quien te lleva la web o el correo. Tú no tienes que aprender nada.</p></div>
+<p class="eyebrow">Quién está detrás</p>
+<div class="who">
+<div class="avatar" aria-hidden="true">Á</div>
+<div>
+<h2 class="big" style="font-size:clamp(1.5rem,2.6vw,1.9rem);margin-bottom:.9rem">Hablas siempre con la misma persona</h2>
+<p>Soy <strong>Ángel Oliván</strong>, consultor de ciberseguridad especializado en correo electrónico. Trabajo desde Aragón con empresas de cualquier lugar: todo se hace en remoto.</p>
+<p>Sin centralitas ni tickets. Si algo pasa, me llamas a mí.</p>
+</div>
 </div>
 </div>
 </section>
 
-<section id="ayuda">
+<section id="preguntas">
 <div class="wrap pad">
-<div class="eyebrow">Cómo te ayudamos</div>
-<h2 class="big" style="margin-bottom:2.5rem">Nos ocupamos nosotros y tú te olvidas</h2>
-<div class="cards3">
-<div><h3>Cerramos la puerta del correo</h3><p>Dejamos tu dominio configurado para que los correos falsos no lleguen a nadie. Tú sigues escribiendo igual que siempre.</p><b>Precio cerrado sin sorpresas</b></div>
-<div><h3>Vigilamos cada mes</h3><p>Te avisamos si alguien intenta usar tu nombre y te mandamos un resumen de una hoja que puedes enseñar a tus clientes.</p><b>Incluido</b></div>
-<div><h3>Hablas siempre con la misma persona</h3><p>Ángel, en Zaragoza. Por teléfono o por correo, en horario normal. Nada de centralitas.</p><b>Sin contratos eternos</b></div>
+<p class="eyebrow">Preguntas frecuentes</p>
+<h2 class="big" style="margin-bottom:2.2rem">Lo que suelen preguntarme</h2>
+<div class="faq">
+<details><summary>¿Puedo proteger mi dominio yo mismo con una IA?</summary><p>Puedes conseguir la configuración, sí. Lo difícil es saber qué programas envían correo en nombre de tu empresa antes de activarla. Si se te olvida uno, sus correos dejan de llegar y nadie te avisa.</p></details>
+<details><summary>¿Es ilegal usar Gmail o Yahoo para mi negocio?</summary><p>No está prohibido. Pero si tratas datos de clientes, eres tú quien debe demostrar que los proteges, y un correo gratuito no te da ni el contrato que pide el RGPD ni control sobre la cuenta. Si algo sale mal, la responsabilidad es tuya.</p></details>
+<details><summary>¿Mis correos dejarán de llegar mientras lo hacéis?</summary><p>No. Primero observamos durante unas semanas quién envía en tu nombre y solo bloqueamos cuando todo lo legítimo está identificado.</p></details>
+<details><summary>¿Tengo que cambiar de proveedor de correo?</summary><p>No. Trabajamos sobre lo que ya usas: Google Workspace, Microsoft 365 u otro proveedor con dominio propio.</p></details>
+<details><summary>¿Trabajáis fuera de Aragón?</summary><p>Sí. Todo el trabajo es en remoto, así que da igual dónde esté tu empresa.</p></details>
 </div>
 </div>
 </section>
 
 <section id="cierre">
 <div class="cierre-in">
-<h2>Empieza por saber cómo estás hoy</h2>
-<p>La comprobación es gratis y tarda menos que preparar un café.</p>
+<h2>¿Tu correo está tan protegido como crees?</h2>
+<p>En 15 minutos lo sabes. Si está bien, te lo diré. Si no, te explicaré por qué.</p>
 <div class="btns">
-<a class="btn-red" href="#hero" id="cta-top">Comprobar mi dominio →</a>
-<a class="btn-out" href="mailto:info@olibesc.com">Hablar con una persona</a>
+<a class="btn btn-red js-book" href="mailto:info@olibesc.com?subject=Quiero%20reservar%20una%20llamada">Reservar 15 minutos →</a>
+<a class="btn btn-out" href="mailto:info@olibesc.com">Escribir un correo</a>
 </div>
 </div>
 </section>
+</main>
 
 <footer>
 <div class="foot">
@@ -200,143 +389,16 @@ footer{background:var(--bg);border-top:1px solid var(--line)}
 </footer>
 
 <script>
-/* ---- Configura aquí el webhook de n8n ---- */
-/* Vacío = modo demostración (datos de ejemplo, no se consulta nada real). */
-var WEBHOOK_URL = "https://n8n.olibesc.com/webhook/bb06812f-689a-4f0c-879d-ed135aaacc8a";
-
-var CHECKS = [
-  { key:'spf', name:'SPF', plain:'La lista de quién tiene permiso para enviar correo en tu nombre.',
-    ok:'Solo los servidores que tú has autorizado pueden enviar correo con tu dominio.',
-    bad:'Cualquier ordenador del mundo puede enviar correos que parezcan tuyos. Nadie comprueba de dónde salen.',
-    warn:'Tienes lista, pero está incompleta o mal escrita: algunos correos legítimos pueden acabar en spam.' },
-  { key:'dkim', name:'DKIM', plain:'El sello de lacre del sobre: demuestra que el correo no se ha tocado por el camino.',
-    ok:'Tus correos salen firmados. Si alguien los modifica, el destinatario lo detecta.',
-    bad:'Tus correos viajan sin firmar. Se pueden falsificar o alterar sin dejar rastro.',
-    warn:'Hay firma, pero no en todos los sistemas que envían correo por ti.' },
-  { key:'dmarc', name:'DMARC', plain:'El portero: decide qué hace Gmail u Outlook cuando llega un correo falso con tu nombre.',
-    ok:'Los correos que se hacen pasar por tu empresa se rechazan antes de llegar a nadie.',
-    bad:'No hay portero. Aunque tengas lista y sello, el correo falso entra igual en la bandeja de tu cliente.',
-    warn:'El portero está mirando pero no bloquea: se registra el fraude, no se impide.' }
-];
-var STYLES = { ok:{label:'Protegido',color:'#2a9d8f'}, warn:{label:'A medias',color:'#f4a261'}, fail:{label:'Desprotegido',color:'#e63946'} };
-var DEMO = { spf:'ok', dkim:'warn', dmarc:'fail' };
-
-var $ = function(id){ return document.getElementById(id); };
-
-/* Tema */
-var saved = null;
-try { saved = localStorage.getItem('olibesc-theme'); } catch(e){}
-if (saved) document.documentElement.setAttribute('data-theme', saved);
-$('theme').addEventListener('click', function(){
-  var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  try { localStorage.setItem('olibesc-theme', next); } catch(e){}
-});
-
-function clean(v){
-  return String(v||'').trim().toLowerCase()
-    .replace(/^https?:\/\//,'').replace(/^www\./,'')
-    .split('@').pop().split('/')[0].replace(/\.$/,'');
-}
-function norm(raw){
-  var v = typeof raw === 'string' ? raw : (raw && (raw.status || raw.state || raw.result)) || '';
-  var s = String(v).toLowerCase();
-  if (raw === true || ['ok','pass','valid','good','reject','protected','quarantine'].indexOf(s) > -1) return 'ok';
-  if (['warn','warning','partial','none','monitor','p=none','soft'].indexOf(s) > -1) return 'warn';
-  return 'fail';
-}
-function tieneChecks(d){
-  return CHECKS.some(function(c){ return d[c.key] !== undefined; });
-}
-function fallo(mensaje){
-  $('loading').hidden = true;
-  $('results').hidden = true;
-  $('hero').hidden = false;
-  $('form-block').hidden = false;
-  var err = $('error');
-  err.textContent = mensaje || 'No hemos podido completar el análisis ahora mismo. Vuelve a intentarlo en unos minutos o escríbenos a info@olibesc.com y lo revisamos contigo.';
-  err.hidden = false;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function render(data, domain){
-  var cards = $('cards'); cards.innerHTML = ''; var bad = 0, medias = 0;
-  CHECKS.forEach(function(c){
-    if (data[c.key] === undefined) return;
-    var st = norm(data[c.key]);
-    if (st === 'fail') bad++; else if (st === 'warn') medias++;
-    var meta = STYLES[st];
-    var detail = data[c.key] && data[c.key].detail;
-    var el = document.createElement('div');
-    el.className = 'rescard';
-    el.innerHTML = '<header><h3></h3><span class="pill" style="color:' + meta.color + '"><i></i>' + meta.label + '</span></header>'
-      + '<p class="plain"></p><p class="verdict"></p>';
-    el.querySelector('h3').textContent = c.name;
-    el.querySelector('.plain').textContent = c.plain;
-    el.querySelector('.verdict').textContent = detail || (st === 'ok' ? c.ok : st === 'warn' ? c.warn : c.bad);
-    cards.appendChild(el);
+(function(){
+  var root = document.documentElement, saved = null;
+  try { saved = localStorage.getItem('olibesc-theme'); } catch(e){}
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('theme').addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('olibesc-theme', next); } catch(e){}
   });
-  $('checked').textContent = domain;
-  $('summary-title').textContent =
-      bad > 1  ? 'Hay ' + bad + ' puertas abiertas en tu correo.'
-    : bad === 1 ? 'Hay una puerta abierta en tu correo.'
-    : medias > 1 ? 'Lo esencial está cubierto, pero quedan ' + medias + ' cosas a medias.'
-    : medias === 1 ? 'Lo esencial está cubierto, pero queda una cosa a medias.'
-    : 'Tu correo está bien protegido. Mantengámoslo así.';
-}
-function check(){
-  var domain = clean($('domain').value);
-  var err = $('error');
-  if (domain.indexOf('.') === -1){
-    err.textContent = 'Escribe el dominio completo, con su punto. Por ejemplo: miempresa.com';
-    err.hidden = false; return;
-  }
-  err.hidden = true;
-  $('pending').textContent = domain;
-  $('form-block').hidden = true;
-  $('loading').hidden = false;
-  $('results').hidden = true;
-
-  var minWait = new Promise(function(r){ setTimeout(r, 3200); });
-  var req = WEBHOOK_URL
-    ? fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ domain: domain }) })
-        .then(function(r){ return r.json(); })
-        .catch(function(){ return null; })
-    : Promise.resolve({ __demo:true });
-
-  Promise.all([req, minWait]).then(function(out){
-    var data = out[0];
-    if (Array.isArray(data)) data = data[0];
-    if (data && data.result) data = data.result;
-    if (data && data.__demo) data = DEMO;
-
-    /* Nunca mostramos datos inventados sobre un dominio real: si el análisis
-       no llega o el servidor lo rechaza (dominio inválido, límite de uso),
-       se enseña el motivo y se devuelve al formulario. */
-    if (!data || typeof data !== 'object' || data.ok === false || !tieneChecks(data)){
-      fallo(data && data.mensaje);
-      return;
-    }
-
-    render(data, domain);
-    $('loading').hidden = true;
-    $('hero').hidden = true;
-    $('results').hidden = false;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-$('go').addEventListener('click', check);
-$('domain').addEventListener('keydown', function(e){ if (e.key === 'Enter') check(); });
-$('again').addEventListener('click', function(){
-  $('results').hidden = true;
-  $('hero').hidden = false;
-  $('form-block').hidden = false;
-  $('domain').value = '';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  $('domain').focus();
-});
-$('cta-top').addEventListener('click', function(){
-  if ($('hero').hidden){ $('results').hidden = true; $('hero').hidden = false; $('form-block').hidden = false; }
-});
+})();
 </script>
 </body>
 </html>

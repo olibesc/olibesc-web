@@ -17,8 +17,9 @@ Normas para cualquier agente (Claude Code u otro) que trabaje en este repo.
   `AGENTS.md`.
 - **Sin `LICENSE`, a propósito:** todos los derechos reservados, coherente con
   el aviso legal. No añadir MIT ni ninguna otra licencia.
-- Esta es la única copia de la portada: el formulario habla con el workflow
-  de auditoría de dominio de n8n, pero la página vive solo aquí.
+- Esta es la única copia de la portada. **La web es estática y no habla con
+  n8n:** las auditorías de dominio se lanzan solo por Telegram. No volver a
+  añadir formularios ni llamadas a webhooks sin confirmación de Lito.
 - Diagrama: `docs/arquitectura.json` → `docs/arquitectura.html` con archify.
 - `_config.yml` excluye de la web `docs/` y los `.md` del repo: si se añade un
   fichero que no debe publicarse, añadirlo ahí.

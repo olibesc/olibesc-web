@@ -7,7 +7,7 @@ por delante.
 ## Estructura
 
 ```
-index.html        portada: comprobación gratuita de la protección del correo (SPF/DMARC/DKIM)
+index.html        portada informativa; el contacto es solo por correo (sin formularios)
 aviso-legal.html
 privacidad.html
 cookies.html
@@ -33,14 +33,15 @@ Publicar: hacer push a `main`. GitHub Pages la publica en un par de minutos.
 ## Páginas legales: pendiente
 
 Revisadas el 2026-09-25 para que describan lo que la web hace de verdad (sin
-cookies, solo el dominio en el formulario, proveedores reales). Falta:
+cookies, proveedores reales). Actualizadas el 2026-10-13 al retirar el formulario
+de auditoría: la web ya no recoge datos. Falta:
 
 - El **CIF/NIF** del titular en el aviso legal y la política de privacidad.
 - **Servir las tipografías desde la propia web** en vez de Google Fonts, para
   que Google no reciba la IP de cada visitante. Cuando se haga, quitar Google
   de la política de cookies y de la de privacidad.
 - Una revisión profesional de las bases legales (prospección entre empresas y
-  el aviso interno por Telegram, que opera fuera del EEE).
+  la revisión de dominios vía Telegram, que opera fuera del EEE).
 
 ## Arquitectura
 
