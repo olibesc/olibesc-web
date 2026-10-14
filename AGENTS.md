@@ -20,6 +20,9 @@ Normas para cualquier agente (Claude Code u otro) que trabaje en este repo.
 - Esta es la única copia de la portada. **La web es estática y no habla con
   n8n:** las auditorías de dominio se lanzan solo por Telegram. No volver a
   añadir formularios ni llamadas a webhooks sin confirmación de Lito.
+- **Lo que promete la portada tiene que tener respaldo** (tabla «Qué promete la
+  portada» del README). Un servicio nuevo en la web se da de alta antes en
+  `olibesc-comercial` o `olibesc-piloto-soc`, con precio y alcance.
 - Diagrama: `docs/arquitectura.json` → `docs/arquitectura.html` con archify.
 - `_config.yml` excluye de la web `docs/` y los `.md` del repo: si se añade un
   fichero que no debe publicarse, añadirlo ahí.
