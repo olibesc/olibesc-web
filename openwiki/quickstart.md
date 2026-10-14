@@ -3,9 +3,6 @@ type: quickstart
 title: "Guía rápida de olibesc-web"
 description: "Punto de entrada a la wiki de olibesc-web: qué es el repositorio, cómo ver la web en local, cómo se publica y qué página consultar para cada tarea."
 tags: [quickstart, static-site, landing-page]
-verified:
-  - by: openwiki/0.6.0
-    at: 2026-09-25T11:01:50.364Z
 sources:
   - id: openwiki-source-96432c8187f1a2124a5afef3
     resource: repo://_config.yml
@@ -15,7 +12,10 @@ sources:
     resource: repo://index.html
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "claude-code", at: "2026-09-25T11:01:50.364Z" }
+generated: { by: "claude-code", at: "2026-10-14T15:24:02.349Z" }
+verified:
+  - by: openwiki/0.6.0
+    at: 2026-10-14T15:24:02.349Z
 ---
 
 # Guía rápida de olibesc-web
@@ -32,20 +32,22 @@ logo. No hay build ni dependencias.
   que se prueba antes en local.
 - **No publicar un fichero:** añadirlo a `exclude` en `_config.yml`.
 - **Sin licencia:** todos los derechos reservados; no añadir `LICENSE`.
+- **Sin formularios:** desde 2026-10-13 la web no recoge datos ni habla con n8n;
+  el contacto es un `mailto:`. La auditoría de dominio se lanza por Telegram.
 
 ## ¿Qué quieres hacer?
 
 | Tarea | Página |
 |---|---|
 | Entender cómo se sirve la web, qué se publica y qué no | [Publicación: GitHub Pages, dominio y exclusiones](arquitectura/publicacion.md) |
-| Tocar la comprobación gratuita de la portada, sus textos o el formato de respuesta | [Flujo de la comprobación de dominio](flujos/comprobacion-de-dominio.md) |
 | Revisar o actualizar aviso legal, privacidad o cookies | [Páginas legales y licencia](contenido/paginas-legales.md) |
+| Cambiar lo que promete la portada (servicios, datos, permanencia) | Tabla «Qué promete la portada» del `README.md` del repositorio |
 
 ## Mapa del repositorio
 
 | Ruta | Qué es |
 |---|---|
-| `index.html` | Portada con la comprobación de SPF, DKIM y DMARC |
+| `index.html` | Portada informativa: riesgo del correo, correo gratuito y RGPD, datos agregados, servicios y preguntas frecuentes |
 | `aviso-legal.html`, `privacidad.html`, `cookies.html` | Páginas legales |
 | `logo.png`, `CNAME` | Logo y dominio de GitHub Pages |
 | `_config.yml` | Lista de ficheros que no se publican |

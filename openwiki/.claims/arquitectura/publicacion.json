@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:0e5fe231e92ef571401e9be8618c39f73a10194b1968271499f5bb19c92c70ff",
+  "pageVersion": "sha256:915c902f0ff4b507c5d2a81777acb74e6e66e28d0ed2b971fc63d9456d6a1990",
   "claims": [
     {
       "id": "claim_22a6075e68b645ddb11e470619dd35d2",
@@ -55,8 +55,8 @@
       "statement": "Las tipografías del sitio se cargan desde Google Fonts (fonts.googleapis.com y fonts.gstatic.com).",
       "evidence": [
         {
-          "resource": "repo://index.html#L8-L10",
-          "version": "repo-lines-v1:sha256:8d8eeaaa86da8fdd6aeb0934025296114cab72e7944db0a4796dadbb46e3b9bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZkMTc4NjZjODJlYWM1NGIxZjkxY2QzMmE2NjE3YmE0MTJjMWUxNGQ3MDRiNjgzMzhlN2VlYjM5NThlN2QxOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE0OThlMGJhYjczN2Q4MzVlZjgwMjIwMDdhNTY2YzY2ZDQyYTkwYzc4YTkxODM4OGFiMTRjNTI5MjQ1NzExNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmZlYjA5NTBlMjk1ZTZjZWEyOWQ4YjQ0YTI1NTdkMWE2ZGJiODY0ZTViNWE5N2RjM2Q2ZmZiZGVjY2UzYzJiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGFiZjMwMDFjNjBjMjdjOGM2ZDRjNmZjZDdhYzg3YTc3NmYwZjI3NDg3YzhiZmZiZjg5NDIwNTZiOTY0YTAzZiJ9"
+          "resource": "repo://index.html#L14-L16",
+          "version": "repo-lines-v1:sha256:9d4151165fe2c1bc37c557446ed442ab0adaf20908b26ffd950f269db1543134:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjA5Y2Y0ZDE5OWM0Y2IyYjk3OWIzODlhMThmMmJmOGRjZGFkMmE3NjA2MDE2MzJlY2ZlZjEwODc2MTczNjA3ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGVmNGExOTc2MTg2NmFhYzc3ZDBhMDAyNWZiMmVhZGE2YjBiNzljNjUzNjZjZWM5MWZjY2NiZmE0Y2E0Yjg0YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTA1ZGIzYWI4YWJhMzU5MjJkMTQ2NzM0ZWU0NDY4YmRjM2ZmN2MxYjFlMDI0OTI5Y2U3YzY4MDRlZGU5ZGZlZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDg5MzA1Mzk5ZGY3OTY3MmUwOGZjYWY0ZTE0MjM1NWE1NzJhMzlhYzZlMWFkZmUxMDkxN2M2MmYwNGFlOTk0NiJ9"
         }
       ]
     },
@@ -73,10 +73,24 @@
           "version": "repo-lines-v1:sha256:7450adb3c065764c7bbd07fb43b332d4189136a2c57d28d436a1fca870af6021:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmEwNDI4YzMxNTM4NDAzOTRjMjdiZWY3ZTg0ZTlkMzRkMzQyZWRjZjBhM2IyNTEzMjgyNzFkZGM1NTcyNGRkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmM1YzFjZWY1YzA4ZDMyZjA5MTAyOTVhYjc1MWRiZWE0ZGQzYjIzM2JiNTRlNTM4M2Q2N2U3YWE0MDJmOGQ4MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmI3NjMzM2ZjNTdkNDA2NmMwYmZlYjkxZjU5ZGI5MDE3YmYwNzEzZmI3YTI5YTk4YTBjMjU1OGVmYjM1YzdlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
         }
       ]
+    },
+    {
+      "id": "claim_c5fe59e676bc420cbdb1769ade6688ef",
+      "statement": "Desde 2026-10-13 la web no tiene formularios ni llama a n8n: el contacto es un mailto y la auditoría de dominio se lanza solo por Telegram.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L20-L22",
+          "version": "repo-lines-v1:sha256:e5fc7125dfef081ca05dc2e9d98b34213510a42ab4e0a78d2e0cf9e02ff59d15:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQzNTc3OWU4NTQ1YWM2ZWU5ZDQ0ZGUyMTIyMzI0YWUzNmUyMTViZDJlY2U5YjRlZTQ3MmE4NjNkNjAzMzE5NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEwNTE2ZTBiNGQ5MjE1ZDNiYTUzZWQwNGE0ZGJjMmRkYzNhZTc1NTg4MmY3ZDkxMzFjZTUxZGYxMDQ4NjA4ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2M5MDE0MTllMDYxNDdiZWViYWZiNDMyOWY5YjI3YmFjMjgzYjY1ZTAxYzViZDBhMGMwMTcyOGRiNGM5YTM2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjBmZGYxMWVmZDMyNDY1NGVkNmYwYmQ2MmE5OTQxMDQ2OWJiMmY3ZWNlYmU3ODQ3N2RhY2QxMGNhYjA5MGU3NSJ9"
+        },
+        {
+          "resource": "repo://README.md#L10-L10",
+          "version": "repo-lines-v1:sha256:10ac4f8b4d2f2abaf464e4bd679206a3ac4bf86a52130f9f17f8332e8e2d8838:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTBhYzRmOGI0ZDJmMmFiYWY0NjRlNGJkNjc5MjA2YTNhYzRiZjg2YTUyMTMwZjlmMTdmODMzMmU4ZTJkODgzOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTBhYzRmOGI0ZDJmMmFiYWY0NjRlNGJkNjc5MjA2YTNhYzRiZjg2YTUyMTMwZjlmMTdmODMzMmU4ZTJkODgzOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzdmN2RjNmZmNTliNTUwMGUwNmMxNzJjYjE5Y2M4ODRiOTI0NTk1MDY4NGMyNDEyODY1ZDBlYTRhNmJmMDI5MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDIxMTllMzVhYjY1ZWMyODY1MzgxZTg1N2U5Yzk2MzIyYmY1NTNlNjUxOTVlYTJlZTEwYmNiNzc1YzVmYzU0NiJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.6.0",
-    "at": "2026-09-25T11:01:50.364Z"
+    "at": "2026-10-14T15:24:02.349Z"
   }
 }

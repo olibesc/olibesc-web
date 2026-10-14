@@ -5,7 +5,7 @@ description: "Cómo se sirve olibesc.com: HTML estático sin paso de build publi
 tags: [deployment, github-pages, static-site, cloudflare]
 verified:
   - by: openwiki/0.6.0
-    at: 2026-09-25T11:01:50.364Z
+    at: 2026-10-14T15:24:02.349Z
 sources:
   - id: openwiki-source-96432c8187f1a2124a5afef3
     resource: repo://_config.yml
@@ -17,7 +17,7 @@ sources:
     resource: repo://index.html
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "claude-code", at: "2026-09-25T11:01:50.364Z" }
+generated: { by: "claude-code", at: "2026-10-14T15:24:02.349Z" }
 ---
 
 # Publicación: GitHub Pages, dominio y exclusiones
@@ -65,9 +65,10 @@ entrada, el siguiente push lo publica.
 
 Las páginas son autocontenidas (estilos y scripts en línea), con una excepción:
 las tipografías (Syne y DM Sans) se cargan desde Google Fonts
-(`fonts.googleapis.com` y `fonts.gstatic.com`). Además, la portada llama al
-webhook de auditoría cuando el visitante lanza una comprobación (ver
-[Flujo de la comprobación de dominio](../flujos/comprobacion-de-dominio.md)).
+(`fonts.googleapis.com` y `fonts.gstatic.com`). Desde 2026-10-13 la web **no
+habla con ningún servicio propio**: no hay formularios ni llamadas a n8n, y el
+contacto es un `mailto:`. La auditoría de dominio dejó de ser pública y se lanza
+solo por Telegram (ver `AGENTS.md` del repositorio).
 
 ## Convenciones del repositorio
 

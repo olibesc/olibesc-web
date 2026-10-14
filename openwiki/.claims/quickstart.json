@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:dede3e8e916bff993f2a984d69fc1fc2c141006d5dc7decc6e55a57ffb538094",
+  "pageVersion": "sha256:01ffcf1f40462b9b399408902b2a644f9a950124ad0e39912fbfd2af88d4b7f5",
   "claims": [
     {
       "id": "claim_fc35790193c24d82922d8a445560a4bd",
@@ -28,21 +28,31 @@
     },
     {
       "id": "claim_919822e15abf48f1bb5aa8a66f3a566c",
-      "statement": "La portada index.html ofrece la comprobación gratuita de SPF, DKIM y DMARC de un dominio.",
+      "statement": "La portada index.html es informativa: explica el riesgo del correo, el correo gratuito y el RGPD, datos agregados, servicios y preguntas frecuentes, y lleva a contactar por correo sin formulario.",
       "evidence": [
         {
-          "resource": "repo://index.html#L114-L126",
-          "version": "repo-lines-v1:sha256:de8d6c054bd27924e7d6c22da02dba6eb75408650f8a3c24794b5522a9f1ffa5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiZGY1OGU5MmFhMGRlMGY1Yjk2ZTA1OWVkZDIwMjliMTg2OTdmNDZiMzVhM2VmNzYxZDM5NGJhOTcxOWVkYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxNmY0M2Q4Yzc0ZWJhMTYwMWJmMGVmY2Y5NTE3NjA0ODRiYmIzMWQ4ZjIwMDY5NWMzMmEyZTc2N2E5YmMxMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiZDNhZjFmOTE3NDM2NzEyYTdjYWY5ODc3MTY5MmQxY2RlOTE5NDhlMWJlYTVmNjY5NGZmM2NiNzZiOTFhZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4MmFjZjgyMmU5NDZiMTcyMzNkMTUxYjRiMWM2NzBiMDRkNTI0NDQ2NWQ3ZjJiYjA0MzljZjhkNjM5Y2IzMzEifQ"
+          "resource": "repo://index.html#L181-L192",
+          "version": "repo-lines-v1:sha256:d4db643326b940a21faf737302d2404aaeff1012875b0f85c44c4faa6e343e09:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYzc2MzM2NzFlNzViMTU2YzQwZmMxYWZmZWYzMDMwYTBmYzlkYmVhMjQ0Y2YwMTMyY2Q1Y2Y4MzlmYTgxYTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1N2NjZTk4Nzg5MGQzZDNiOGIzOTc3Mjc5MzY2OGY2YTg1ZmEyNzliYmYxNjk3YjhiNmQwMmI1ZjllOTU5MGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ1NzI3MjJmNTZkNjBkN2FmZWFmMzUzMTE4MTM0ZDI1OTZjZDA0ODQyOTUwNjk5MzYyZjBhN2RjMjU0NGIwOWUifQ"
         },
         {
-          "resource": "repo://index.html#L207-L220",
-          "version": "repo-lines-v1:sha256:4a61b685ccb076caa9c8b1e2da53a97ef8a8ef43a5daac6b919b842b8676f307:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0OTc2ZmQ2ZGIxZDk1ZGU0ZWEwNjE2NDY1NGYyNTU2YTlhZWUwZmMyOGYyNTIyNDUxMDcxZTNmMDQ4YjIxYzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4YzNiMzRjMDkxMzRmOTc3MGU5OGMzNTBmZjJiNjE2YmRjNjQ0MTgzOWQ2OGJiZjRhYmQyMjkzMTZlN2Y4NzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1ZDU1ZDg0OTkzMWIwOWFiZjYyZjVkMjdkNjlhOWZkMGMwMTk1YzdhMDViZDMyOGVhMTIzZDZiZTE0MzliYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0NTBjYzU1MGFlYTA5NDNkMDQ0ZmFlZjIyMjRhZjQ5NGU0MDRhYzUxNWY2MmE5MWEwOTA0MDhkNjI3ODExMTcifQ"
+          "resource": "repo://index.html#L374-L383",
+          "version": "repo-lines-v1:sha256:8323210efd9d1ba3f39e0e757628ba472877fab8e0fb30cdc754edc259f4553a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhZjYwMTkyZmE5MmZkMzcwMmVkNGFmNGUwNmRjZTYyZjdlNjk3MTZiMTU2ODRjM2E0MmJmNGUwYzkxOTk2MjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmZDJiOTNmOTMwOTIzNWUwYWE1NDgzZDU5NTNjY2YzZWE4MTU0ZTgzYzc5ZjBmNjljMDc5MzlmMDFhMmI3M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ1NzI3MjJmNTZkNjBkN2FmZWFmMzUzMTE4MTM0ZDI1OTZjZDA0ODQyOTUwNjk5MzYyZjBhN2RjMjU0NGIwOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3MDRlNGQzNTNhMTY3YzgzZjZkNTNkN2I5MmQ5ZDYwOThiZWYxOTViNmZhNzdjZTE2Yjc5NzQ4YzdlNTM0OTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb28ae2f873949ad8465eba1c1a536e7",
+      "statement": "La web no recoge datos ni habla con n8n desde 2026-10-13; la auditoria de dominio se lanza solo por Telegram.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L20-L22",
+          "version": "repo-lines-v1:sha256:e5fc7125dfef081ca05dc2e9d98b34213510a42ab4e0a78d2e0cf9e02ff59d15:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQzNTc3OWU4NTQ1YWM2ZWU5ZDQ0ZGUyMTIyMzI0YWUzNmUyMTViZDJlY2U5YjRlZTQ3MmE4NjNkNjAzMzE5NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzEwNTE2ZTBiNGQ5MjE1ZDNiYTUzZWQwNGE0ZGJjMmRkYzNhZTc1NTg4MmY3ZDkxMzFjZTUxZGYxMDQ4NjA4ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2M5MDE0MTllMDYxNDdiZWViYWZiNDMyOWY5YjI3YmFjMjgzYjY1ZTAxYzViZDBhMGMwMTcyOGRiNGM5YTM2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjBmZGYxMWVmZDMyNDY1NGVkNmYwYmQ2MmE5OTQxMDQ2OWJiMmY3ZWNlYmU3ODQ3N2RhY2QxMGNhYjA5MGU3NSJ9"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.6.0",
-    "at": "2026-09-25T11:01:50.364Z"
+    "at": "2026-10-14T15:24:02.349Z"
   }
 }

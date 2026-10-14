@@ -3,9 +3,6 @@ type: content
 title: "Páginas legales y licencia"
 description: "Qué cubre cada página legal de olibesc.com (aviso legal, privacidad y cookies), quién figura como titular y por qué el repositorio no tiene licencia de uso."
 tags: [legal, privacy, cookies, license]
-verified:
-  - by: openwiki/0.6.0
-    at: 2026-09-25T19:03:50.575Z
 sources:
   - id: openwiki-source-8037e2358a2c4f9b2c722a11
     resource: repo://AGENTS.md
@@ -17,14 +14,16 @@ sources:
     resource: repo://privacidad.html
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "claude-code", at: "2026-09-25T19:03:50.575Z" }
+generated: { by: "claude-code", at: "2026-10-14T15:24:02.349Z" }
+verified:
+  - by: openwiki/0.6.0
+    at: 2026-10-14T15:24:02.349Z
 ---
 
 # Páginas legales y licencia
 
 El sitio tiene tres páginas legales en HTML estático, en la raíz del
-repositorio. La portada enlaza a la privacidad y al aviso legal desde el pie;
-la política de privacidad enlaza a su vez a la de cookies.
+repositorio. La portada enlaza a las tres desde el pie.
 
 ## Titular
 
@@ -37,27 +36,30 @@ titular: es una regla del repositorio.
 
 | Página | Contenido |
 |---|---|
-| `aviso-legal.html` | Datos del titular, propiedad intelectual, condiciones de uso, descripción del servicio de auditoría gratuita y su limitación de responsabilidad, enlaces, ley aplicable y jurisdicción, modificaciones y contacto. |
+| `aviso-legal.html` | Datos del titular, propiedad intelectual, condiciones de uso, carácter informativo de los contenidos (los datos estadísticos son agregados y anónimos), exención de responsabilidad, enlaces, ley aplicable y jurisdicción, modificaciones y contacto. |
 | `privacidad.html` | Responsable del tratamiento, datos que se recogen, finalidades, base legal, plazos de conservación, proveedores con los que se comparten datos, derechos del interesado, seguridad, cookies, cambios y contacto. |
 | `cookies.html` | Qué son las cookies, inventario de lo que el sitio guarda en el navegador (ninguna cookie; solo la preferencia de tema `olibesc-theme`, si se elige), las que no usa, servicios de terceros que carga la página (Google Fonts, Cloudflare, GitHub Pages), cómo borrarlo, actualizaciones y contacto. |
 
-Desde septiembre de 2026 los textos describen lo que la web hace de verdad:
-el formulario solo pide el dominio, no hay cookies y la lista de proveedores es
-la real. Quedan pendientes el CIF/NIF del titular y servir las tipografías
-desde la propia web en vez de Google Fonts (ver el README).
+Los textos describen lo que la web hace de verdad. Desde el 2026-10-13 la web
+es solo informativa: **no tiene formularios ni recoge datos** al navegar, no hay
+cookies y la lista de proveedores es la real. La privacidad explica además que
+las revisiones de dominio se conservan como máximo 12 meses, que las copias de
+seguridad cifradas (R2, jurisdicción UE) pueden guardarlas hasta 90 días más y
+que Telegram es la mensajería interna con la que se lanzan. Quedan pendientes el
+CIF/NIF del titular, servir las tipografías desde la propia web en vez de
+Google Fonts y una revisión profesional de las bases legales (ver el README).
 
-El aviso legal fija dos reglas de uso relevantes para la herramienta de la
-portada: prohíbe analizar dominios de los que no se sea titular o para los que
-no se tenga autorización, y prohíbe el uso masivo o automatizado del
-formulario.
+Las condiciones de uso del aviso legal prohíben el uso masivo o automatizado
+del sitio y su uso con fines ilícitos.
 
 ## Mantener los textos al día
 
 Los textos legales describen lo que hace la web, así que dependen del código:
-si cambia lo que envía el formulario, adónde van los datos o qué guarda el
-navegador, hay que revisar `privacidad.html` y `cookies.html` en el mismo
-cambio. El comportamiento real del formulario está descrito en
-[Flujo de la comprobación de dominio](../flujos/comprobacion-de-dominio.md).
+si la web volviera a recibir datos (un formulario, analítica) o cambiara lo que
+guarda el navegador, hay que revisar `privacidad.html` y `cookies.html` en el
+mismo cambio. Lo mismo vale para la conservación: la promesa de 12 meses en la
+política de privacidad depende de la purga de Postgres y de la regla de borrado
+de las copias, que viven en otros repositorios.
 
 ## Licencia
 

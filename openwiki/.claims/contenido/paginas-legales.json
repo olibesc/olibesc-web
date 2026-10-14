@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f91dadb1b11452365b60b4abfe1d96b21b8820ad82e818c478997cf25c1fe778",
+  "pageVersion": "sha256:05b8dc7784d8135e5ca40a820732d3ecdcc36997593bb98693391207689d148f",
   "claims": [
     {
       "id": "claim_b24edb3c794a496aaefd08a5f68d6638",
@@ -34,11 +34,11 @@
     },
     {
       "id": "claim_68a58e886c684b19a84bf7dc9a2c8b6e",
-      "statement": "Las condiciones de uso del aviso legal prohíben analizar dominios sin titularidad o autorización y el uso masivo o automatizado del formulario.",
+      "statement": "Las condiciones de uso del aviso legal prohiben el uso masivo o automatizado del sitio y su uso con fines ilícitos.",
       "evidence": [
         {
-          "resource": "repo://aviso-legal.html#L85-L93",
-          "version": "repo-lines-v1:sha256:d6d05c57cf2b4a3ca800f25d7e6f2317735565b018a689a7dd66304dfbed9d2e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg4NjUwZGE2NDEzZTI0OTEyMDFmNDY3MTJmZDcwZWVjMmJmNGQ2MGQ5Y2MxYWRhNWE3NDE3ZTU1MDllNTI2MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjAyZTNlZmEwMGI5NDFkODViMWRkMWNiNjYxN2RmYTQ4YTI1NzA0ZjA5NTUxMjAxMmUzMTFjMDU5MTM0NWM3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODllNzRkMGE5MDc3NDc5NDEyNWU0YjAyMzQ3M2IwZmMwOGUyYzQ0ZDU2YThhNjdmNzYyZjhhYzBlMGQ0M2JiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk2ZDZiNWY3YjU1YWVjZTVlZjc5YTU4YzZmYjA1M2VkNDNkNzVmMjk3NmY0NjI3YjQxNTJlZDQ2ODgxNzVlNSJ9"
+          "resource": "repo://aviso-legal.html#L85-L90",
+          "version": "repo-lines-v1:sha256:9bf73934c90fbcabc02bd5a6e83b92d8ff70941324746a30bcba92267f944170:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg4NjUwZGE2NDEzZTI0OTEyMDFmNDY3MTJmZDcwZWVjMmJmNGQ2MGQ5Y2MxYWRhNWE3NDE3ZTU1MDllNTI2MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjAyZTNlZmEwMGI5NDFkODViMWRkMWNiNjYxN2RmYTQ4YTI1NzA0ZjA5NTUxMjAxMmUzMTFjMDU5MTM0NWM3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODllNzRkMGE5MDc3NDc5NDEyNWU0YjAyMzQ3M2IwZmMwOGUyYzQ0ZDU2YThhNjdmNzYyZjhhYzBlMGQ0M2JiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTQ2NDdmMmYxNWNmZWZlOTNkNmQ1ODJlM2VlMjk1ZTdkYTg4MGNiZDdmNzRjY2FlNGRjMmYzZWNiNzg3YjE0MCJ9"
         }
       ]
     },
@@ -76,37 +76,37 @@
       "evidence": [
         {
           "resource": "repo://cookies.html#L87-L90",
-          "version": "repo-lines-v1:sha256:c433cbd20b7f0378e1718a56b0e70c3cb984eaf405b6e4952fc07cbb88dab851:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWJlNjYzMzc4YzkyN2VmNGZlNjNiZDU1ZWVjYjU0YTczNDAxZjEwNmYyNjdhNDNiMTY1N2MyNTA2YzRjOGYyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWNmZTA0MjcxOTc3ZTlkZmQ1YjgzZDdmZmE1MGJhMWQ1YWFlOWFmZDQ3ZmRkMGEyYTE1YThkZDNiYmZjZDY5YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmE1ZTQ4YWQ4NTg4Y2M3NDZlYWVmZTFjYjhmZDYwYzM3ZTUwOGJmYTM1OTA2NDI2ZjhlNzFlYzY0OTU1Nzk3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODI1MGI5NWEzYWQyODcyYmJhMjk3YmEyZWU3NTQwNDhmYWIyZTlmMmZjMjQwNjdiMDkxNzM2NzZlMmMzNmQxYSJ9"
+          "version": "repo-lines-v1:sha256:9f3cacebbaa0bf4b17b3bdf8f64a44a10d5327c8aa9df1df562f543ab3876c50:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjAyNDBmOTc4M2M2YTlkMTc3YzU5MjdkNWE0MDgyZDUyMzk5ZDBkM2U1NmQxODNmNWRjYzgxODQxOGEzNmM1MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmI0MTYzNjc2ZjY5ZWI5MTg1NGU1ODI4MTJlMTlhNDcxMTZlMTE1ODI2MGM2MjRjMWY2MmQ3NDRkMDM5ODUzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWJiNmMwM2YzNDVkYTVhYmQ1OWI3OWYwYWMwNzM4NjExZDBjYTg1NWM3Y2EwZjcyNDI3MmQ3MDk1ZDE5MDBlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjYyMmMxYTI3MzYwYzBmZWU1NDQzMTYzZGU2ODgyNGQ2ZjUzZDEwYjYwNTcwNjU3MzdhNGM3NDRiNWU0YTE2NSJ9"
         },
         {
-          "resource": "repo://cookies.html#L96-L116",
-          "version": "repo-lines-v1:sha256:b942c6c6fb7a2e9ed21a129201a08fe11145e593a84fa6a4f208dd09a1a2d152:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmYTUyODY2YjFmNTFlN2Q0MjUwMDdmM2FlNzk3OTc1YzgwMzRiMGY0NDI4ZDY3ZGIyMGM4MjJjNzEzZTIxMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4MGY1MmI4ZGU3YmM3ZTIxMGM5ZjcyYmQ1NzdkZDU1MTYyNjNkODlhNDgxZWNhNDEyMzM4YTg4MDkyMGFiMTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmOTc5OGJhNDQzYTk5ZmZjNTVhNWE1NTUxZmJhNDBmZmZkOWM2YzhkMzYyZTY2M2IzNDdmNDUxNDhiYzNiMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2Mjk5YTA1NDk2MWEyNjkxYzk1NTM1MGYxZDljODQzOTFlMTMyZDlhZDY1NzY5MmUxZmE5OWY5OGZiZWVmZWIifQ"
+          "resource": "repo://cookies.html#L99-L116",
+          "version": "repo-lines-v1:sha256:78cc934daa551a2617dbcd3746877ec03930640e88d47f7d8c62011200e27e82:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkOTFhZTRmZWIyMWRkN2JiNDdkODE2NTkxNWI2MzQwNjE5MTQzNzU4ZThkMGNjYWQyMzkzZGYxNWQ3ZTEyN2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2MTYzZDlkYmUyMzU4YWEyYTY0ZGI4MDA5MTIyYWVkYmYzZTFhOTI1ZGYwMWZjMjk5Y2Y1MmRkZGFjYjcyMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwYTEwNzE3NWVlY2E0MDk2NGE0N2QyNjgwMDU5YWE5NGVjYjYyMmRlMTU0ZGIyYmJhM2QxNDFmNmM5MzYzNjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1MDRjY2IzMjVjNjYxNWYyMjRmYTA1NzhjNDhhNTgwNzJlYzg0ZDdjOGI5ZGJjZDM0MDNjMGFiMzc3N2U2ZWIifQ"
         }
       ]
     },
     {
       "id": "claim_7743e99b53784b97b6bda171be7de3c5",
-      "statement": "La política de privacidad declara que el formulario solo pide el dominio.",
+      "statement": "La política de privacidad declara que la web es solo informativa: no tiene formularios ni recoge datos mientras se navega.",
       "evidence": [
         {
-          "resource": "repo://privacidad.html#L135-L136",
-          "version": "repo-lines-v1:sha256:499af0116c13da4df7fd0f037f8b295d3462e9bb4324cb603654eeaa93b98e8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjY3MjY1ZTdiZmQyM2E4MjVlYzU0MGVhNjRmOTJiODEyNWVmYWU5ZDMwNmY1ZTczZDc3NjEyNDUxNmUwMTg3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMwYmE3NTA4MDdhY2MxZWI2Y2QwMjk4YzhkOThmOTgyZjc2ODQ5MmRmMmRkOGI3ODI2NjE3NDM2ZjY0NTQ0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMxMjY5NGIyNWE0ZThhYzU3OWNkZTg5ZDFiNDIzMzMxZDlkYTAwYWYzOTYxYmQ3NTJiOGEyMTcxNDE3N2JjYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzVkN2ZlNDFmOTZmNjVjNzBmZDZjYTA1MDA4OTQ4MDkyNjA3OTgxODRkMmUyYjMzYTU0ZDU5M2I2Y2FkYjYxYSJ9"
+          "resource": "repo://privacidad.html#L136-L136",
+          "version": "repo-lines-v1:sha256:43f2a79158174b75498700baaf9ac499e29a94083d3047049338a62f508b3fe4:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDNmMmE3OTE1ODE3NGI3NTQ5ODcwMGJhYWY5YWM0OTllMjlhOTQwODNkMzA0NzA0OTMzOGE2MmY1MDhiM2ZlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDNmMmE3OTE1ODE3NGI3NTQ5ODcwMGJhYWY5YWM0OTllMjlhOTQwODNkMzA0NzA0OTMzOGE2MmY1MDhiM2ZlNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDA4NTJmZWYxMmI0ZDM2MzZhY2ZiMDhmYjk1YTZmN2JiNjM4MmVjZTViZDAzMzk5YzljMjAyODQyMTFhZmJkZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzBiZjJiNTYzZjUxOWY4MmFjYWQ3ZWMwOTA1MTFiOTg4MjcwNWNlNDEzMjhkM2RmMjk0ZWVhYjM0ZmU5ZDcwMyJ9"
         }
       ]
     },
     {
       "id": "claim_90296bdd42614facad82c3aa5ef56e94",
-      "statement": "Quedan pendientes el CIF/NIF del titular y servir las tipografías desde la propia web en lugar de Google Fonts.",
+      "statement": "Quedan pendientes el CIF/NIF del titular, servir las tipografías desde la propia web en lugar de Google Fonts y una revisión profesional de las bases legales.",
       "evidence": [
         {
-          "resource": "repo://README.md#L33-L44",
-          "version": "repo-lines-v1:sha256:2757118c4873b6f4f775feb3d116c3e9c8befa79779a3e3cddf4c00aca344ec3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NWYzYjk4ZDJkNGRkZjMzYTU4Y2Q4MWVhNjdmZjRlNzdlYzEzZTlhOWZlYjZkN2UxN2Q2YjExMTJlYzZhZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxZjA1NGIwYWIwOWFhMWNiZGU4ZWZjNjc0MjY5NTZlMDE4ZWViYjE1NGUxMzA1OWRlNTM5ZjczZWE2Y2JmZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhNmY1M2EzY2Y4NmUzYzg2ODczNzVkMjEzZmJhYjIzOTBmOTEyZmI1NTNlN2NkOGQ3ZDIyNmJmMTkyZjYzMTUifQ"
+          "resource": "repo://README.md#L48-L59",
+          "version": "repo-lines-v1:sha256:d1127c81763ec4cc0c4bce99d537bb521970372d4249ac2c36279394eb4567d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NWYzYjk4ZDJkNGRkZjMzYTU4Y2Q4MWVhNjdmZjRlNzdlYzEzZTlhOWZlYjZkN2UxN2Q2YjExMTJlYzZhZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhODJmYjM5ZGJjNDNiNjIzODE1NDlhZDFmMGEzYzkwOWM3OTYwZjU0NjlhMzVjYWMwYjlhODM2OGI2YmE1Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIyZDVkMzA1NDU1NTQ5MmNjOTAwM2Y1NzU1ZWRiNmRkZmM3ZmZlNDI0OTgxZTYxY2I4YjIzZmFiNmZjZWMxY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhM2UxNDU0MzMxMzYyOTNlYzdhYTA1NGViMjZmOTFkOTE1YmU4YTkxZjc1Nzc2OTkwM2YyNGExNWY1MTcxOWQifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.6.0",
-    "at": "2026-09-25T19:03:50.575Z"
+    "at": "2026-10-14T15:24:02.349Z"
   }
 }

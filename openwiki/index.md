@@ -10,4 +10,3 @@ okf_version: "0.2"
 
 - [arquitectura](arquitectura/)
 - [contenido](contenido/)
-- [flujos](flujos/)
